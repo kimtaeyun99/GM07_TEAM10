@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\Bullet\Bullet.cs" />
     <Compile Include="Assets\Space_Exploration_GUI_Kit\Scripts\Toggle.cs" />
     <Compile Include="Assets\Scripts\Equipment\EquipmentUI.cs" />
+    <Compile Include="Assets\Scripts\Hud\WeaponQuickSlot.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\Data 1\BulletData.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SimpleScript.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark04.cs" />
+    <Compile Include="Assets\Scripts\Hud\HudController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack\EnemyBulletManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -125,7 +127,6 @@
     <Compile Include="Assets\Scripts\Player 1\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Equipment\EquipManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
-    <Compile Include="Assets\Scripts\WeaponQuickSlot.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyInfo\EnemyBase.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack\EnemyRaser.cs" />
     <Compile Include="Assets\Scripts\InterFace 1\ITakeAble.cs" />
@@ -138,7 +139,6 @@
     <Compile Include="Assets\Scripts\Gun\Gun.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
-    <Compile Include="Assets\Scripts\HudController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />

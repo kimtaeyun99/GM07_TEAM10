@@ -79,25 +79,4 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    // 💡 장비 장착 등 '아이템 데이터' 자체로 지워야 할 때를 위해 복구합니다.
-    public void Remove(ItemData item)
-    {
-        // 가방에서 해당 아이템 데이터를 가진 칸을 찾습니다.
-        InventoryItem existingItem = items.Find(x => x.itemData == item);
-
-        if (existingItem != null)
-        {
-            existingItem.quantity--; // 개수 줄임
-
-            if (existingItem.quantity <= 0)
-            {
-                items.Remove(existingItem); // 0개가 되면 가방 리스트에서 삭제
-            }
-        }
-
-        if (onItemChangedCallback != null)
-        {
-            onItemChangedCallback.Invoke();
-        }
-    }
 }

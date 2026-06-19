@@ -60,7 +60,7 @@ public class EquipmentManager : MonoBehaviour
 
         if (Inventory.instance != null)
         {
-            Inventory.instance.Remove(newItem);
+            Inventory.instance.RemoveAt(slotIndex);
         }
 
         if (onEquipmentChangedCallback != null)

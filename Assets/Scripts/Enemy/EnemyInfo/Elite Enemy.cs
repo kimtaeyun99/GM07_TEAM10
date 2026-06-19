@@ -31,11 +31,9 @@ public class EliteEnemy : EnemyBase
     [Header("원형공격 설정")]
     [SerializeField] private float circleAttackCount;
     [SerializeField] private float circleAttackDelay;
-    private WaitForSeconds CircleAttackWait;
     [Header("나선공격 설정")]
     [SerializeField] private float spiralAttackCount;
     [SerializeField] private float spiralAttackDelay;
-    private WaitForSeconds SpiralAttackWait;
     [SerializeField] private float spiralAngle;
     [Header("유도공격 설정")]
     [SerializeField] private float homingAttackCount;
@@ -50,8 +48,6 @@ public class EliteEnemy : EnemyBase
         AttackWait = new WaitForSeconds(attackDelay);
         StraightAttackWait = new WaitForSeconds(straightAttackDelay);
         CurveAttackWait = new WaitForSeconds(curveAttackDelay);
-        CircleAttackWait = new WaitForSeconds(circleAttackDelay);
-        SpiralAttackWait = new WaitForSeconds(spiralAttackDelay);
         HomingAttackWait = new WaitForSeconds(homingAttackDelay);
     }
     private void Start()

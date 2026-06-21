@@ -46,7 +46,7 @@ public class EnemyBullet : MonoBehaviour
             case BulletPattern.Curve: CurveMove(); break;
             case BulletPattern.Circle: CircleMove(); break;
             case BulletPattern.Spiral: SpiralMove(); break;
-            case BulletPattern.Homing: HomingMove(); break;
+            //case BulletPattern.Homing: HomingMove(); break;
         }
     }
     private void StraightMove()
@@ -74,9 +74,9 @@ public class EnemyBullet : MonoBehaviour
         Vector3 offset = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * (1f + timer);
         transform.position += offset * Time.deltaTime;
     }
-    private void HomingMove()
-    {
-        dir = (PlayerStats.Instacne.transform.position - transform.position).normalized;
-        transform.position += dir * speed * Time.deltaTime;
-    }
+    //private void HomingMove()
+    //{
+    //    dir = (PlayerStats.Instacne.transform.position - transform.position).normalized;
+    //    transform.position += dir * speed * Time.deltaTime;
+    //}
 }

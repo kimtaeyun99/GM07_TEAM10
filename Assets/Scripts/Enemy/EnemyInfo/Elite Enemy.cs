@@ -56,12 +56,12 @@ public class EliteEnemy : EnemyBase
         StartCoroutine(AttackCo());
     }
 
-    private void Update()
-    {
-        dir = (PlayerStats.Instacne.transform.position - transform.position).normalized;
-        dis = Vector3.Distance(PlayerStats.Instacne.transform.position, transform.position);
-        returnPos = PlayerStats.Instacne.transform.position - (10 * dir);
-    }
+    //private void Update()
+    //{
+    //    dir = (PlayerStats.Instacne.transform.position - transform.position).normalized;
+    //    dis = Vector3.Distance(PlayerStats.Instacne.transform.position, transform.position);
+    //    returnPos = PlayerStats.Instacne.transform.position - (10 * dir);
+    //}
     private IEnumerator MoveCo()
     {
         while (true)

@@ -9,7 +9,7 @@ public class BasicEnemy : EnemyBase
     [SerializeField] private EnemyBullet enemyBulletPrefab;
 
     [Header("이동 설정")]
-    [SerializeField] private float toDistance = 5;
+    //[SerializeField] private float toDistance = 5;
 
     [Header("공격 설정")]
     [SerializeField] private float attackDelay = 3.0f;
@@ -27,16 +27,16 @@ public class BasicEnemy : EnemyBase
     {
         StartCoroutine(AttackCo());
     }
-    private void Update()
-    {
-        dis = Vector3.Distance(PlayerStats.Instacne.transform.position, transform.position);
+    //private void Update()
+    //{
+    //    //dis = Vector3.Distance(PlayerStats.Instacne.transform.position, transform.position);
 
-        dir = (PlayerStats.Instacne.transform.position - transform.position).normalized;
-        if (dis > toDistance)
-        {
-            Move();
-        }
-    }
+    //    dir = (PlayerStats.Instacne.transform.position - transform.position).normalized;
+    //    if (dis > toDistance)
+    //    {
+    //        Move();
+    //    }
+    //}
     private void Move()
     {
         transform.position += dir * moveSpeed * Time.deltaTime;

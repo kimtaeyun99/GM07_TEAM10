@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerBase : MonoBehaviour, IDamageable
@@ -7,11 +8,21 @@ public class PlayerBase : MonoBehaviour, IDamageable
     protected int maxHp;
     protected int currentHp;
     protected float moveSpeed;
+
     protected float dodgeCooldowm;
+    private WaitForSeconds dodgeCooldownWait;
     protected float dodgeDuration;
+    private WaitForSeconds dodgeDurationWait;
+    public bool isDodgeable { get; private set; } = true;
+    public bool isDamageable { get; private set; } = true;
 
     private Rigidbody2D rb;
+    private SpriteRenderer weaponSpriteRenderer;
 
+    [SerializeField] private Transform weaponHolder;
+    [SerializeField] private Transform firePoint;
+
+    [SerializeField] private WeaponBase[] weaponBases;
     public void Initialize(PlayerData data)
     {
         if (data == null) return;
@@ -33,6 +44,10 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             rb = GetComponent<Rigidbody2D>();
         }
+        weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
+
+        dodgeCooldownWait = new WaitForSeconds(dodgeCooldowm);
+        dodgeDurationWait = new WaitForSeconds(dodgeDuration);
     }
     private void FixedUpdate()
     {
@@ -48,7 +63,15 @@ public class PlayerBase : MonoBehaviour, IDamageable
         Reload();
         SecondaryWeapon();
     }
-    
+    private void Awake()
+    {
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
+        weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
+    }
+
     private void Move()
     {
         Vector2 movedir = new Vector2(InputManager.Instance.movement.x, InputManager.Instance.movement.y);
@@ -57,7 +80,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     private void Attack()
     {
         if (!InputManager.Instance.isAttackPressed) return;
-        //공격 메서드
+        
     }
     private void Interact()
     {
@@ -66,24 +89,43 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void Dodge()
     {
-        if (!InputManager.Instance.isDodgePressed) return;
-        //회피 메서드
+        if (!InputManager.Instance.isDodgePressed || !isDodgeable) return;
+        StartCoroutine(DodgeCo());
+        StartCoroutine(DodgeCooldownCo());
+    }
+    private IEnumerator DodgeCo()
+    {
+        isDamageable = false;
+        yield return dodgeDurationWait;
+        isDamageable = true;
+    }
+    private IEnumerator DodgeCooldownCo()
+    {
+        isDodgeable = false;
+        yield return dodgeCooldownWait;
+        isDodgeable = true;
     }
     private void QuickSlot()
     {
         if(InputManager.Instance.isQuickSlot1Pressed)
         {
-            //퀵슬롯1 (Pistol) 전환 메서드
+            EquipWeapon(playerData.PistolSprite);
+            weaponHolder.position = new Vector3(0.08f, -0.1f, 0.0f);
+            firePoint.position = new Vector3(0.03f, -0.007f, 0.0f);
             InputManager.Instance.isQuickSlot1Pressed = false;
         }
         if(InputManager.Instance.isQuickSlot2Pressed)
         {
-            //퀵슬롯2 (Shotgun) 전환 메서드
+            EquipWeapon(playerData.ShotgunSprite);
+            weaponHolder.position = new Vector3(0f, -0.14f, 0.0f);
+            firePoint.position = new Vector3(0.06f, 0.0f, 0.0f);
             InputManager.Instance.isQuickSlot2Pressed = false;
         }
         if(InputManager.Instance.isQuickSlot3Pressed)
         {
-            //퀵슬롯3 (AR) 전환 메서드
+            EquipWeapon(playerData.ARSprite);
+            weaponHolder.position = new Vector3(0f, -0.14f, 0.0f);
+            firePoint.position = new Vector3(0.07f, 0f, 0.0f);
             InputManager.Instance.isQuickSlot3Pressed = false;
         }
         if(InputManager.Instance.isQuickSlot4Pressed)
@@ -91,6 +133,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
             //퀵슬롯4 (Potion) 사용 메서드
             InputManager.Instance.isQuickSlot4Pressed = false;
         }
+    }
+    private void EquipWeapon (Sprite weaponSprite)
+    {
+        weaponSpriteRenderer.sprite = weaponSprite;
+        Debug.Log($"{weaponSprite.name} 장착");
     }
     private void Inventory()
     {
@@ -109,6 +156,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     public void TakeDamage(float damage)
     {
+        if (!isDamageable) return;
         currentHp -= (int)damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");

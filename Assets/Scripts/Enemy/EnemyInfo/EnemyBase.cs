@@ -6,19 +6,14 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour, IDamageable
 {
     protected EnemyData enemyData;
-    private Sprite enemySprite;
+    private SpriteRenderer enemySpriteRenderer;
+    protected int maxHp;
     protected int currentHp;
     protected int attack;
     protected float moveSpeed;
-    protected float damageDelay;
-    public WaitForSeconds DamageDelay;
     protected ItemBase goldReward;
     protected ItemBase[] bulletRewards;
     protected float itemDropRadius;
-
-    //public bool IsDamageable { get; private set; } = true;
-
-    protected Sprite sprite;
 
     public void Initialize(EnemyData data)
     {
@@ -26,38 +21,31 @@ public class EnemyBase : MonoBehaviour, IDamageable
         enemyData = data;
 
         gameObject.name = enemyData.EnemyName;
-        enemySprite = enemyData.EnemySprite;
-        currentHp = enemyData.MaxHp;
+        enemySpriteRenderer = GetComponent<SpriteRenderer>();
+        if(enemySpriteRenderer != null)
+        {
+            enemySpriteRenderer.sprite = enemyData.EnemySprite;
+        }
+        maxHp = enemyData.MaxHp;
+        currentHp = maxHp;
         attack = enemyData.Attack;
         moveSpeed = enemyData.MoveSpeed;
-        damageDelay = enemyData.DamageDelay;
         goldReward = enemyData.GoldReward;
         bulletRewards = enemyData.BulletRewards;
         itemDropRadius = enemyData.ItemDropRadius;
-        DamageDelay = new WaitForSeconds(damageDelay);
-    }
-    private void Awake()
-    {
-        sprite = GetComponent<Sprite>();
-        sprite = enemySprite;
+
     }
     public void TakeDamage(float damage)
     {
-        //if (!IsDamageable) return;
-        //IsDamageable = false;
         currentHp -= (int)damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");
         if (currentHp <= 0)
         {
-            EnemyDie();
+            Die();
         }
-        //else
-        //{
-        //    StartCoroutine(GetDamageDelayCo());
-        //}
     }
-    protected void EnemyDie()
+    protected void Die()
     {
         Debug.Log($"{gameObject.name} 사망");
         Destroy(gameObject);
@@ -75,13 +63,14 @@ public class EnemyBase : MonoBehaviour, IDamageable
             //플레이어 무기 리스트를 받아서 해당되는 탄약 드랍하도록 구현
             //플레이어 에서 무기 관리를 어떻게 할지 받은 후 구현 
             int rate = Random.Range(0, 100);
-            if (rate <= 30) return;
+            if (rate > 30)
+            {
+                Vector2 itemDropOffset = Random.insideUnitCircle * itemDropRadius;
+                Vector2 itemSpawnPos = (Vector2)transform.position + itemDropOffset;
 
-            Vector2 itemDropOffset = Random.insideUnitCircle * itemDropRadius;
-            Vector2 itemSpawnPos = (Vector2)transform.position + itemDropOffset;
-
-            Instantiate(bulletRewards[i], itemSpawnPos, Quaternion.identity);
-            Debug.Log($"{bulletRewards[i].name} 드랍");
+                Instantiate(bulletRewards[i], itemSpawnPos, Quaternion.identity);
+                Debug.Log($"{bulletRewards[i].name} 드랍");
+            }
         }
     }
     protected void GoldDrop()
@@ -92,9 +81,4 @@ public class EnemyBase : MonoBehaviour, IDamageable
         Instantiate(goldReward, goldSpawnPos, Quaternion.identity);
         Debug.Log($"{goldReward.name} 드랍");
     }
-    //private IEnumerator GetDamageDelayCo()
-    //{
-    //    yield return DamageDelay;
-    //    IsDamageable = true;
-    //}
 }

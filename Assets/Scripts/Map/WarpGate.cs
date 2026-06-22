@@ -1,33 +1,29 @@
 using UnityEngine;
-using UnityEngine.Events;
 
 public class WarpGate : MonoBehaviour
 {
-    [SerializeField] private bool isActive;
-    [SerializeField] private Collider2D warpTrigger;
-    [SerializeField] private SpriteRenderer spriteRenderer;
-    [SerializeField] private UnityEvent onWarp;
+    [SerializeField] private bool isActive = true; // 워프게이트 활성화 여부
+    [SerializeField] private Collider2D warpTrigger; // 플레이어가 닿을 트리거 콜라이더
 
-    private void Reset()
+    public bool IsActive
     {
-        warpTrigger = GetComponentInChildren<Collider2D>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        get { return isActive; }
     }
 
     private void Awake()
     {
-        ApplyState();
+        ApplyState(); // 시작할 때 활성화 상태 적용
     }
 
     public void Activate()
     {
-        isActive = true;
+        isActive = true; // 워프게이트 활성화
         ApplyState();
     }
 
     public void Deactivate()
     {
-        isActive = false;
+        isActive = false; // 워프게이트 비활성화
         ApplyState();
     }
 
@@ -35,12 +31,7 @@ public class WarpGate : MonoBehaviour
     {
         if (warpTrigger != null)
         {
-            warpTrigger.enabled = isActive;
-        }
-
-        if (spriteRenderer != null)
-        {
-            spriteRenderer.enabled = isActive;
+            warpTrigger.enabled = isActive; // 활성 상태에 따라 트리거 켜기/끄기
         }
     }
 
@@ -48,14 +39,14 @@ public class WarpGate : MonoBehaviour
     {
         if (!isActive)
         {
-            return;
+            return; // 비활성화 상태면 작동하지 않음
         }
 
         if (!other.CompareTag("Player"))
         {
-            return;
+            return; // Player가 아니면 무시
         }
 
-        onWarp?.Invoke();
+        Debug.Log("다음 스테이지로 이동"); // 테스트용 이동 로그
     }
 }

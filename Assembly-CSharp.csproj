@@ -161,6 +161,7 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
+    <None Include="Assets\Asset_Alien\2DFantasticEnemy\Documentation\Document.txt" />
     <None Include="Assets\Space_Exploration_GUI_Kit\Fonts\OFL.txt" />
     <None Include="Assets\Fonts\korean.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />

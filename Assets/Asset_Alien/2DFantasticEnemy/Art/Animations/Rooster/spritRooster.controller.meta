@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fc5bcac5a87a87c439ded2e26ab9ef5d
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/Rooster/spritRooster.controller
+  uploadId: 520872

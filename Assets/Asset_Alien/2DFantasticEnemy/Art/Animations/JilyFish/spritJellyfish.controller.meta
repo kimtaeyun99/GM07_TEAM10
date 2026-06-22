@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 160eabc334d3e064cb0227408cdcc803
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/JilyFish/spritJellyfish.controller
+  uploadId: 520872

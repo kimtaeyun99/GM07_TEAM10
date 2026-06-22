@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 4fa5cdf3d7ad26140960168c7830336a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/Orc/spritOrc.controller
+  uploadId: 520872

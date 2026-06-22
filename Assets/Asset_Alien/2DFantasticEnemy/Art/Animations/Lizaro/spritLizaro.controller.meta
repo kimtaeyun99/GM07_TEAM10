@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: ee3a99ff98e5a5c4189c99522781faf2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/Lizaro/spritLizaro.controller
+  uploadId: 520872

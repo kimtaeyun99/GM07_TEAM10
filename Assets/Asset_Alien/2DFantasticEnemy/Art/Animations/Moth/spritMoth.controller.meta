@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: fd0bf3122085fc0409a8cb5108ede467
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/Moth/spritMoth.controller
+  uploadId: 520872

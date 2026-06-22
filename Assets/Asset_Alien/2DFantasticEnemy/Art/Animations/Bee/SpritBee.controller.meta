@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 72514a05a07a22d4ca55831e034c53e8
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/Bee/SpritBee.controller
+  uploadId: 520872

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 6fa4fcd61c15c9247aa0fed122c8e32a
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/Elephent/SpritElephent.controller
+  uploadId: 520872

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 589864ed93659de4180f465b1a0363c2
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 230747
+  packageName: 2dFantasticEnemy
+  packageVersion: 1.0
+  assetPath: Assets/OmiStudio/2DFantasticEnemy/Art/Animations/Rhino/spritRhino.controller
+  uploadId: 520872

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: c12dfcffd5d34bf4492d34c973bf698e
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 307408
+  packageName: SciFi Heroes Toolkit Vol.5
+  packageVersion: 2.0.0
+  assetPath: Assets/Hero toolkit Vol5/Animations/5Hero.controller
+  uploadId: 845490

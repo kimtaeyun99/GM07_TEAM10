@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 0565ff50eb2f0fe44a01a5bf70e59a6b
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 9100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 357132
+  packageName: SciFi Robots Toolkit Vol.2
+  packageVersion: 1.1
+  assetPath: Assets/SciFilkitVo2/Animations/Boss.controller
+  uploadId: 871712

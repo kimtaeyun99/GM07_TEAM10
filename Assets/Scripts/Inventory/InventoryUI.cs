@@ -15,6 +15,7 @@ public class InventoryUI : MonoBehaviour
     public TextMeshProUGUI itemNameText;  // 아이템 이름 텍스트
     public TextMeshProUGUI itemDescText;  // 아이템 설명 텍스트
     public Button useButton;              // 사용 버튼 (UseButton)
+    public Button QuickButton;
     public Image itemDetailIcon;          // 우측 창에 표시될 아이템 이미지
 
     private Inventory inventory;
@@ -46,6 +47,7 @@ public class InventoryUI : MonoBehaviour
         if (inventory != null)
         {
             inventory.onItemChangedCallback += UpdateUI;
+            inventory.onItemChangedCallback += RefreshConsumableHUD;
         }
         else
         {
@@ -61,6 +63,10 @@ public class InventoryUI : MonoBehaviour
         if (useButton != null)
         {
             useButton.onClick.AddListener(OnUseButtonClick);
+        }
+        if (QuickButton != null)
+        {
+            QuickButton.onClick.AddListener(OnQuickRegisterButtonClick);
         }
 
         if (inventoryWindow != null) inventoryWindow.SetActive(false);
@@ -93,6 +99,28 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
+    private void RefreshConsumableHUD()
+    {
+        if (ConsumableQuickSlot.instance != null)
+        {
+            ConsumableQuickSlot.instance.RefreshSlots();
+        }
+    }
+    public void OnQuickRegisterButtonClick()
+    {
+        // 현재 선택된 가방 슬롯 칸이 존재하고, 그 아이템이 소모품(Consumable) 타입일 때만 작동
+        if (selectedSlotItem != null && selectedSlotItem.itemData != null)
+        {
+            if (selectedSlotItem.itemData.itemType == ItemType.Consumable)
+            {
+                if (ConsumableQuickSlot.instance != null)
+                {
+                    // 매니저의 순환 등록 시스템으로 데이터를 토스합니다.
+                    ConsumableQuickSlot.instance.RegisterToNextAvailableSlot(selectedSlotItem);
+                }
+            }
+        }
+    }
 
     // 💡 변경: 슬롯을 클릭했을 때 단순 데이터가 아닌 개수가 포함된 InventoryItem을 받도록 수정
     public void ShowDescription(InventoryItem slotItem, int index)
@@ -119,9 +147,7 @@ public class InventoryUI : MonoBehaviour
             {
                 if (EquipmentManager.instance != null)
                 {
-                    EquipmentManager.instance.Equip(item, item.targetEquipSlot);
-                    // 💡 장비도 장착하면 가방에서 사라져야 하므로, 이름을 찾아서 지우는게 아니라 정확한 그 방 번호를 지웁니다.
-                    inventory.RemoveAt(selectedSlotIndex);
+                    EquipmentManager.instance.Equip(item, item.targetEquipSlot, selectedSlotIndex);
                 }
             }
             else if (item.itemType == ItemType.Consumable)

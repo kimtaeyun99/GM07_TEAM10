@@ -22,47 +22,67 @@ public class EquipmentManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void Equip(ItemData newItem, EquipType targetSlot)
+    // EquipmentManager.cs 내부
+
+    public void Equip(ItemData newItem, EquipType targetSlot, int inventoryIndex)
     {
         int slotIndex = (int)targetSlot;
 
+        // 1. 무기 슬롯 3개 우회 분기 로직으로 정확한 방 번호(slotIndex) 결정
         if (targetSlot == EquipType.Weapon)
         {
-            // 1단계: 4번 방(무기1)이 비어있으면 4번으로
             if (currentEquipment[5] == null)
             {
                 slotIndex = 5;
             }
-            // 2단계: 4번은 차있고, 6번 방(무기2)이 비어있으면 6번으로
             else if (currentEquipment[6] == null)
             {
                 slotIndex = 6;
             }
-            // 3단계: 4번, 6번 다 차있으면 7번 방(무기3)으로 장착!
             else
             {
                 slotIndex = 7;
-                Debug.Log("무기 1, 2가 모두 차있어 무기 3(7번 방)에 장착합니다.");
-
-                // (선택) 만약 무기 3번마저 꽉 차 있다면 기존 무기3을 인벤토리로 돌려보냄
-                if (currentEquipment[7] != null)
-                {
-                    if (Inventory.instance != null) Inventory.instance.Add(currentEquipment[7]);
-                }
             }
         }
 
-        // 🚨 배열 범위 초과 방지 안전장치 (크기가 7이므로 7 이상일 때 체크)
-        if (slotIndex >= currentEquipment.Length) return;
-
-        // 최종 결정된 방 번호(slotIndex)에 아이템 장착
-        currentEquipment[slotIndex] = newItem;
-
-        if (Inventory.instance != null)
+        // 2. 결정된 장착 슬롯(slotIndex)이 비어있는지 확인
+        if (currentEquipment[slotIndex] == null)
         {
-            Inventory.instance.RemoveAt(slotIndex);
+            // 💡 [조건 A] 슬롯이 완전히 비어있는 상태일 때
+            // 장착 슬롯을 새로 채우는 것이므로, 인벤토리에서 원래 아이템을 제거합니다!
+            if (Inventory.instance != null)
+            {
+                Inventory.instance.RemoveAt(inventoryIndex);
+                Debug.Log($"{newItem.itemName}을 빈 슬롯에 장착하여 인벤토리에서 차감했습니다.");
+            }
+
+            // 새 아이템 장착
+            currentEquipment[slotIndex] = newItem;
+        }
+        else
+        {
+            // 💡 [조건 B] 슬롯이 이미 차있어서 교체(Swap)해야 할 때
+            // 인벤토리에서 제거(RemoveAt)하지 않고, 그 칸의 내용을 기존 아이템과 서로 교체합니다.
+            ItemData oldItem = currentEquipment[slotIndex];
+
+            // 장착 슬롯에 새 아이템 덮어씌우기
+            currentEquipment[slotIndex] = newItem;
+
+            if (Inventory.instance != null)
+            {
+                // 💡 인벤토리의 원래 그 칸(inventoryIndex)에 기존 장비를 다시 대입하여 바꿔치기합니다.
+                // (이 기능이 정상 작동하려면 Inventory에 인덱스로 아이템을 세팅하는 기능이 있거나, 
+                //  단순 Add 후 UI 새로고침을 통해 자연스럽게 Swap 연출을 해야 합니다)
+
+                // 예시: 가장 안전하게 기존 아이템을 인벤토리에 다시 대입하는 방식
+                // 만약 Inventory.cs에 items[inventoryIndex]를 수정하는 함수가 없다면 아래처럼 직접 접근하거나 Add를 활용합니다.
+                Inventory.instance.items[inventoryIndex] = new InventoryItem(oldItem, 1);
+
+                Debug.Log($"기존 장비 {oldItem.itemName}과 새 장비 {newItem.itemName}을 교체(Swap)했습니다.");
+            }
         }
 
+        // UI 새로고침 호출
         if (onEquipmentChangedCallback != null)
         {
             onEquipmentChangedCallback.Invoke();

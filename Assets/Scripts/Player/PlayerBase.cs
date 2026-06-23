@@ -154,10 +154,10 @@ public class PlayerBase : MonoBehaviour, IDamageable
         if (!Managers.Input.isSecondaryWeaponPressed) return;
         //수류탄 메서드
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         if (!isDamageable) return;
-        currentHp -= (int)damage;
+        currentHp -= damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");
         if (currentHp <= 0)

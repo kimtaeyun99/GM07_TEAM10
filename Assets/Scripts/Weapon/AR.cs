@@ -1,21 +1,29 @@
 using System.Collections;
 using UnityEngine;
 
-public class Pistol : WeaponBase
+public class AR : WeaponBase, IReloadable
 {
-    [SerializeField] private PistolBullet pistolBullet;
+    [SerializeField] private ARBullet arBullet;
 
     private Coroutine coroutine;
+    private bool isReload = false;
     public override void Shoot()
     {
+        if (currentAmmo <= 0)
+        {
+            Reload();
+            return;
+        }
+        if (isReload) return;
+
         if (coroutine == null)
         {
             coroutine = StartCoroutine(ShootCo());
         }
     }
-    public void StopShooting()
+    public void StopShoot()
     {
-        if (coroutine != null)
+        if(coroutine != null)
         {
             StopCoroutine(coroutine);
             coroutine = null;
@@ -23,23 +31,39 @@ public class Pistol : WeaponBase
     }
     public IEnumerator ShootCo()
     {
-        while (true)
+        while (currentAmmo > 0 && !isReload)
         {
             FireBullet();
             yield return ShootDelayWait;
         }
+        coroutine = null;
     }
     public void FireBullet()
     {
+        currentAmmo--;
+
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mousePos.z = 0;
 
         Vector2 dir = (mousePos - firePoint.position).normalized;
 
-        PistolBullet bullet = Managers.Pool.GetPool(pistolBullet);
+        ARBullet bullet = Managers.Pool.GetPool(arBullet);
         bullet.transform.position = firePoint.position;
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
 
         bullet.Fire(dir);
+    }
+    public void Reload()
+    {
+        if (currentAmmo >= maxAmmo) return;
+        StartCoroutine(ReloadCo());
+    }
+    public IEnumerator ReloadCo()
+    {
+        isReload = true;
+        yield return ReloadDelayWait;
+        //인벤에서 탄창 아이템 -1
+        currentAmmo = maxAmmo;
+        isReload = false;
     }
 }

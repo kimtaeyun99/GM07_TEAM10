@@ -35,7 +35,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
         itemDropRadius = enemyData.ItemDropRadius;
 
     }
-    public void TakeDamage(float damage)
+    public void TakeDamage(int damage)
     {
         currentHp -= (int)damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");

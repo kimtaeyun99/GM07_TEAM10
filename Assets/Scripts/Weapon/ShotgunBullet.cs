@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PistolBullet : PlayerBulletBase
+public class ShotgunBullet : PlayerBulletBase
 {
     private Vector2 direction;
     public void Fire(Vector2 dir)

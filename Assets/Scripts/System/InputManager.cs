@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
-
     private InputAction moveAction;
     private InputAction attackAction;
     private InputAction interactAction;
@@ -28,13 +26,6 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-
         DontDestroyOnLoad(gameObject);
 
         moveAction = InputSystem.actions.FindAction("Move");
@@ -49,7 +40,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         movement = moveAction.ReadValue<Vector2>();
-        isAttackPressed = attackAction.WasPressedThisFrame();
+        isAttackPressed = attackAction.IsPressed();
         isInteractPressed = interactAction.WasPressedThisFrame();
         isDodgePressed = dodgeAction.WasPressedThisFrame();
         isInventoryPressed = inventoryAction.WasPressedThisFrame();
@@ -59,10 +50,27 @@ public class InputManager : MonoBehaviour
     private void OnQuickSlot(InputAction.CallbackContext ctx)
     {
         var control = ctx.control;
-        if (control == Keyboard.current.digit1Key) isQuickSlot1Pressed = true;
-        else if (control == Keyboard.current.digit2Key) isQuickSlot2Pressed = true;
-        else if (control == Keyboard.current.digit3Key) isQuickSlot3Pressed = true;
-        else if (control == Keyboard.current.digit4Key) isQuickSlot4Pressed = true;
+        if (control == Keyboard.current.digit1Key)
+        {
+            isQuickSlot1Pressed = true;
+            Debug.Log("1");
+        }
+
+        else if (control == Keyboard.current.digit2Key)
+        {
+            isQuickSlot2Pressed = true;
+            Debug.Log("2");
+        }
+        else if (control == Keyboard.current.digit3Key)
+        {
+            isQuickSlot3Pressed = true;
+            Debug.Log("3");
+        }
+        else if (control == Keyboard.current.digit4Key)
+        {
+            isQuickSlot4Pressed = true;
+            Debug.Log("4");
+        }
     }
     private void OnEnable()
     {

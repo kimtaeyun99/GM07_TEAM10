@@ -9,6 +9,6 @@ public class ShotgunBullet : PlayerBulletBase
     }
     private void Update()
     {
-        transform.Translate(direction * speed * Time.deltaTime, Space.World);
+        transform.Translate(direction * speed * Time.deltaTime,Space.World);
     }
 }

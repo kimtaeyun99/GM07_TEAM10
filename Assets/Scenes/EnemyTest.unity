@@ -150,9 +150,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PoolPreloader
   pistolBullet: {fileID: 4131722430567471582, guid: 6f78d33403fbd5947baf7a6b5a2fc023, type: 3}
   pistolBulletCount: 30
-  shotgunBullet: {fileID: 0}
+  shotgunBullet: {fileID: 1885867596676014523, guid: e4ac2fc29ddffdc4a89983fec42d1e36, type: 3}
   shotgunBulletCount: 30
-  arBullet: {fileID: 0}
+  arBullet: {fileID: 5576696269322316712, guid: a484b4531ddb85c40b3fb180db0b08cb, type: 3}
   arBulletCount: 30
 --- !u!4 &720742157
 Transform:
@@ -213,8 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84efbb5fa19b481429a60a1bb279f58e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
-  playerData: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 5a167a8da6cdf044788a90bfe10e0b76, type: 2}
+  playerPrefab: {fileID: 7049341908147252377, guid: 8fb67150760a37942ad23dac8ddf5f52, type: 3}
 --- !u!1 &1292213457
 GameObject:
   m_ObjectHideFlags: 0

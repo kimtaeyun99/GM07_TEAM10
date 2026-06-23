@@ -29,31 +29,37 @@ public class Inventory : MonoBehaviour
 
     void Awake() => instance = this;
 
-    // 💡 아이템 추가 함수 (5개 제한 로직 포함)
     public bool Add(ItemData item)
     {
-        // 1. 이미 가방에 똑같은 아이템이 있고, 그 칸의 개수가 최대치(5개) 미만인지 찾습니다.
         InventoryItem existingItem = items.Find(x => x.itemData == item && x.quantity < item.maxStackSize);
 
         if (existingItem != null)
         {
-            // 기존 칸에 개수만 +1 추가
             existingItem.quantity++;
             if (onItemChangedCallback != null) onItemChangedCallback.Invoke();
+
+            // 💡 획득 로그 추가 (기존 아이템 수량 증가 시)
+            if (HUDLogManager.instance != null)
+            {
+                HUDLogManager.instance.Log($"[{item.itemName}]을(를) 획득했습니다!", Color.white);
+            }
             return true;
         }
 
-        // 2. 기존 칸이 없거나 다 가득 찼다면, 새로운 빈 칸을 차지해야 합니다.
         if (items.Count >= space)
         {
             Debug.Log("인벤토리가 가득 찼습니다.");
             return false;
         }
 
-        // 새로운 슬롯 등록 (시작 개수는 1개)
         items.Add(new InventoryItem(item, 1));
-
         if (onItemChangedCallback != null) onItemChangedCallback.Invoke();
+
+        // 💡 획득 로그 추가 (새로운 슬롯에 등록 시)
+        if (HUDLogManager.instance != null)
+        {
+            HUDLogManager.instance.Log($"[{item.itemName}]을(를) 획득했습니다!", Color.white);
+        }
         return true;
     }
 

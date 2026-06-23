@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416998530282433372}
   - component: {fileID: 500187276951168261}
-  - component: {fileID: 7859043392593209958}
+  - component: {fileID: 4131722430567471582}
   m_Layer: 0
   m_Name: Pistol Bullet
   m_TagString: Untagged
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &7859043392593209958
+--- !u!114 &4131722430567471582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,6 +101,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 6633224908567117018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7029d2390dfa99c46982c4a839989853, type: 3}
+  m_Script: {fileID: 11500000, guid: 87939452c07efa241aba6509518e9f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PistolBullet

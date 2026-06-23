@@ -74,22 +74,22 @@ public class PlayerBase : MonoBehaviour, IDamageable
 
     private void Move()
     {
-        Vector2 movedir = new Vector2(InputManager.Instance.movement.x, InputManager.Instance.movement.y);
+        Vector2 movedir = new Vector2(Managers.Input.movement.x, Managers.Input.movement.y);
         rb.linearVelocity = movedir * moveSpeed;
     }
     private void Attack()
     {
-        if (!InputManager.Instance.isAttackPressed) return;
+        if (!Managers.Input.isAttackPressed) return;
         
     }
     private void Interact()
     {
-        if (!InputManager.Instance.isInteractPressed) return;
+        if (!Managers.Input.isInteractPressed) return;
         //상호작용 메서드
     }
     private void Dodge()
     {
-        if (!InputManager.Instance.isDodgePressed || !isDodgeable) return;
+        if (!Managers.Input.isDodgePressed || !isDodgeable) return;
         StartCoroutine(DodgeCo());
         StartCoroutine(DodgeCooldownCo());
     }
@@ -107,31 +107,31 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void QuickSlot()
     {
-        if(InputManager.Instance.isQuickSlot1Pressed)
+        if(Managers.Input.isQuickSlot1Pressed)
         {
             EquipWeapon(playerData.PistolSprite);
             weaponHolder.position = new Vector3(0.08f, -0.1f, 0.0f);
             firePoint.position = new Vector3(0.03f, -0.007f, 0.0f);
-            InputManager.Instance.isQuickSlot1Pressed = false;
+            Managers.Input.isQuickSlot1Pressed = false;
         }
-        if(InputManager.Instance.isQuickSlot2Pressed)
+        if(Managers.Input.isQuickSlot2Pressed)
         {
             EquipWeapon(playerData.ShotgunSprite);
             weaponHolder.position = new Vector3(0f, -0.14f, 0.0f);
             firePoint.position = new Vector3(0.06f, 0.0f, 0.0f);
-            InputManager.Instance.isQuickSlot2Pressed = false;
+            Managers.Input.isQuickSlot2Pressed = false;
         }
-        if(InputManager.Instance.isQuickSlot3Pressed)
+        if(Managers.Input.isQuickSlot3Pressed)
         {
             EquipWeapon(playerData.ARSprite);
             weaponHolder.position = new Vector3(0f, -0.14f, 0.0f);
             firePoint.position = new Vector3(0.07f, 0f, 0.0f);
-            InputManager.Instance.isQuickSlot3Pressed = false;
+            Managers.Input.isQuickSlot3Pressed = false;
         }
-        if(InputManager.Instance.isQuickSlot4Pressed)
+        if(Managers.Input.isQuickSlot4Pressed)
         {
             //퀵슬롯4 (Potion) 사용 메서드
-            InputManager.Instance.isQuickSlot4Pressed = false;
+            Managers.Input.isQuickSlot4Pressed = false;
         }
     }
     private void EquipWeapon (Sprite weaponSprite)
@@ -141,17 +141,17 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void Inventory()
     {
-        if (!InputManager.Instance.isInventoryPressed) return;
+        if (!Managers.Input.isInventoryPressed) return;
         //인벤토리 메서드
     }
     private void Reload()
     {
-        if (!InputManager.Instance.isReloadPressed) return;
+        if (!Managers.Input.isReloadPressed) return;
         //재장전 메서드
     }
     private void SecondaryWeapon()
     {
-        if (!InputManager.Instance.isSecondaryWeaponPressed) return;
+        if (!Managers.Input.isSecondaryWeaponPressed) return;
         //수류탄 메서드
     }
     public void TakeDamage(float damage)

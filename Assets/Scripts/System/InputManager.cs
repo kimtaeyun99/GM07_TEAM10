@@ -3,8 +3,6 @@ using UnityEngine.InputSystem;
 
 public class InputManager : MonoBehaviour
 {
-    public static InputManager Instance { get; private set; }
-
     private InputAction moveAction;
     private InputAction attackAction;
     private InputAction interactAction;
@@ -28,13 +26,6 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-        Instance = this;
-
         DontDestroyOnLoad(gameObject);
 
         moveAction = InputSystem.actions.FindAction("Move");
@@ -49,7 +40,7 @@ public class InputManager : MonoBehaviour
     private void Update()
     {
         movement = moveAction.ReadValue<Vector2>();
-        isAttackPressed = attackAction.WasPressedThisFrame();
+        isAttackPressed = attackAction.IsPressed();
         isInteractPressed = interactAction.WasPressedThisFrame();
         isDodgePressed = dodgeAction.WasPressedThisFrame();
         isInventoryPressed = inventoryAction.WasPressedThisFrame();

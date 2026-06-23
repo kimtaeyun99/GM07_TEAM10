@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 355924389753759221}
   - component: {fileID: 3316400918762075405}
-  - component: {fileID: 43364842198862323}
+  - component: {fileID: 1885867596676014523}
   m_Layer: 0
   m_Name: Shotgun Bullet
   m_TagString: Untagged
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &43364842198862323
+--- !u!114 &1885867596676014523
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,6 +101,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2282882892372889964}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d65ae5b50c0ba0c4a8dcc5cab45fac95, type: 3}
+  m_Script: {fileID: 11500000, guid: dbf171f047bd5d14eb550bdb7af0f9a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotgunBullet
+  damage: 7
+  speed: 5
+  returnBulletTime: 3

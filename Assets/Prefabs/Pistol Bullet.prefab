@@ -104,3 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87939452c07efa241aba6509518e9f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PistolBullet
+  damage: 10
+  speed: 5
+  returnBulletTime: 3

@@ -13,7 +13,7 @@ public class Pistol : WeaponBase
             coroutine = StartCoroutine(ShootCo());
         }
     }
-    public void StopShooting()
+    public void StopShoot()
     {
         if (coroutine != null)
         {

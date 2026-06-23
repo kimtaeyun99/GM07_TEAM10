@@ -150,6 +150,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PoolPreloader
   pistolBullet: {fileID: 4131722430567471582, guid: 6f78d33403fbd5947baf7a6b5a2fc023, type: 3}
   pistolBulletCount: 30
+  shotgunBullet: {fileID: 0}
+  shotgunBulletCount: 30
+  arBullet: {fileID: 0}
+  arBulletCount: 30
 --- !u!4 &720742157
 Transform:
   m_ObjectHideFlags: 0
@@ -159,12 +163,58 @@ Transform:
   m_GameObject: {fileID: 720742155}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.70736, y: 0.247, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &767691591
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 767691592}
+  - component: {fileID: 767691593}
+  m_Layer: 0
+  m_Name: PlayerSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &767691592
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767691591}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &767691593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767691591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84efbb5fa19b481429a60a1bb279f58e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
+  playerData: {fileID: 0}
+  playerPrefab: {fileID: 0}
 --- !u!1 &1292213457
 GameObject:
   m_ObjectHideFlags: 0
@@ -423,7 +473,7 @@ Transform:
   m_GameObject: {fileID: 1997679443}
   serializedVersion: 2
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 2.79093, y: -0.17738, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -436,3 +486,4 @@ SceneRoots:
   - {fileID: 1292213460}
   - {fileID: 1997679446}
   - {fileID: 720742157}
+  - {fileID: 767691592}

@@ -17,12 +17,9 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public bool isDamageable { get; private set; } = true;
 
     private Rigidbody2D rb;
-    private SpriteRenderer weaponSpriteRenderer;
 
-    [SerializeField] private Transform weaponHolder;
-    [SerializeField] private Transform firePoint;
-
-    [SerializeField] private WeaponBase[] weaponBases;
+    [SerializeField] private WeaponBase[] Weapons;
+    private WeaponBase currentWeapon;
     public void Initialize(PlayerData data)
     {
         if (data == null) return;
@@ -44,7 +41,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
 
         dodgeCooldownWait = new WaitForSeconds(dodgeCooldowm);
         dodgeDurationWait = new WaitForSeconds(dodgeDuration);
@@ -69,7 +65,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             rb = GetComponent<Rigidbody2D>();
         }
-        weaponSpriteRenderer = transform.Find("Weapon").GetComponent<SpriteRenderer>();
+
+        for(int i=0; i<Weapons.Length; i++)
+        {
+            Weapons[i].gameObject.SetActive(false);
+        }
     }
 
     private void Move()
@@ -79,8 +79,18 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void Attack()
     {
-        if (!Managers.Input.isAttackPressed) return;
-        
+        if (currentWeapon == null) return;
+
+        if (Managers.Input.isAttackPressed)
+        {
+            currentWeapon.Shoot();
+        }
+        else
+        {
+            if (currentWeapon is Pistol pistol) pistol.StopShoot();
+            else if (currentWeapon is Shotgun shotgun) shotgun.StopShoot();
+            else if (currentWeapon is AR ar) ar.StopShoot();
+        }
     }
     private void Interact()
     {
@@ -109,23 +119,32 @@ public class PlayerBase : MonoBehaviour, IDamageable
     {
         if(Managers.Input.isQuickSlot1Pressed)
         {
-            EquipWeapon(playerData.PistolSprite);
-            weaponHolder.position = new Vector3(0.08f, -0.1f, 0.0f);
-            firePoint.position = new Vector3(0.03f, -0.007f, 0.0f);
+            foreach(WeaponBase weapon in Weapons)
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            currentWeapon = Weapons[0];
+            currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot1Pressed = false;
         }
         if(Managers.Input.isQuickSlot2Pressed)
         {
-            EquipWeapon(playerData.ShotgunSprite);
-            weaponHolder.position = new Vector3(0f, -0.14f, 0.0f);
-            firePoint.position = new Vector3(0.06f, 0.0f, 0.0f);
+            foreach (WeaponBase weapon in Weapons)
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            currentWeapon = Weapons[1];
+            currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot2Pressed = false;
         }
         if(Managers.Input.isQuickSlot3Pressed)
         {
-            EquipWeapon(playerData.ARSprite);
-            weaponHolder.position = new Vector3(0f, -0.14f, 0.0f);
-            firePoint.position = new Vector3(0.07f, 0f, 0.0f);
+            foreach (WeaponBase weapon in Weapons)
+            {
+                weapon.gameObject.SetActive(false);
+            }
+            currentWeapon = Weapons[2];
+            currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot3Pressed = false;
         }
         if(Managers.Input.isQuickSlot4Pressed)
@@ -134,11 +153,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
             Managers.Input.isQuickSlot4Pressed = false;
         }
     }
-    private void EquipWeapon (Sprite weaponSprite)
-    {
-        weaponSpriteRenderer.sprite = weaponSprite;
-        Debug.Log($"{weaponSprite.name} 장착");
-    }
     private void Inventory()
     {
         if (!Managers.Input.isInventoryPressed) return;
@@ -146,8 +160,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void Reload()
     {
-        if (!Managers.Input.isReloadPressed) return;
-        //재장전 메서드
+        if (currentWeapon is IReloadable reloadable && Managers.Input.isReloadPressed)
+        {
+            reloadable.Reload();
+        }
+        else return;
     }
     private void SecondaryWeapon()
     {

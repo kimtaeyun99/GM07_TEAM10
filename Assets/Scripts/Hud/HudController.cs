@@ -73,15 +73,18 @@ public class HUDController : MonoBehaviour
     public void AddGold(int amount)
     {
         currentGold += amount;
+        if (currentGold < 0) currentGold = 0;
 
-        // 골드가 0원 미만으로 떨어지지 않도록 방지
-        if (currentGold < 0)
-        {
-            currentGold = 0;
-        }
-
-        // 수량이 변경되었으므로 UI 새로고침
         UpdateGoldUI();
+
+        // 💡 골드가 추가될 때 좌측에 텍스트 로그 띄우기 (양수일 때만 획득 로그)
+        if (amount > 0)
+        {
+            if (HUDLogManager.instance != null)
+            {
+                HUDLogManager.instance.Log($"+{amount} Gold 획득!", Color.yellow); // 골드는 노란색 글씨
+            }
+        }
     }
 
     public void UpdateGoldUI()

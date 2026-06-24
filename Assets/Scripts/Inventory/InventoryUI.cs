@@ -6,9 +6,13 @@ public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI instance;
 
+    // --- InventoryUI.cs 인스펙터 설정 변수 추가 ---
+    [Header("인벤토리 단축키 설정")]
+    public UnityEngine.InputSystem.Key toggleKey = UnityEngine.InputSystem.Key.I;
+
     [Header("인벤토리 창 세팅")]
     public Transform slotsParent; // SlotHolder를 연결할 곳
-    public GameObject inventoryWindow; // I키로 꺼고 켤 인벤토리 전체 창
+    public GameObject inventoryWindow; // I키로 켜고 켤 인벤토리 전체 창
 
     [Header("우측 설명 창 UI 세팅")]
     public GameObject descriptionPanel;   // 우측 설명 패널 (DescriptionPanel)
@@ -21,7 +25,6 @@ public class InventoryUI : MonoBehaviour
     private Inventory inventory;
     private InventorySlot[] slots; // 자식 슬롯들의 배열
 
-    // 💡 변경: 이제 단순 ItemData가 아니라 수량 정보가 묶인 인벤토리 칸 데이터를 기억합니다.
     private InventoryItem selectedSlotItem;
     private int selectedSlotIndex;
 
@@ -69,15 +72,21 @@ public class InventoryUI : MonoBehaviour
             QuickButton.onClick.AddListener(OnQuickRegisterButtonClick);
         }
 
+        // 💡 중요: 스크립트가 붙은 최상위 오브젝트(InventoryUI)는 절대 끄지 않고,
+        // 실제 화면에 보이는 자식 창(inventoryWindow)만 비활성화합니다.
         if (inventoryWindow != null) inventoryWindow.SetActive(false);
         if (descriptionPanel != null) descriptionPanel.SetActive(false);
     }
 
     void Update()
     {
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.iKey.wasPressedThisFrame)
+        if (UnityEngine.InputSystem.Keyboard.current != null)
         {
-            ToggleInventory();
+            // 💡 드롭다운에서 선택한 Key 값을 다이렉트로 대입하여 감지합니다.
+            if (UnityEngine.InputSystem.Keyboard.current[toggleKey].wasPressedThisFrame)
+            {
+                ToggleInventory();
+            }
         }
     }
 
@@ -95,10 +104,11 @@ public class InventoryUI : MonoBehaviour
             else
             {
                 if (descriptionPanel != null) descriptionPanel.SetActive(false);
-                selectedSlotItem = null; // 💡 변수명 변경 반영
+                selectedSlotItem = null;
             }
         }
     }
+
     private void RefreshConsumableHUD()
     {
         if (ConsumableQuickSlot.instance != null)
@@ -106,27 +116,25 @@ public class InventoryUI : MonoBehaviour
             ConsumableQuickSlot.instance.RefreshSlots();
         }
     }
+
     public void OnQuickRegisterButtonClick()
     {
-        // 현재 선택된 가방 슬롯 칸이 존재하고, 그 아이템이 소모품(Consumable) 타입일 때만 작동
         if (selectedSlotItem != null && selectedSlotItem.itemData != null)
         {
             if (selectedSlotItem.itemData.itemType == ItemType.Consumable)
             {
                 if (ConsumableQuickSlot.instance != null)
                 {
-                    // 매니저의 순환 등록 시스템으로 데이터를 토스합니다.
                     ConsumableQuickSlot.instance.RegisterToNextAvailableSlot(selectedSlotItem);
                 }
             }
         }
     }
 
-    // 💡 변경: 슬롯을 클릭했을 때 단순 데이터가 아닌 개수가 포함된 InventoryItem을 받도록 수정
     public void ShowDescription(InventoryItem slotItem, int index)
     {
         selectedSlotItem = slotItem;
-        selectedSlotIndex = index; // 💡 방 번호 저장!
+        selectedSlotIndex = index;
 
         ItemData item = slotItem.itemData;
         if (itemNameText != null) itemNameText.text = item.itemName;
@@ -136,7 +144,6 @@ public class InventoryUI : MonoBehaviour
         if (descriptionPanel != null) descriptionPanel.SetActive(true);
     }
 
-    // [사용] 버튼을 눌렀을 때 실행되는 함수 수정
     public void OnUseButtonClick()
     {
         if (selectedSlotItem != null && selectedSlotItem.itemData != null)
@@ -153,7 +160,6 @@ public class InventoryUI : MonoBehaviour
             else if (item.itemType == ItemType.Consumable)
             {
                 item.Use();
-                // 💡 핵심: 기존의 inventory.Remove(item) 대신 정확히 내가 클릭했던 방 번호를 지우라고 명령합니다!
                 inventory.RemoveAt(selectedSlotIndex);
             }
 
@@ -162,7 +168,6 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    // InventoryUI.cs 의 UpdateUI() 함수 내부
     public void UpdateUI()
     {
         if (slots == null || inventory == null) return;
@@ -171,7 +176,6 @@ public class InventoryUI : MonoBehaviour
         {
             if (i < inventory.items.Count)
             {
-                // 💡 변경: slots[i].AddItem에 현재 루프 번호인 'i'를 같이 넘겨줍니다!
                 slots[i].AddItem(inventory.items[i], i);
             }
             else

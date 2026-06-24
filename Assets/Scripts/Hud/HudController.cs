@@ -101,4 +101,15 @@ public class HUDController : MonoBehaviour
     {
         return currentGold;
     }
+
+    public void SetWeaponAmmo(int weaponCurrentAmmo, int weaponMaxAmmo)
+    {
+        // 넘겨받은 무기 내부의 실시간 탄약 데이터를 HUD 변수에 대입
+        currentAmmo = weaponCurrentAmmo;
+        maxAmmo = weaponMaxAmmo;
+
+        // UI 텍스트 컴포넌트 강제 업데이트
+        UpdateAmmoUI();
+    }
+
 }

@@ -15,5 +15,6 @@ MonoBehaviour:
   itemName: "\uCCAD\uBC14\uC9C0"
   itemIcon: {fileID: -5693902186511285166, guid: dbcd777767822414ca3203d8b520018c, type: 3}
   description: "\uD14C\uC2A4\uD2B8\uC6A9"
+  maxStackSize: 1
   itemType: 1
   targetEquipSlot: 3

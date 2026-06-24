@@ -8,6 +8,7 @@ public class ItemData : ScriptableObject
 {
     public string itemName;       // 아이템 이름
     public Sprite itemIcon;       // 인벤토리에 표시될 아이콘
+
     [TextArea]
     public string description;    // 아이템 설명
 
@@ -21,6 +22,10 @@ public class ItemData : ScriptableObject
     [Header("장비일 때만 설정하는 부위")]
     // 💡 아까 EquipmentSlot.cs에서 만든 EquipType을 그대로 사용합니다.
     public EquipType targetEquipSlot;
+
+    [Header("무기(Weapon) 타입일 때만 설정하는 탄창")]
+    public int maxAmmo = 0;     // 최대 장전 탄수
+    public int currentAmmo = 0; // 현재 남은 탄수
 
     // 아이템 사용 효과 (기존 함수)
     public void Use()

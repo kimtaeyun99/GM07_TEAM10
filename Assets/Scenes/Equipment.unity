@@ -267,7 +267,6 @@ GameObject:
   - component: {fileID: 97753343}
   - component: {fileID: 97753345}
   - component: {fileID: 97753344}
-  - component: {fileID: 97753347}
   m_Layer: 5
   m_Name: EquipmentUI
   m_TagString: Untagged
@@ -336,26 +335,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 97753342}
   m_CullTransparentMesh: 1
---- !u!114 &97753347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 97753342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81bfbb01800f776469f31cfef0cb698f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
-  slotsParent: {fileID: 1924231760}
-  inventoryWindow: {fileID: 0}
-  descriptionPanel: {fileID: 1994350847}
-  itemNameText: {fileID: 1077296341}
-  itemDescText: {fileID: 1721083011}
-  useButton: {fileID: 697574715}
-  QuickButton: {fileID: 0}
-  itemDetailIcon: {fileID: 704260418}
 --- !u!1 &110973967
 GameObject:
   m_ObjectHideFlags: 0
@@ -505,6 +484,7 @@ GameObject:
   - component: {fileID: 111747365}
   - component: {fileID: 111747364}
   - component: {fileID: 111747363}
+  - component: {fileID: 111747367}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -595,6 +575,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &111747367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 111747362}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81bfbb01800f776469f31cfef0cb698f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryUI
+  toggleKey: 35
+  slotsParent: {fileID: 1924231760}
+  inventoryWindow: {fileID: 97753342}
+  descriptionPanel: {fileID: 1994350847}
+  itemNameText: {fileID: 1077296341}
+  itemDescText: {fileID: 1721083011}
+  useButton: {fileID: 697574715}
+  QuickButton: {fileID: 0}
+  itemDetailIcon: {fileID: 704260418}
 --- !u!1001 &120918257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3459,9 +3460,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemTest
   testItem: {fileID: 0}
-  testWeapon: {fileID: 11400000, guid: 96ecfd6fe0012d04e860cbee099b9da2, type: 2}
-  testArmor1: {fileID: 11400000, guid: 235e8d6010b3d7c4fb26c3d4aeaea8ba, type: 2}
-  testArmor2: {fileID: 11400000, guid: 841ae86eb2b190b4791e8ac397c447e4, type: 2}
+  testWeapon: {fileID: 11400000, guid: b96bfab34d9f13e4caf7306d6d03047b, type: 2}
+  testArmor1: {fileID: 11400000, guid: e9719737dba4e2b4db0238a404abe7fe, type: 2}
+  testArmor2: {fileID: 11400000, guid: 4a2370cbbffe72b4fb67781bf2a11e93, type: 2}
   testHelmet: {fileID: 11400000, guid: e3e642e9d72c9fd48a359ad1e8a7bb8c, type: 2}
   testBoots: {fileID: 11400000, guid: d46a9282f2b38dc45b7045720fbd06a6, type: 2}
 --- !u!114 &1525648725

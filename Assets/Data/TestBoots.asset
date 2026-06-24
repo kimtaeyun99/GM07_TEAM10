@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: TestBoots
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uBD80\uCE20"
-  itemIcon: {fileID: 357245738443805018, guid: a1e3728f86f1d6244a297ad0f97ef5d0, type: 3}
+  itemIcon: {fileID: -8630435554779211992, guid: a943711a9185e1e44ab5e41df95fd555, type: 3}
   description: "\uD14C\uC2A4\uD2B8\uC6A9"
+  maxStackSize: 1
   itemType: 1
   targetEquipSlot: 4
+  maxAmmo: 0
+  currentAmmo: 0

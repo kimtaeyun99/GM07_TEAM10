@@ -12,15 +12,13 @@ public class ItemTest : MonoBehaviour
 
     void Update()
     {
-        // 숫자 패드 1번을 누르면 인벤토리에 아이템 추가
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             if (testItem != null)
                 Inventory.instance.Add(testItem);
         }
 
-        // 💡 숫자 2번 키를 누르면 무기(검) 아이템이 가방에 들어옵니다.
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit2Key.wasPressedThisFrame)
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit6Key.wasPressedThisFrame)
         {
             if (testWeapon != null)
             {
@@ -29,8 +27,8 @@ public class ItemTest : MonoBehaviour
             }
         }
 
-        // 💡 숫자 2번 키를 누르면 투구 아이템이 가방에 들어옵니다.
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit3Key.wasPressedThisFrame)
+        // 💡 숫자 키를 누르면 투구 아이템이 가방에 들어옵니다.
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit7Key.wasPressedThisFrame)
         {
             if (testArmor1 != null)
             {
@@ -39,7 +37,7 @@ public class ItemTest : MonoBehaviour
             }
         }
 
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit6Key.wasPressedThisFrame)
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit8Key.wasPressedThisFrame)
         {
             if (testArmor2 != null)
             {
@@ -48,7 +46,7 @@ public class ItemTest : MonoBehaviour
             }
         }
 
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit4Key.wasPressedThisFrame)
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit9Key.wasPressedThisFrame)
         {
             if (testHelmet != null)
             {
@@ -57,7 +55,7 @@ public class ItemTest : MonoBehaviour
             }
         }
 
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit5Key.wasPressedThisFrame)
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit0Key.wasPressedThisFrame)
         {
             if (testBoots != null)
             {

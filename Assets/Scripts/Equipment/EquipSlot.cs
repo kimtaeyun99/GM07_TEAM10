@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 // 어떤 부위인지 구분하기 위한 이름표
-public enum EquipType { None, Helmet, Armor1, Armor2, Boots, Weapon}
+public enum EquipType { None, Helmet, Armor1, Armor2, Boots, Weapon }
 
 public class EquipmentSlot : MonoBehaviour
 {

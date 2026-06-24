@@ -4,6 +4,7 @@ public class EnemyBulletManager : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private EnemyBullet enemyBulletPrefab;
+    [SerializeField] private PlayerBase player;
     public void FireCirclePattern(int bulletCount)
     {
         float angleStep = 360f / bulletCount;
@@ -15,8 +16,11 @@ public class EnemyBulletManager : MonoBehaviour
             float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
             Vector3 dir = new Vector3(dirX, dirY, 0f);
 
-            EnemyBullet bullet = Instantiate(enemyBulletPrefab, firePoint.position, Quaternion.identity);
-            bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight);
+            EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
+            bullet.transform.position = firePoint.position;
+            bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+
+            bullet.Initialize(dir, EnemyBullet.BulletPattern.Circle, player);
 
             angle += angleStep;
         }
@@ -32,8 +36,10 @@ public class EnemyBulletManager : MonoBehaviour
             float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
             Vector3 dir = new Vector3(dirX, dirY, 0f);
 
-            EnemyBullet bullet = Instantiate(enemyBulletPrefab, firePoint.position, Quaternion.identity);
-            bullet.Initialize(dir, EnemyBullet.BulletPattern.Spiral);
+            EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
+            bullet.transform.position = firePoint.position;
+            bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+            bullet.Initialize(dir, EnemyBullet.BulletPattern.Spiral,player);
 
             angle += angleStep;
         }

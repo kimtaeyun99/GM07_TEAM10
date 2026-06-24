@@ -184,7 +184,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     public void Die()
     {
-        //플레이어 사망 메서드
+        Destroy(gameObject);
     }
 
 }

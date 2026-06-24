@@ -2,28 +2,30 @@ using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour
 {
-    [SerializeField] private EnemyData enemyData;
+    [SerializeField] private EnemyData EnemyData;
+
+    [SerializeField] private EnemyBase Enemyprefab;
 
     [SerializeField] private float spawnRadius = 5;
-
-    private bool isSpawnable = true;
-
+    [SerializeField] private int EnemySpawnCount = 3;
     private void Start()
     {
-        SpawnEnemy(enemyData);
+        SpawnEnemy(EnemyData);
     }
 
     private void SpawnEnemy(EnemyData enemyData)
     {
-        if (!isSpawnable) return;
-        if (enemyData == null) return;
-        if (enemyData.EnemyPrefab == null) return;
+        for (int i = 0; i < EnemySpawnCount; i++)
+        {
+            if (enemyData == null) return;
+            if (enemyData.EnemyPrefab == null) return;
 
-        Vector2 spawnPos = Random.insideUnitCircle * spawnRadius;
+            Vector2 spawnPos = Random.insideUnitCircle * spawnRadius;
 
-        EnemyBase enemy = Instantiate(enemyData.EnemyPrefab, spawnPos, Quaternion.identity);
-
-        enemy.Initialize(enemyData);
-        isSpawnable = false;
+            EnemyBase enemy = Managers.Pool.GetPool(Enemyprefab);
+            enemy.transform.position = spawnPos;
+            enemy.transform.rotation = Quaternion.Euler(Vector2.right);
+            enemy.Initialize(enemyData);
+        }
     }
 }

@@ -15,10 +15,10 @@ public class EnemyData : ScriptableObject
     [SerializeField] private int attack = 5;
     [SerializeField] private float moveSpeed = 1.0f;
 
-    [Header("Enemy 처치 보상")]
-    [SerializeField] private ItemBase goldReward;
-    [SerializeField] private ItemBase[] bulletRewards;
-    [SerializeField] private float itemDropRadius;
+    //[Header("Enemy 처치 보상")]
+    //[SerializeField] private ItemBase goldReward;
+    //[SerializeField] private ItemBase[] bulletRewards;
+    //[SerializeField] private float itemDropRadius;
 
     public string EnemyName { get { return enemyName; } }
     public EnemyBase EnemyPrefab {  get { return enemyPrefab; } }
@@ -26,7 +26,7 @@ public class EnemyData : ScriptableObject
     public int MaxHp { get { return maxHp; } }
     public int Attack { get { return attack; } }
     public float MoveSpeed { get { return moveSpeed; } }
-    public ItemBase GoldReward { get { return goldReward; } }
-    public ItemBase[] BulletRewards { get { return bulletRewards; } }
-    public float ItemDropRadius { get { return itemDropRadius; } }
+    //public ItemBase GoldReward { get { return goldReward; } }
+    //public ItemBase[] BulletRewards { get { return bulletRewards; } }
+    //public float ItemDropRadius { get { return itemDropRadius; } }
 }

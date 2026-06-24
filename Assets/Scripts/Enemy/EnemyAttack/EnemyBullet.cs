@@ -4,22 +4,31 @@ using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
+    private PlayerBase player;
+
     public int damage = 10;
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Enemy")) return;
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy")) return;
 
-    //    if (collision.TryGetComponent(out IDamageable damageable))
-    //    {
-    //        if (PlayerStats.Instance.IsDodge) return;
-    //        damageable.TakeDamage(damage);
-    //    }
-    //}
+        if (collision.CompareTag("Wall"))
+        {
+            Managers.Pool.ReturnPool(this);
+        }
+
+        if (collision.TryGetComponent(out IDamageable damageable))
+        {
+            if (!player.isDamageable) return;
+            damageable.TakeDamage(damage);
+            Managers.Pool.ReturnPool(this);
+        }
+    }
     public enum BulletPattern
     {
         None = -1, Straight, Curve, Circle, Spiral, Homing
     }
+
     [SerializeField] private float lifeTime = 3.0f;
     [SerializeField] private float speed = 5.0f;
 
@@ -27,10 +36,12 @@ public class EnemyBullet : MonoBehaviour
     private BulletPattern bulletPattern;
     private float timer;
     private float angle;
-    public void Initialize(Vector3 direction, BulletPattern Pattern)
+    public void Initialize(Vector3 direction, BulletPattern Pattern, PlayerBase Player)
     {
         dir = direction.normalized;
         bulletPattern = Pattern;
+        player = Player;
+
     }
     private void Start()
     {
@@ -46,7 +57,7 @@ public class EnemyBullet : MonoBehaviour
             case BulletPattern.Curve: CurveMove(); break;
             case BulletPattern.Circle: CircleMove(); break;
             case BulletPattern.Spiral: SpiralMove(); break;
-            //case BulletPattern.Homing: HomingMove(); break;
+            case BulletPattern.Homing: HomingMove(); break;
         }
     }
     private void StraightMove()
@@ -74,9 +85,9 @@ public class EnemyBullet : MonoBehaviour
         Vector3 offset = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * (1f + timer);
         transform.position += offset * Time.deltaTime;
     }
-    //private void HomingMove()
-    //{
-    //    dir = (PlayerStats.Instacne.transform.position - transform.position).normalized;
-    //    transform.position += dir * speed * Time.deltaTime;
-    //}
+    private void HomingMove()
+    {
+        dir = (player.transform.position - transform.position).normalized;
+        transform.position += dir * speed * Time.deltaTime;
+    }
 }

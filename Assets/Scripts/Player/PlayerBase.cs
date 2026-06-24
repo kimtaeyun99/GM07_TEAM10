@@ -106,8 +106,10 @@ public class PlayerBase : MonoBehaviour, IDamageable
     private IEnumerator DodgeCo()
     {
         isDamageable = false;
+        Debug.Log("Dodge On");
         yield return dodgeDurationWait;
         isDamageable = true;
+        Debug.Log("Dodge Off");
     }
     private IEnumerator DodgeCooldownCo()
     {
@@ -184,7 +186,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     public void Die()
     {
-        //플레이어 사망 메서드
+        Destroy(gameObject);
     }
 
 }

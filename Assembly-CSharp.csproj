@@ -113,7 +113,6 @@
     <Compile Include="Assets\Scripts\Hud\HudController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\System\PoolPreloader.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EnemyAttack\EnemyBulletManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyInfo\Boss Enemy.cs" />
@@ -121,6 +120,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Weapon\ShotgunBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyInfo\Elite Enemy.cs" />
+    <Compile Include="Assets\Scripts\System\CameraManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Map\WarpGate.cs" />
     <Compile Include="Assets\Scripts\Equipment\EquipSlot.cs" />

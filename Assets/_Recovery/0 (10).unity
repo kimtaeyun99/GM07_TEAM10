@@ -154,14 +154,6 @@ MonoBehaviour:
   shotgunBulletCount: 100
   arBullet: {fileID: 5576696269322316712, guid: a484b4531ddb85c40b3fb180db0b08cb, type: 3}
   arBulletCount: 100
-  basicEnemy: {fileID: 5652750448426934237, guid: 8a390c423728bb5478cfb5a3e3423bc4, type: 3}
-  basicEnemyCount: 30
-  basicEnemyBullet: {fileID: 720359188151084633, guid: b15da03873d560a48a23351ddebd997c, type: 3}
-  basicEnemyBulletCount: 100
-  eliteEnemy: {fileID: 8234493305906830792, guid: 19191f40e0e62d4408cb75f9aced29cb, type: 3}
-  eliteEnemyCount: 30
-  eliteEnemyBullet: {fileID: 4873855090376519224, guid: 4ab8a87458942bc4fad4244e1a060153, type: 3}
-  eliteEnemyBulletCount: 100
 --- !u!4 &720742157
 Transform:
   m_ObjectHideFlags: 0
@@ -203,7 +195,7 @@ Transform:
   m_GameObject: {fileID: 767691591}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6, y: 0, z: 0}
+  m_LocalPosition: {x: -12.34, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -360,54 +352,6 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
---- !u!1 &1645525336
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1645525338}
-  - component: {fileID: 1645525337}
-  m_Layer: 0
-  m_Name: EliteEnemySpawner
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1645525337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645525336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 392bd2722f869984ea3c542db9fb8d85, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  EnemyData: {fileID: 11400000, guid: 8720f8137c64da2499ba5f5ce6aa3c3d, type: 2}
-  Enemyprefab: {fileID: 8234493305906830792, guid: 19191f40e0e62d4408cb75f9aced29cb, type: 3}
-  spawnRadius: 5
-  EnemySpawnCount: 1
---- !u!4 &1645525338
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645525336}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.51, y: -0.39254, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697490271
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,12 +363,12 @@ GameObject:
   - component: {fileID: 1697490273}
   - component: {fileID: 1697490272}
   m_Layer: 0
-  m_Name: BasicEnemySpawner
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1697490272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,10 +381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 392bd2722f869984ea3c542db9fb8d85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  EnemyData: {fileID: 11400000, guid: 16faa1877fd99ea43b8e571e35520b8a, type: 2}
-  Enemyprefab: {fileID: 5652750448426934237, guid: 8a390c423728bb5478cfb5a3e3423bc4, type: 3}
+  enemyData: {fileID: 11400000, guid: 16faa1877fd99ea43b8e571e35520b8a, type: 2}
   spawnRadius: 1
-  EnemySpawnCount: 3
 --- !u!4 &1697490273
 Transform:
   m_ObjectHideFlags: 0
@@ -450,7 +392,7 @@ Transform:
   m_GameObject: {fileID: 1697490271}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 9.59, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -592,4 +534,3 @@ SceneRoots:
   - {fileID: 720742157}
   - {fileID: 767691592}
   - {fileID: 1697490273}
-  - {fileID: 1645525338}

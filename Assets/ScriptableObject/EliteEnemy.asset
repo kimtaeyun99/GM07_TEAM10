@@ -13,16 +13,8 @@ MonoBehaviour:
   m_Name: EliteEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Elite Enemy
-  enemyPrefab: {fileID: 159018165468022563, guid: 82195f644c1686f47bd9a4beba2be100, type: 3}
-  enemySprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  enemyPrefab: {fileID: 8234493305906830792, guid: 19191f40e0e62d4408cb75f9aced29cb, type: 3}
+  enemySprite: {fileID: 21300000, guid: d2fcfe79c9177424ea823dbcd346f038, type: 3}
   maxHp: 30
   attack: 5
   moveSpeed: 1
-  attackDelay: 5
-  damageDelay: 0.1
-  goldReward: {fileID: 2631195015309332731, guid: 5e20048f9c9390f4ba869c4d604cc6ee, type: 3}
-  bulletRewards:
-  - {fileID: 7859043392593209958, guid: 6f78d33403fbd5947baf7a6b5a2fc023, type: 3}
-  - {fileID: 43364842198862323, guid: e4ac2fc29ddffdc4a89983fec42d1e36, type: 3}
-  - {fileID: 1111504129517901309, guid: a484b4531ddb85c40b3fb180db0b08cb, type: 3}
-  itemDropRadius: 5

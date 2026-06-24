@@ -17,6 +17,7 @@ public class EliteEnemy : EnemyBase
     [SerializeField] private LayerMask playerLayer;
     [SerializeField] private LayerMask wallLayer;
     [SerializeField] private float wallDetectDistance = 1.0f;
+    [SerializeField] private float returnDis = 5.0f;
 
     [Header("공격 설정")]
     [SerializeField] private float attackDelay;
@@ -26,6 +27,9 @@ public class EliteEnemy : EnemyBase
     [SerializeField] private float straightAttackDelay;
     private WaitForSeconds StraightAttackWait;
     [Header("곡선공격 설정")]
+    [SerializeField] private int curveAttackRepeatCount;
+    [SerializeField] private float curveAttackRepeatDelay;
+    private WaitForSeconds CurveAttackRepeatWait;
     [SerializeField] private int curveAttackCount;
     [SerializeField] private float curveAttackDelay;
     private WaitForSeconds CurveAttackWait;
@@ -39,7 +43,7 @@ public class EliteEnemy : EnemyBase
     [SerializeField] private float homingAttackDelay;
     private WaitForSeconds HomingAttackWait;
 
-    private EnemyBulletManager bulletManager;
+    //private EnemyBulletManager bulletManager;
     private PlayerBase player;
     private Vector3 dir;
     private float dis;
@@ -48,10 +52,11 @@ public class EliteEnemy : EnemyBase
     private float angle;
     private void Awake()
     {
-        bulletManager = GetComponent<EnemyBulletManager>();
+        //bulletManager = GetComponent<EnemyBulletManager>();
         AttackWait = new WaitForSeconds(attackDelay);
         StraightAttackWait = new WaitForSeconds(straightAttackDelay);
         CurveAttackWait = new WaitForSeconds(curveAttackDelay);
+        CurveAttackRepeatWait = new WaitForSeconds(curveAttackRepeatDelay);
         HomingAttackWait = new WaitForSeconds(homingAttackDelay);
     }
     private void Start()
@@ -74,7 +79,7 @@ public class EliteEnemy : EnemyBase
         {
             dir = (player.transform.position - transform.position).normalized;
             dis = Vector3.Distance(player.transform.position, transform.position);
-            returnPos = player.transform.position - (10 * dir);
+            returnPos = player.transform.position - (returnDis * dir);
         }
     }
     private IEnumerator MoveCo()
@@ -83,13 +88,12 @@ public class EliteEnemy : EnemyBase
         {
             if (player != null)
             {
-                int pattern = Random.Range(0, 3);
+                int pattern = Random.Range(0, 2);
 
                 switch (pattern)
                 {
                     case 0: yield return StartCoroutine(MoveSlowCo()); break;
-                    case 1: yield return StartCoroutine(MoveCurveCo()); break;
-                    case 2: yield return StartCoroutine(MoveDashCo()); break;
+                    case 1: yield return StartCoroutine(MoveDashCo()); break;
                 }
                 yield return StartCoroutine(ReturnPositionCo());
 
@@ -108,20 +112,6 @@ public class EliteEnemy : EnemyBase
         while (dis > 3 && timer < 5f) 
         {
             transform.position += dir * moveSpeed * 3 * Time.deltaTime;
-            timer += Time.deltaTime;
-            yield return null;
-        }
-    }
-    private IEnumerator MoveCurveCo()
-    {
-        float timer = 0f;
-        while (dis > toDistance && timer < 5f)
-        {
-            angle += moveSpeed * Time.deltaTime;
-            Vector3 basemove = dir * moveSpeed * Time.deltaTime;
-            Vector3 side = new Vector3(-dir.y, dir.x, 0f);
-            Vector3 sideOffset = side * Mathf.Sin(angle * 3f) * 6f;
-            transform.position += basemove + sideOffset * Time.deltaTime;
             timer += Time.deltaTime;
             yield return null;
         }
@@ -158,17 +148,21 @@ public class EliteEnemy : EnemyBase
     {
         while(true)
         {
-            int pattern = Random.Range(0, 5);
-
-            switch(pattern)
+            if (player != null)
             {
-                case 0: yield return StartCoroutine(StraightAttackCo()); break;
-                case 1: yield return StartCoroutine(CurveAttackCo()); break;
-                case 2: yield return StartCoroutine(CircleAttackCo()); break;
-                case 3: yield return StartCoroutine(SpiralAttackCo()); break;
-                case 4: yield return StartCoroutine(HomingAttackCo()); break;
+                int pattern = Random.Range(0, 5);
+
+                switch (pattern)
+                {
+                    case 0: yield return StartCoroutine(StraightAttackCo()); break;
+                    case 1: yield return StartCoroutine(CurveAttackCo()); break;
+                    case 2: yield return StartCoroutine(CircleAttackCo()); break;
+                    case 3: yield return StartCoroutine(SpiralAttackCo()); break;
+                    case 4: yield return StartCoroutine(HomingAttackCo()); break;
+                }
+                yield return AttackWait;
             }
-            yield return AttackWait;
+            else yield return null;
         }
     }
     private IEnumerator StraightAttackCo()
@@ -181,30 +175,62 @@ public class EliteEnemy : EnemyBase
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight,player);
             yield return StraightAttackWait;
         }
-        yield return null;
+        yield break;
     }
     private IEnumerator CurveAttackCo()
     {
-        for (int i=0; i< curveAttackCount; i++)
+        for (int i = 0; i < curveAttackRepeatCount; i++)
         {
-            EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
-            bullet.transform.position = firePoint.position;
-            bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
-            bullet.Initialize(dir, EnemyBullet.BulletPattern.Curve,player);
-            yield return CurveAttackWait;
+            for (int a = 0; a < curveAttackCount; a++)
+            {
+                EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
+                bullet.transform.position = firePoint.position;
+                bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+                bullet.Initialize(dir, EnemyBullet.BulletPattern.Curve, player);
+                yield return CurveAttackWait;
+            }
+            yield return CurveAttackRepeatWait;
         }
-        yield return null;
+        yield break;
     }
     private IEnumerator CircleAttackCo()
     {
-        bulletManager.FireCirclePattern(circleAttackCount);
-        yield return null;
+        float angleStep = 360f / circleAttackCount;
+        float angle = 0f;
+
+        for (int i = 0; i < circleAttackCount; i++)
+        {
+            float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+            float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
+            Vector3 dir = new Vector3(dirX, dirY, 0f);
+
+            EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
+            bullet.transform.position = firePoint.position;
+            bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+
+            bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, player);
+
+            angle += angleStep;
+        }
+        yield break;
     }
     private IEnumerator SpiralAttackCo()
     {
-        float offset = Time.time * spiralAngle;
-        bulletManager.FireSpiralPattern(spiralAttackCount, offset);
-        yield return null;
+        float angle = 0f;
+        for (int i = 0; i < spiralAttackCount; i++)
+        {
+            float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+            float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
+            Vector3 dir = new Vector3(dirX, dirY, 0f);
+
+            EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
+            bullet.transform.position = firePoint.position;
+            bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+            bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, null);
+
+            angle += spiralAngle; // 각도를 조금씩 증가시켜서 나선형 발사
+            yield return new WaitForSeconds(0.1f); // 발사 간격
+        }
     }
     private IEnumerator HomingAttackCo()
     {
@@ -216,6 +242,6 @@ public class EliteEnemy : EnemyBase
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Homing,player);
             yield return HomingAttackWait;
         }
-        yield return null;
+        yield break;
     }
 }

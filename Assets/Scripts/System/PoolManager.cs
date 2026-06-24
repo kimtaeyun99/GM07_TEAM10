@@ -6,8 +6,9 @@ public class PoolManager : MonoBehaviour
 {
     private Transform poolRoot;
 
-    private Dictionary<Type, Queue<Component>> poolDictionary = new Dictionary<Type, Queue<Component>>();
-    private Dictionary<Type, Transform> poolParents = new Dictionary<Type, Transform>();
+    private Dictionary<int, Queue<Component>> poolDictionary = new Dictionary<int, Queue<Component>>();
+    private Dictionary<int, Transform> poolParents = new Dictionary<int, Transform>();
+    private Dictionary<Component, int> objectToPoolKey = new Dictionary<Component, int>();
     private void Awake()
     {
         CreatePoolRoot();
@@ -20,25 +21,25 @@ public class PoolManager : MonoBehaviour
 
         poolRoot = rootObj.transform;
     }
-    private void CreatePool(Type type)
+    private void CreatePool(int key, string prefabName)
     {
-        if (poolDictionary.ContainsKey(type)) return;
+        if (poolDictionary.ContainsKey(key)) return;
 
-        poolDictionary.Add(type, new Queue<Component>());
+        poolDictionary.Add(key, new Queue<Component>());
 
-        CreatePoolParent(type);
+        CreatePoolParent(key, prefabName);
     }
-    private void CreatePoolParent(Type type)
+    private void CreatePoolParent(int key, string prefabName)
     {
-        GameObject parentObj = new GameObject(type.Name);
+        GameObject parentObj = new GameObject($"{prefabName}_{key}");
         parentObj.transform.SetParent(poolRoot);
-        poolParents.Add(type, parentObj.transform);
+        poolParents.Add(key, parentObj.transform);
     }
     public void PreloadPool<T>(T prefab, int count) where T : Component
     {
-        Type type = typeof(T);
+        int key = prefab.GetInstanceID();
 
-        CreatePool(type);
+        CreatePool(key,prefab.name);
 
         for(int i=0; i< count; i++)
         {
@@ -46,28 +47,32 @@ public class PoolManager : MonoBehaviour
 
             obj.gameObject.SetActive(false);
 
-            obj.transform.SetParent(poolParents[type]);
+            obj.transform.SetParent(poolParents[key]);
 
-            poolDictionary[type].Enqueue(obj);
+            objectToPoolKey[obj] = key;
+
+            poolDictionary[key].Enqueue(obj);
         }
     }
     public T GetPool<T>(T prefab) where T : Component
     {
-        Type type = typeof(T);
+        int key = prefab.GetInstanceID();
 
-        CreatePool(type);
+        CreatePool(key,prefab.name);
 
         T obj = null;
 
-        if (poolDictionary[type].Count >0)
+        if (poolDictionary[key].Count >0)
         {
-            obj = poolDictionary[type].Dequeue() as T;
+            obj = poolDictionary[key].Dequeue() as T;
         }
         else
         {
             obj = Instantiate(prefab);
 
-            obj.transform.SetParent(poolParents[type]);
+            obj.transform.SetParent(poolParents[key]);
+
+            objectToPoolKey[obj] = key;
         }
 
         obj.gameObject.SetActive(true);
@@ -76,16 +81,18 @@ public class PoolManager : MonoBehaviour
     }
     public void ReturnPool<T>(T obj) where T : Component
     {
-        Type type = typeof(T);
-
-        CreatePool(type);
+        if (!objectToPoolKey.TryGetValue(obj, out int key))
+        {
+            Destroy(obj.gameObject);
+            return;
+        }
 
         obj.gameObject.SetActive(false);
 
-        if(obj.transform.parent != poolParents[type])
+        if(obj.transform.parent != poolParents[key])
         {
-            obj.transform.SetParent(poolParents[type]);
+            obj.transform.SetParent(poolParents[key]);
         }
-        poolDictionary[type].Enqueue(obj);
+        poolDictionary[key].Enqueue(obj);
     }
 }

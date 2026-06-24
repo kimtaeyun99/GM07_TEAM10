@@ -33,4 +33,16 @@ public static class Managers
             return _poolManager;
         }
     }
+    //private static CameraManager _cameraManager;
+
+    //public static CameraManager Camera
+    //{
+    //    get
+    //    {
+    //        if(_cameraManager == null)
+    //        {
+    //            GameObject obje = new GameObject(Camera)
+    //        }
+    //    }
+    //}
 }

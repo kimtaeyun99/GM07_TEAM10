@@ -19,7 +19,6 @@ public class EnemyBullet : MonoBehaviour
 
         if (collision.TryGetComponent(out IDamageable damageable))
         {
-            if (!player.isDamageable) return;
             damageable.TakeDamage(damage);
             Managers.Pool.ReturnPool(this);
         }
@@ -31,6 +30,7 @@ public class EnemyBullet : MonoBehaviour
 
     [SerializeField] private float lifeTime = 3.0f;
     [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float homingSpeed = 3.0f;
 
     private Vector3 dir;
     private BulletPattern bulletPattern;
@@ -45,7 +45,11 @@ public class EnemyBullet : MonoBehaviour
     }
     private void Start()
     {
-        Destroy(gameObject, lifeTime);
+        Invoke(nameof(ReturnToPool), lifeTime);
+    }
+    private void ReturnToPool()
+    {
+        Managers.Pool.ReturnPool(this);
     }
     private void Update()
     {
@@ -87,7 +91,8 @@ public class EnemyBullet : MonoBehaviour
     }
     private void HomingMove()
     {
+        if (player == null) Managers.Pool.ReturnPool(this);
         dir = (player.transform.position - transform.position).normalized;
-        transform.position += dir * speed * Time.deltaTime;
+        transform.position += dir * homingSpeed * Time.deltaTime;
     }
 }

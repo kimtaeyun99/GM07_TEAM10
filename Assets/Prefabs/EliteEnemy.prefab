@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 8234493305906830792}
   m_Layer: 0
   m_Name: EliteEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -215,15 +215,25 @@ MonoBehaviour:
   enemyBulletPrefab: {fileID: 4873855090376519224, guid: 4ab8a87458942bc4fad4244e1a060153, type: 3}
   enemyRaserPrefab: {fileID: 0}
   moveWaitTime: 5
+  toDistance: 5
+  detectRange: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  wallDetectDistance: 1
+  returnDis: 5
   attackDelay: 3
-  straightAttackCount: 3
-  straightAttackDelay: 1
+  straightAttackCount: 10
+  straightAttackDelay: 0.3
+  curveAttackRepeatCount: 3
+  curveAttackRepeatDelay: 0.5
   curveAttackCount: 10
-  curveAttackDelay: 3
-  circleAttackCount: 3
-  circleAttackDelay: 3
-  spiralAttackCount: 3
-  spiralAttackDelay: 3
+  curveAttackDelay: 0.1
+  circleAttackCount: 30
+  spiralAttackCount: 30
   spiralAngle: 30
-  homingAttackCount: 3
-  homingAttackDelay: 3
+  homingAttackCount: 5
+  homingAttackDelay: 0.5

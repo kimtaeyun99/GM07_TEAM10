@@ -106,10 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8eff293271a21848a846ba049e3d914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBullet
-  player: {fileID: 7049341908147252377, guid: 8fb67150760a37942ad23dac8ddf5f52, type: 3}
   damage: 10
   lifeTime: 3
   speed: 5
+  homingSpeed: 4
 --- !u!58 &1161406346437206128
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -121,6 +121,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshSpawner.cs" />
     <Compile Include="Assets\Scripts\Weapon\ShotgunBullet.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyInfo\Elite Enemy.cs" />
+    <Compile Include="Assets\Scripts\System\CameraManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\Map\WarpGate.cs" />
     <Compile Include="Assets\Scripts\Equipment\EquipSlot.cs" />

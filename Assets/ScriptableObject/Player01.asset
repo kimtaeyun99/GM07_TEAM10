@@ -19,6 +19,6 @@ MonoBehaviour:
   shotgunSprite: {fileID: 21300000, guid: 6aa24b85ecffc9b479cf474ffed65e8c, type: 3}
   arSprite: {fileID: 21300000, guid: 763d3f584e6d4af45b70e0eb08f6fb17, type: 3}
   maxHp: 100
-  moveSpeed: 1
+  moveSpeed: 5
   dodgeCooldown: 3
   dodgeDuration: 1

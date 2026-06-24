@@ -106,8 +106,10 @@ public class PlayerBase : MonoBehaviour, IDamageable
     private IEnumerator DodgeCo()
     {
         isDamageable = false;
+        Debug.Log("Dodge On");
         yield return dodgeDurationWait;
         isDamageable = true;
+        Debug.Log("Dodge Off");
     }
     private IEnumerator DodgeCooldownCo()
     {

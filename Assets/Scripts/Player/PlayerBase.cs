@@ -85,12 +85,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             currentWeapon.Shoot();
         }
-        else
-        {
-            if (currentWeapon is Pistol pistol) pistol.StopShoot();
-            else if (currentWeapon is Shotgun shotgun) shotgun.StopShoot();
-            else if (currentWeapon is AR ar) ar.StopShoot();
-        }
     }
     private void Interact()
     {
@@ -123,6 +117,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             foreach(WeaponBase weapon in Weapons)
             {
+                weapon.StopShoot();
                 weapon.gameObject.SetActive(false);
             }
             currentWeapon = Weapons[0];
@@ -133,6 +128,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             foreach (WeaponBase weapon in Weapons)
             {
+                weapon.StopShoot();
                 weapon.gameObject.SetActive(false);
             }
             currentWeapon = Weapons[1];
@@ -143,6 +139,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             foreach (WeaponBase weapon in Weapons)
             {
+                weapon.StopShoot();
                 weapon.gameObject.SetActive(false);
             }
             currentWeapon = Weapons[2];

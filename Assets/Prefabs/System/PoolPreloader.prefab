@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3923447596202456838
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6921833735871261289}
+  - component: {fileID: 6750363351260528327}
+  m_Layer: 0
+  m_Name: PoolPreloader
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6921833735871261289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923447596202456838}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6750363351260528327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3923447596202456838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eed2c83ba92aa0b4ca8651769833d5e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PoolPreloader
+  pistolBullet: {fileID: 4131722430567471582, guid: 6f78d33403fbd5947baf7a6b5a2fc023, type: 3}
+  pistolBulletCount: 100
+  shotgunBullet: {fileID: 1885867596676014523, guid: e4ac2fc29ddffdc4a89983fec42d1e36, type: 3}
+  shotgunBulletCount: 100
+  arBullet: {fileID: 5576696269322316712, guid: a484b4531ddb85c40b3fb180db0b08cb, type: 3}
+  arBulletCount: 100
+  basicEnemy: {fileID: 5652750448426934237, guid: 8a390c423728bb5478cfb5a3e3423bc4, type: 3}
+  basicEnemyCount: 30
+  basicEnemyBullet: {fileID: 720359188151084633, guid: b15da03873d560a48a23351ddebd997c, type: 3}
+  basicEnemyBulletCount: 100
+  eliteEnemy: {fileID: 8234493305906830792, guid: 19191f40e0e62d4408cb75f9aced29cb, type: 3}
+  eliteEnemyCount: 30
+  eliteEnemyBullet: {fileID: 4873855090376519224, guid: 4ab8a87458942bc4fad4244e1a060153, type: 3}
+  eliteEnemyBulletCount: 100

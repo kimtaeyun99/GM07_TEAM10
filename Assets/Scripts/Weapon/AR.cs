@@ -9,21 +9,22 @@ public class AR : WeaponBase, IReloadable
     private bool isReload = false;
     public override void Shoot()
     {
+        if (isReload) return;
+
         if (currentAmmo <= 0)
         {
             Reload();
             return;
         }
-        if (isReload) return;
 
         if (coroutine == null)
         {
             coroutine = StartCoroutine(ShootCo());
         }
     }
-    public void StopShoot()
+    public override void StopShoot()
     {
-        if(coroutine != null)
+        if (coroutine != null)
         {
             StopCoroutine(coroutine);
             coroutine = null;
@@ -31,12 +32,15 @@ public class AR : WeaponBase, IReloadable
     }
     public IEnumerator ShootCo()
     {
-        while (currentAmmo > 0 && !isReload)
+        while (true)
         {
-            FireBullet();
-            yield return ShootDelayWait;
+            if (Managers.Input.isAttackPressed && currentAmmo > 0 && !isReload)
+            {
+                FireBullet();
+                yield return ShootDelayWait;
+            }
+            else yield return null;
         }
-        coroutine = null;
     }
     public void FireBullet()
     {

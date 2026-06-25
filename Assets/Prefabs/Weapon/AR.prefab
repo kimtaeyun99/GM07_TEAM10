@@ -108,6 +108,6 @@ MonoBehaviour:
   currentAmmo: 30
   maxAmmo: 30
   reloadDelay: 3
-  shootDelay: 0.5
+  shootDelay: 0.3
   firePoint: {fileID: 0}
   arBullet: {fileID: 5576696269322316712, guid: a484b4531ddb85c40b3fb180db0b08cb, type: 3}

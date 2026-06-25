@@ -19,4 +19,5 @@ public abstract class WeaponBase : MonoBehaviour
         ShootDelayWait = new WaitForSeconds(shootDelay);
     }
     public abstract void Shoot();
+    public abstract void StopShoot();
 }

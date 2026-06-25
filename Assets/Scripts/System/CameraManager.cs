@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class CameraManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private PlayerBase player;
+    [SerializeField] private Vector3 offset = new Vector3(0f, 0f, -10f);
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        if (player == null)
+        {
+            player = FindAnyObjectByType<PlayerBase>();
+        }
+    }
+    private void Update()
+    {
+        Vector3 targetPos = player.transform.position + offset;
+        transform.position = targetPos;
     }
 }

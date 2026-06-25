@@ -53,6 +53,10 @@ public class BasicEnemy : EnemyBase
             {
                 Move();
             }
+            else
+            {
+                Away();
+            }
         }
         else
         {
@@ -62,6 +66,10 @@ public class BasicEnemy : EnemyBase
     private void Move()
     {
         transform.position += dir * moveSpeed * Time.deltaTime;
+    }
+    private void Away()
+    {
+        transform.position -= dir * moveSpeed * Time.deltaTime;
     }
     private void Patrol()
     {

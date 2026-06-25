@@ -108,6 +108,6 @@ MonoBehaviour:
   currentAmmo: -1
   maxAmmo: -1
   reloadDelay: 3
-  shootDelay: 1
+  shootDelay: 0.5
   firePoint: {fileID: 0}
   pistolBullet: {fileID: 4131722430567471582, guid: 6f78d33403fbd5947baf7a6b5a2fc023, type: 3}

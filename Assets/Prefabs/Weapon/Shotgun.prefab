@@ -108,7 +108,7 @@ MonoBehaviour:
   currentAmmo: 10
   maxAmmo: 10
   reloadDelay: 3
-  shootDelay: 2
+  shootDelay: 0.7
   firePoint: {fileID: 0}
   shotgunBulletCount: 5
   shotgunBulletAngle: 30

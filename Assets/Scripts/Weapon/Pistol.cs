@@ -13,7 +13,7 @@ public class Pistol : WeaponBase
             coroutine = StartCoroutine(ShootCo());
         }
     }
-    public void StopShoot()
+    public override void StopShoot()
     {
         if (coroutine != null)
         {
@@ -25,8 +25,15 @@ public class Pistol : WeaponBase
     {
         while (true)
         {
-            FireBullet();
-            yield return ShootDelayWait;
+            if(Managers.Input.isAttackPressed)
+            {
+                FireBullet();
+                yield return ShootDelayWait;
+            }
+            else
+            {
+                yield return null;
+            }
         }
     }
     public void FireBullet()

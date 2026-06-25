@@ -143,6 +143,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+    <Compile Include="Assets\Scripts\Map\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Map\RoomController.cs" />
     <Compile Include="Assets\Scripts\InterFace\ITakeAble.cs" />
     <Compile Include="Assets\Scripts\Data\EnemyData.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Weapon\Pistol.cs" />
     <Compile Include="Assets\Scripts\System\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Map\GameManager.cs" />
     <Compile Include="Assets\Scripts\Weapon\Shotgun.cs" />
   </ItemGroup>
   <ItemGroup>

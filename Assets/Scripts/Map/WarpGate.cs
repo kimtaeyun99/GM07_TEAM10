@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WarpGate : MonoBehaviour
 {
@@ -47,6 +48,11 @@ public class WarpGate : MonoBehaviour
             return; // Player가 아니면 무시
         }
 
-        Debug.Log("다음 스테이지로 이동"); // 테스트용 이동 로그
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.ClearGame(); // 게임 클리어 상태
+        }
+
+        SceneManager.LoadScene("StartMenu"); // 시작 화면으로 이동
     }
 }

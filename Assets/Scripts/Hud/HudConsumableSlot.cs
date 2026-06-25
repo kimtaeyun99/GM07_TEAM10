@@ -88,8 +88,8 @@ public class HUDConsumableSlot : MonoBehaviour
     // 💡 인게임 플레이 중 단축키로 퀵슬롯 아이템 사용하기 (예: Q, E 버튼)
     void Update()
     {
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit3Key.wasPressedThisFrame) UseQuickSlotItem(0);
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit4Key.wasPressedThisFrame) UseQuickSlotItem(1);
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit4Key.wasPressedThisFrame) UseQuickSlotItem(0);
+        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit5Key.wasPressedThisFrame) UseQuickSlotItem(1);
     }
 
     private void UseQuickSlotItem(int slotIndex)

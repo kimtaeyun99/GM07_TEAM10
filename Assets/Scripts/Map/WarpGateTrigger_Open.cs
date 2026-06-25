@@ -40,6 +40,11 @@ public class WarpGateTrigger_Open : MonoBehaviour
 
     private void PlayAnimation(Sprite[] sprites, Sprite finalSprite = null)
     {
+        if (!gameObject.activeInHierarchy) // 오브젝트가 꺼진 상태면 코루틴 실행 안함
+        {
+            return;
+        }
+
         if (currentRoutine != null)
         {
             StopCoroutine(currentRoutine); // 기존 애니메이션 중지
@@ -59,6 +64,15 @@ public class WarpGateTrigger_Open : MonoBehaviour
         if (finalSprite != null)
         {
             gateRenderer.sprite = finalSprite; // 최종 이미지
+        }
+    }
+
+    private void OnDisable()
+    {
+        if (currentRoutine != null)
+        {
+            StopCoroutine(currentRoutine); // 오브젝트 비활성화 시 코루틴 정지
+            currentRoutine = null;
         }
     }
 }

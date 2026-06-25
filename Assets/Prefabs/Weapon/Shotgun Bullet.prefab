@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShotgunBullet
   damage: 7
-  speed: 5
+  speed: 7
   returnBulletTime: 3
 --- !u!50 &495141061940214939
 Rigidbody2D:

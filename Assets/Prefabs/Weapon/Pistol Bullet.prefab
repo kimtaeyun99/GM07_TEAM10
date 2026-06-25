@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PistolBullet
   damage: 10
-  speed: 5
+  speed: 7
   returnBulletTime: 3
 --- !u!61 &1726717086570909377
 BoxCollider2D:

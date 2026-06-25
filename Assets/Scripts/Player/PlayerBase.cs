@@ -70,6 +70,8 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             Weapons[i].gameObject.SetActive(false);
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Move()

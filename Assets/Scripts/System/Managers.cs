@@ -33,16 +33,19 @@ public static class Managers
             return _poolManager;
         }
     }
-    //private static CameraManager _cameraManager;
+    private static CameraManager _cameraManager;
 
-    //public static CameraManager Camera
-    //{
-    //    get
-    //    {
-    //        if(_cameraManager == null)
-    //        {
-    //            GameObject obje = new GameObject(Camera)
-    //        }
-    //    }
-    //}
+    public static CameraManager Camera
+    {
+        get
+        {
+            if (_cameraManager == null)
+            {
+                GameObject obj = new GameObject("MainCamera");
+                _cameraManager = obj.AddComponent<CameraManager>();
+                Object.DontDestroyOnLoad(obj);
+            }
+            return _cameraManager;
+        }
+    }
 }

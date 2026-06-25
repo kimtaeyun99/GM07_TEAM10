@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
 // 💡 아이템과 개수를 한 세트로 묶는 클래스
 [System.Serializable]
 public class InventoryItem
@@ -15,6 +14,7 @@ public class InventoryItem
         quantity = amt;
     }
 }
+
 public class Inventory : MonoBehaviour
 {
     // 인벤토리 싱글톤 (어디서나 접근 가능하게)
@@ -63,7 +63,6 @@ public class Inventory : MonoBehaviour
         return true;
     }
 
-
     public void RemoveAt(int slotIndex)
     {
         // 안전장치: 방 번호가 범위를 벗어나거나 해당 칸이 비어있으면 취소
@@ -84,5 +83,4 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
         }
     }
-
 }

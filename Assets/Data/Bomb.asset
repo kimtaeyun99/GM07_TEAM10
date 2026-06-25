@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8548c64fc6220f640a8b528e37fd05fb, type: 3}
+  m_Name: Bomb
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: "\uC218\uB958\uD0C4"
+  itemIcon: {fileID: -2613247888821195678, guid: 2cda39e1f1e6716459600d2742c78d33, type: 3}
+  description: "\uBC94\uC704 \uD53C\uD574\uB97C \uC8FC\uB294 \uD3ED\uD0C4"
+  maxStackSize: 5
+  itemType: 0
+  targetEquipSlot: 0
+  maxAmmo: 0
+  currentAmmo: 0

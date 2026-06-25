@@ -59,15 +59,22 @@ public class HUDController : MonoBehaviour
 
     public void UpdateAmmoUI()
     {
-        // 탄약 텍스트 업데이트
-        ammoText.text = $"{currentAmmo} / {maxAmmo}";
-    }
+        if (ammoText == null) return;
 
-    // 체력이 닳거나 회복될 때 이 함수들을 다른 게임매니저에서 호출하게 합니다.
-    public void SetHealth(float health)
-    {
-        currentHealth = Mathf.Clamp(health, 0, maxHealth);
-        UpdateHealthUI(currentHealth);
+        // 💡 만약 현재 든 무기가 권총이거나 maxAmmo가 특정 값(예: 9999 등)일 때 무한 표시 처리
+        // 여기서는 EquipmentManager를 통해 현재 장착된 무기의 이름을 검사하는 예시입니다.
+        if (EquipmentManager.instance != null &&
+            EquipmentManager.instance.currentEquipment.Length > 5 &&
+            EquipmentManager.instance.currentEquipment[5] != null &&
+            EquipmentManager.instance.currentEquipment[5].itemName.Contains("Pistol"))
+        {
+            ammoText.text = "∞ / ∞"; // 💡 권총일 때는 무한 기호로 연출
+        }
+        else
+        {
+            // 일반 무기일 때는 정직하게 숫자로 표기
+            ammoText.text = $"{currentAmmo} / {maxAmmo}";
+        }
     }
 
     public void AddGold(int amount)

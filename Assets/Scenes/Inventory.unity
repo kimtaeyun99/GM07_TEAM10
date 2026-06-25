@@ -5117,7 +5117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b58edc8e108faf4dafd7e935673a7cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemTest
-  testItem: {fileID: 11400000, guid: 357463845c31d1748ad133ca536f42de, type: 2}
+  testItem: {fileID: 11400000, guid: 47a4c60e918b87e468921d4eb43a9075, type: 2}
   testWeapon: {fileID: 11400000, guid: b96bfab34d9f13e4caf7306d6d03047b, type: 2}
   testArmor1: {fileID: 11400000, guid: e9719737dba4e2b4db0238a404abe7fe, type: 2}
   testArmor2: {fileID: 11400000, guid: 4a2370cbbffe72b4fb67781bf2a11e93, type: 2}

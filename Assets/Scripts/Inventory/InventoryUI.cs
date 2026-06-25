@@ -6,24 +6,32 @@ public class InventoryUI : MonoBehaviour
 {
     public static InventoryUI instance;
 
-    // --- InventoryUI.cs 인스펙터 설정 변수 추가 ---
     [Header("인벤토리 단축키 설정")]
     public UnityEngine.InputSystem.Key toggleKey = UnityEngine.InputSystem.Key.I;
 
     [Header("인벤토리 창 세팅")]
-    public Transform slotsParent; // SlotHolder를 연결할 곳
-    public GameObject inventoryWindow; // I키로 켜고 켤 인벤토리 전체 창
+    public Transform slotsParent;
+    public GameObject inventoryWindow;
 
-    [Header("우측 설명 창 UI 세팅")]
-    public GameObject descriptionPanel;   // 우측 설명 패널 (DescriptionPanel)
-    public TextMeshProUGUI itemNameText;  // 아이템 이름 텍스트
-    public TextMeshProUGUI itemDescText;  // 아이템 설명 텍스트
-    public Button useButton;              // 사용 버튼 (UseButton)
+    // 💡 [기존 소모품용] 설명 창 UI 세팅
+    [Header("소모품 설명 창 UI 세팅")]
+    public GameObject descriptionPanel;
+    public TextMeshProUGUI itemNameText;
+    public TextMeshProUGUI itemDescText;
+    public Button useButton;
     public Button QuickButton;
-    public Image itemDetailIcon;          // 우측 창에 표시될 아이템 이미지
+    public Image itemDetailIcon;
+
+    // 💡 [추가: 장비 전용] 상세 패널 UI 세팅
+    [Header("장비 상세 패널 UI 세팅")]
+    public GameObject equipDetailPanel;    // 🛠️ 새로 만드실 장비 전용 패널 오브젝트
+    public TextMeshProUGUI equipNameText;  // 장비 이름 텍스트
+    public TextMeshProUGUI equipDescText;  // 장비 설명 텍스트 (능력치 등)
+    public Image equipDetailIcon;          // 장비 이미지
+    public Button equipButton;             // 장비창의 '장착' 버튼 (기존 사용 버튼 대신 연결 가능)
 
     private Inventory inventory;
-    private InventorySlot[] slots; // 자식 슬롯들의 배열
+    private InventorySlot[] slots;
 
     private InventoryItem selectedSlotItem;
     private int selectedSlotIndex;
@@ -38,7 +46,6 @@ public class InventoryUI : MonoBehaviour
         if (inventory == null)
         {
             inventory = Inventory.instance;
-
             if (inventory == null)
             {
 #pragma warning disable CS0618
@@ -54,7 +61,7 @@ public class InventoryUI : MonoBehaviour
         }
         else
         {
-            Debug.LogError("InventoryUI: 씬에서 Inventory 시스템(매니저)을 찾을 수 없습니다! 하이어라키에 Inventory 스크립트가 붙은 오브젝트가 있는지 확인하세요.");
+            Debug.LogError("InventoryUI: 씬에서 Inventory 시스템을 찾을 수 없습니다.");
             return;
         }
 
@@ -63,26 +70,24 @@ public class InventoryUI : MonoBehaviour
             slots = slotsParent.GetComponentsInChildren<InventorySlot>();
         }
 
-        if (useButton != null)
-        {
-            useButton.onClick.AddListener(OnUseButtonClick);
-        }
-        if (QuickButton != null)
-        {
-            QuickButton.onClick.AddListener(OnQuickRegisterButtonClick);
-        }
+        // 버튼 리스너 등록
+        if (useButton != null) useButton.onClick.AddListener(OnUseButtonClick);
+        if (QuickButton != null) QuickButton.onClick.AddListener(OnQuickRegisterButtonClick);
 
-        // 💡 중요: 스크립트가 붙은 최상위 오브젝트(InventoryUI)는 절대 끄지 않고,
-        // 실제 화면에 보이는 자식 창(inventoryWindow)만 비활성화합니다.
+        // 💡 장비 장착 버튼도 기존의 장착 로직(OnUseButtonClick)을 공유하거나 따로 등록 가능합니다.
+        if (equipButton != null) equipButton.onClick.AddListener(OnUseButtonClick);
+
         if (inventoryWindow != null) inventoryWindow.SetActive(false);
+
+        // 두 패널 모두 시작할 때 비활성화
         if (descriptionPanel != null) descriptionPanel.SetActive(false);
+        if (equipDetailPanel != null) equipDetailPanel.SetActive(false);
     }
 
     void Update()
     {
         if (UnityEngine.InputSystem.Keyboard.current != null)
         {
-            // 💡 드롭다운에서 선택한 Key 값을 다이렉트로 대입하여 감지합니다.
             if (UnityEngine.InputSystem.Keyboard.current[toggleKey].wasPressedThisFrame)
             {
                 ToggleInventory();
@@ -103,7 +108,8 @@ public class InventoryUI : MonoBehaviour
             }
             else
             {
-                if (descriptionPanel != null) descriptionPanel.SetActive(false);
+                // 💡 닫힐 때 모든 패널을 안전하게 꺼줍니다.
+                CloseAllPanels();
                 selectedSlotItem = null;
             }
         }
@@ -131,17 +137,34 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    // 💡 핵심 변경 항목: 타입에 따라 서로 다른 패널을 활성화하는 함수
     public void ShowDescription(InventoryItem slotItem, int index)
     {
         selectedSlotItem = slotItem;
         selectedSlotIndex = index;
-
         ItemData item = slotItem.itemData;
-        if (itemNameText != null) itemNameText.text = item.itemName;
-        if (itemDescText != null) itemDescText.text = item.description;
-        if (itemDetailIcon != null) itemDetailIcon.sprite = item.itemIcon;
 
-        if (descriptionPanel != null) descriptionPanel.SetActive(true);
+        // 먼저 열려있던 패널들을 정리하고 시작합니다.
+        CloseAllPanels();
+
+        // 💡 1. 소모품(Consumable)일 때 -> 기존 디스크립션 패널 오픈
+        if (item.itemType == ItemType.Consumable)
+        {
+            if (itemNameText != null) itemNameText.text = item.itemName;
+            if (itemDescText != null) itemDescText.text = item.description;
+            if (itemDetailIcon != null) itemDetailIcon.sprite = item.itemIcon;
+
+            if (descriptionPanel != null) descriptionPanel.SetActive(true);
+        }
+        // 💡 2. 장착품(Equipment)일 때 -> 별도의 장비 상세 패널 오픈
+        else if (item.itemType == ItemType.Equipment)
+        {
+            if (equipNameText != null) equipNameText.text = item.itemName;
+            if (equipDescText != null) equipDescText.text = item.description; // 나중에 필요시 무기 공격력 등의 정보 확장 가능
+            if (equipDetailIcon != null) equipDetailIcon.sprite = item.itemIcon;
+
+            if (equipDetailPanel != null) equipDetailPanel.SetActive(true);
+        }
     }
 
     public void OnUseButtonClick()
@@ -163,9 +186,17 @@ public class InventoryUI : MonoBehaviour
                 inventory.RemoveAt(selectedSlotIndex);
             }
 
-            if (descriptionPanel != null) descriptionPanel.SetActive(false);
+            // 사용 완료 후 패널 닫기
+            CloseAllPanels();
             selectedSlotItem = null;
         }
+    }
+
+    // 💡 UI 상태를 초기화하기 위한 헬퍼 함수
+    private void CloseAllPanels()
+    {
+        if (descriptionPanel != null) descriptionPanel.SetActive(false);
+        if (equipDetailPanel != null) equipDetailPanel.SetActive(false);
     }
 
     public void UpdateUI()

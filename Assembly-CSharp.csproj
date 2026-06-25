@@ -83,6 +83,7 @@
     <Compile Include="Assets\Scripts\System\Managers.cs" />
     <Compile Include="Assets\Scripts\Inventory\ITakable.cs" />
     <Compile Include="Assets\Scripts\Map\DestructibleObject.cs" />
+    <Compile Include="Assets\Scripts\Map\WarpGateTrigger_Open.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />

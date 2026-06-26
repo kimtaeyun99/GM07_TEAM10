@@ -58,3 +58,7 @@ MonoBehaviour:
   eliteEnemyCount: 30
   eliteEnemyBullet: {fileID: 4873855090376519224, guid: 4ab8a87458942bc4fad4244e1a060153, type: 3}
   eliteEnemyBulletCount: 100
+  bossEnemy: {fileID: 2512780050879095452, guid: e30bcf19fd833104e89681aca68e526b, type: 3}
+  bossEnemyCount: 30
+  bossEnemyBullet: {fileID: 8741280455482233341, guid: 3ca9e8735707b9f4b8fd8efbb7e68c6c, type: 3}
+  bossEnemyBulletCount: 100

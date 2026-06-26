@@ -85,16 +85,24 @@ public class EliteEnemy : EnemyBase
         {
             if (player != null)
             {
-                int pattern = Random.Range(0, 2);
-
-                switch (pattern)
+                if (dis < toDistance)
                 {
-                    case 0: yield return StartCoroutine(MoveSlowCo()); break;
-                    case 1: yield return StartCoroutine(MoveDashCo()); break;
+                    Away();
+                    yield return null;
                 }
-                yield return StartCoroutine(ReturnPositionCo());
+                else
+                {
+                    int pattern = Random.Range(0, 2);
 
-                yield return new WaitForSeconds(moveWaitTime);
+                    switch (pattern)
+                    {
+                        case 0: yield return StartCoroutine(MoveSlowCo()); break;
+                        case 1: yield return StartCoroutine(MoveDashCo()); break;
+                    }
+                    yield return StartCoroutine(ReturnPositionCo());
+
+                    yield return new WaitForSeconds(moveWaitTime);
+                }
             }
             else
             {
@@ -102,6 +110,10 @@ public class EliteEnemy : EnemyBase
                 yield return null;
             }
         }
+    }
+    private void Away()
+    {
+        transform.position -= dir * moveSpeed * Time.deltaTime; 
     }
     private IEnumerator MoveSlowCo()
     {

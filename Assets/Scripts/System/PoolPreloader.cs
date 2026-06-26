@@ -37,6 +37,16 @@ public class PoolPreloader : MonoBehaviour
     [Header("Elite Bullet 미리 생성할 개수")]
     [SerializeField] private int eliteEnemyBulletCount = 100;
 
+    [Header("Boss Enemy 프리팹")]
+    [SerializeField] private EnemyBase bossEnemy;
+    [Header("Boss Enemy 미리 생성할 개수")]
+    [SerializeField] private int bossEnemyCount = 30;
+
+    [Header("Boss Enemy Bullet 프리팹")]
+    [SerializeField] private EnemyBullet bossEnemyBullet;
+    [Header("Boss Bullet 미리 생성할 개수")]
+    [SerializeField] private int bossEnemyBulletCount = 100;
+
     private void Start()
     {
         Managers.Pool.PreloadPool(pistolBullet, pistolBulletCount);
@@ -46,5 +56,7 @@ public class PoolPreloader : MonoBehaviour
         Managers.Pool.PreloadPool(basicEnemyBullet, basicEnemyBulletCount);
         Managers.Pool.PreloadPool(eliteEnemy, eliteEnemyCount);
         Managers.Pool.PreloadPool(eliteEnemyBullet, eliteEnemyBulletCount);
+        Managers.Pool.PreloadPool(bossEnemy, bossEnemyCount);
+        Managers.Pool.PreloadPool(bossEnemyBullet, bossEnemyBulletCount);
     }
 }

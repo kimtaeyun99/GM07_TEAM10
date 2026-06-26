@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
     }
     private void Update()
     {
+        if (player == null) return;
         Vector3 targetPos = player.transform.position + offset;
         transform.position = targetPos;
     }

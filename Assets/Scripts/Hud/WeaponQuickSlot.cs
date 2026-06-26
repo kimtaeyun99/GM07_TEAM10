@@ -3,13 +3,33 @@ using UnityEngine.UI;
 
 public class WeaponQuickSlot : MonoBehaviour
 {
-    [Header("무기 UI 레이아웃 매칭")]
-    public Image weapon1Icon; // 💡 5번 방 (현재 손에 든 메인 무기)
-    public Image weapon2Icon; // 💡 6번 방 (무기 퀵슬롯 1번)
-    public Image weapon3Icon; // 💡 7번 방 (무기 퀵슬롯 2번)
+    public static WeaponQuickSlot instance;
+
+    [Header("🔥 다른 사람이 만든 무기 프리팹 직접 등록")]
+    // 💡 유니티 인스펙터창에서 다른 사람이 만든 Pistol, Shotgun, AR 프리팹을 직접 넣어줍니다.
+    public WeaponBase pistolPrefab;
+    public WeaponBase shotgunPrefab;
+    public WeaponBase arPrefab;
+
+    [Header("무기 UI 레이아웃 매칭 (제자리 고정)")]
+    public Image pistolIcon;   // 1번 슬롯 UI
+    public Image shotgunIcon;  // 2번 슬롯 UI
+    public Image arIcon;       // 3번 슬롯 UI
 
     [Header("빈 슬롯일 때 표시할 기본 스프라이트")]
     public Sprite emptySlotSprite;
+
+    [Header("선택된 슬롯 시각 효과")]
+    public Color selectedColor = Color.white;
+    public Color unselectedColor = new Color(0.5f, 0.5f, 0.5f, 0.6f);
+
+    // 현재 키보드로 선택해 손에 든 무기 고정 번호 (-1: 맨손, 0: 권총, 1: 샷건, 2: AR)
+    private int activePrefabIndex = -1;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -17,8 +37,6 @@ public class WeaponQuickSlot : MonoBehaviour
         {
             EquipmentManager.instance.onEquipmentChangedCallback += RefreshWeaponQuickSlots;
         }
-
-        // 게임 시작 시 초기화
         RefreshWeaponQuickSlots();
     }
 
@@ -32,123 +50,90 @@ public class WeaponQuickSlot : MonoBehaviour
 
     void Update()
     {
-        // 💡 1키를 누르면 -> 6번 방(퀵1)에 있는 무기를 5번 방(메인)무기와 교체(스왑)
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit1Key.wasPressedThisFrame)
-        {
-            SwapWeaponRooms(6);
-        }
+        if (UnityEngine.InputSystem.Keyboard.current == null) return;
 
-        // 💡 2키를 누르면 -> 7번 방(퀵2)에 있는 무기를 5번 방(메인)무기와 교체(스왑)
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit2Key.wasPressedThisFrame)
-        {
-            SwapWeaponRooms(7);
-        }
+        // 1, 2, 3키 입력 시 각 무기 타입이 인벤토리에 있는지 검사 후 활성화
+        if (UnityEngine.InputSystem.Keyboard.current.digit1Key.wasPressedThisFrame) TrySelectWeapon(0, typeof(WeaponBase)); // (권총 스크립트 클래스명이 있다면 바꿀 수 있음)
+        if (UnityEngine.InputSystem.Keyboard.current.digit2Key.wasPressedThisFrame) TrySelectWeapon(1, typeof(Shotgun));
+        if (UnityEngine.InputSystem.Keyboard.current.digit3Key.wasPressedThisFrame) TrySelectWeapon(2, typeof(AR));
     }
 
     /// <summary>
-    /// 💡 핵심: 5번 방(메인)에 있는 무기와 targetIndex(6번 또는 7번 방)에 있는 무기의 '위치'를 바꿉니다.
+    /// ItemData 내부가 아닌, 시스템에 등록된 무기 컴포넌트 타입을 비교하여 장착 유무를 확인합니다.
     /// </summary>
-    private void SwapWeaponRooms(int targetIndex)
+    private void TrySelectWeapon(int prefabIndex, System.Type weaponComponentType)
     {
-        if (EquipmentManager.instance == null) return;
+        if (EquipmentManager.instance == null || EquipmentManager.instance.currentEquipment == null) return;
 
         ItemData[] equipped = EquipmentManager.instance.currentEquipment;
+        bool isEquipped = false;
 
-        if (targetIndex >= equipped.Length) return;
-
-        // 퀵슬롯(6번 또는 7번 방)에 무기가 있을 때만 스왑 진행
-        if (equipped[targetIndex] != null)
+        // 장비창 무기 슬롯(5, 6, 7번 방) 검사
+        for (int i = 5; i <= 7; i++)
         {
-            ItemData tempMain = equipped[5]; // 기존 5번 방(메인) 무기를 잠시 보관
+            if (equipped[i] != null)
+            {
+                // 💡 힌트: 아이템 데이터 이름에 해당 키워드가 묻어있거나 일치하는지 최소한의 안전장치로 판별
+                string nameLower = equipped[i].itemName.ToLower();
+                if (weaponComponentType == typeof(Shotgun) && (nameLower.Contains("shotgun") || nameLower.Contains("shogun") || nameLower.Contains("샷건"))) isEquipped = true;
+                else if (weaponComponentType == typeof(AR) && (nameLower.Contains("ar") || nameLower.Contains("소총"))) isEquipped = true;
+                else if (prefabIndex == 0 && (nameLower.Contains("pistol") || nameLower.Contains("권총"))) isEquipped = true;
+            }
+        }
 
-            // 두 방의 데이터를 서로 교체
-            equipped[5] = equipped[targetIndex];
-            equipped[targetIndex] = tempMain;
-
-            Debug.Log($"[무기 스왑] 5번 방(메인)과 {targetIndex}번 방의 무기를 교체했습니다.");
-
-            // 데이터가 바뀌었으므로 콜백을 실행하여 전반적인 시스템과 UI를 새로고침합니다.
-            // (EquipmentManager 내부에 이벤트 인보크 함수가 있다면 그것을 호출하셔도 됩니다)
-            RefreshWeaponQuickSlots();
+        if (isEquipped)
+        {
+            activePrefabIndex = prefabIndex;
+            Debug.Log($"[무기 활성화] {weaponComponentType.Name} 무기를 꺼냈습니다.");
         }
         else
         {
-            Debug.LogWarning($"{targetIndex - 5}번 퀵슬롯(장비창 {targetIndex}번 방)이 비어있어 스왑할 수 없습니다.");
+            Debug.LogWarning($"[무기 선택 불가] 장비창에 {weaponComponentType.Name} 계열의 무기가 장착되어 있지 않습니다.");
         }
+
+        RefreshWeaponQuickSlots();
     }
 
-    /// <summary>
-    /// 5번, 6번, 7번 방의 데이터를 각 UI 슬롯에 정직하게 매칭하여 새로고침합니다.
-    /// </summary>
     public void RefreshWeaponQuickSlots()
     {
-        if (EquipmentManager.instance == null) return;
-
+        if (EquipmentManager.instance == null || EquipmentManager.instance.currentEquipment == null) return;
         ItemData[] equipped = EquipmentManager.instance.currentEquipment;
 
-        // 1. 5번 방(메인 무기) UI 갱신 및 탄창 동기화
-        if (equipped.Length > 5 && equipped[5] != null)
+        ResetIcons();
+
+        // 장착된 ItemData들의 이름을 기반으로 알맞은 퀵슬롯 UI 칸에 아이콘을 강제 매칭
+        for (int i = 5; i <= 7; i++)
         {
-            ItemData mainWeapon = equipped[5];
+            ItemData item = equipped[i];
+            if (item == null) continue;
 
-            if (weapon1Icon != null)
-            {
-                weapon1Icon.sprite = mainWeapon.itemIcon;
-                weapon1Icon.color = Color.white;
-            }
+            string nameLower = item.itemName.ToLower();
 
-            // HUD 탄창에 5번 방 무기의 탄수 동기화
-            if (HUDController.instance != null)
-            {
-                HUDController.instance.SetWeaponAmmo(mainWeapon.currentAmmo, mainWeapon.maxAmmo);
-            }
+            if (nameLower.Contains("pistol") || nameLower.Contains("권총"))
+                SetSlotUI(pistolIcon, item.itemIcon, activePrefabIndex == 0);
+            else if (nameLower.Contains("shotgun") || nameLower.Contains("shogun") || nameLower.Contains("샷건"))
+                SetSlotUI(shotgunIcon, item.itemIcon, activePrefabIndex == 1);
+            else if (nameLower.Contains("ar") || nameLower.Contains("소총"))
+                SetSlotUI(arIcon, item.itemIcon, activePrefabIndex == 2);
         }
-        else
-        {
-            // 💡 [해결책] 5번 방이 비어있다면 탄창을 0 / 0 으로 만들고 이미지를 비웁니다.
-            if (weapon1Icon != null)
-            {
-                weapon1Icon.sprite = emptySlotSprite;
-                weapon1Icon.color = emptySlotSprite != null ? Color.white : Color.clear;
-            }
-
-            if (HUDController.instance != null)
-            {
-                HUDController.instance.SetWeaponAmmo(0, 0);
-            }
-        }
-
-        // 2. 6번 방(퀵슬롯 1번) UI 갱신
-        UpdateSlotUI(equipped, 6, weapon2Icon);
-
-        // 3. 7번 방(퀵슬롯 2번) UI 갱신
-        UpdateSlotUI(equipped, 7, weapon3Icon);
     }
 
-    /// <summary>
-    /// 각 방 번호에 맞게 순수하게 UI만 그려주는 보조 함수
-    /// </summary>
-    private void UpdateSlotUI(ItemData[] equippedArray, int targetIndex, Image slotImage)
+    private void SetSlotUI(Image slotImage, Sprite iconSprite, bool isSelected)
     {
         if (slotImage == null) return;
+        slotImage.sprite = iconSprite;
+        slotImage.color = isSelected ? selectedColor : unselectedColor;
+    }
 
-        if (targetIndex < equippedArray.Length && equippedArray[targetIndex] != null)
-        {
-            slotImage.sprite = equippedArray[targetIndex].itemIcon;
-            slotImage.color = Color.white;
-        }
-        else
-        {
-            if (emptySlotSprite != null)
-            {
-                slotImage.sprite = emptySlotSprite;
-                slotImage.color = Color.white;
-            }
-            else
-            {
-                slotImage.sprite = null;
-                slotImage.color = Color.clear;
-            }
-        }
+    private void ResetIcons()
+    {
+        SetSlotUI(pistolIcon, emptySlotSprite, activePrefabIndex == 0);
+        SetSlotUI(shotgunIcon, emptySlotSprite, activePrefabIndex == 1);
+        SetSlotUI(arIcon, emptySlotSprite, activePrefabIndex == 2);
+    }
+
+    public int GetActivePrefabIndex()
+    {
+        return activePrefabIndex;
     }
 }

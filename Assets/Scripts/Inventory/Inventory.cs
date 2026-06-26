@@ -83,4 +83,44 @@ public class Inventory : MonoBehaviour
             onItemChangedCallback.Invoke();
         }
     }
+    public int FindIndexByName(string targetName)
+    {
+        // List의 FindIndex를 사용하여 조건에 맞는 요소의 인덱스를 반환합니다.
+        int index = items.FindIndex(x => x.itemData != null && x.itemData.itemName == targetName);
+
+        if (index == -1)
+        {
+            Debug.LogWarning($"[인벤토리] {targetName} 이라는 이름의 아이템 인덱스를 찾을 수 없습니다.");
+        }
+
+        return index;
+    }
+
+    public void UseItemByName(string itemName)
+    {
+        // 1. 이름으로 아이템의 인덱스(방 번호)를 찾습니다.
+        int slotIndex = Inventory.instance.FindIndexByName(itemName);
+
+        // 2. ❌ [예외 처리] 아이템이 인벤토리에 없을 경우
+        if (slotIndex == -1)
+        {
+            Debug.LogWarning($"[아이템 사용 실패] 가방에 {itemName}이(가) 없습니다.");
+
+            // HUD 로그 시스템이 있다면 유저에게도 알려줍니다.
+            if (HUDLogManager.instance != null)
+            {
+                HUDLogManager.instance.Log($"[{itemName}]이(가) 부족합니다!", Color.red);
+            }
+
+            return; // 💡 여기서 함수를 종료하여 아래 RemoveAt이 실행되지 않도록 막습니다.
+        }
+
+        // 3. ⭕ 아이템이 존재할 경우에만 정상적으로 1개 차감
+        Inventory.instance.RemoveAt(slotIndex);
+
+        if (HUDLogManager.instance != null)
+        {
+            HUDLogManager.instance.Log($"[{itemName}]을(를) 사용했습니다.", Color.green);
+        }
+    }
 }

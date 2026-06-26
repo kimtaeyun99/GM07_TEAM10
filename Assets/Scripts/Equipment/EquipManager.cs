@@ -28,20 +28,28 @@ public class EquipmentManager : MonoBehaviour
     {
         int slotIndex = (int)targetSlot;
 
-        // 1. 무기 슬롯 3개 우회 분기 로직으로 정확한 방 번호(slotIndex) 결정
         if (targetSlot == EquipType.Weapon)
         {
-            if (currentEquipment[5] == null)
+            // 💡 아이템의 이름을 소문자로 변경하여 종류를 명확히 식별합니다.
+            string nameLower = newItem.itemName.ToLower();
+
+            // 1. 비어있는지 순서대로 검사하는 기존 방식을 완전히 제거하고, 무기 종류별로 방 번호를 고정합니다.
+            if (nameLower.Contains("Pistol") || nameLower.Contains("권총"))
             {
-                slotIndex = 5;
+                slotIndex = 5; // 권총은 무조건 5번 방 고정
             }
-            else if (currentEquipment[6] == null)
+            else if (nameLower.Contains("Shotgun") || nameLower.Contains("샷건"))
             {
-                slotIndex = 6;
+                slotIndex = 6; // 샷건은 무조건 6번 방 고정
+            }
+            else if (nameLower.Contains("ar") || nameLower.Contains("소총"))
+            {
+                slotIndex = 7; // AR은 무조건 7번 방 고정
             }
             else
             {
-                slotIndex = 7;
+                // 이름 매칭이 안 되는 예외적인 무기 아이템이 들어올 경우의 기본 안전장치
+                slotIndex = 5;
             }
         }
 

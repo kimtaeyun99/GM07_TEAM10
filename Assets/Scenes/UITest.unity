@@ -522,9 +522,13 @@ PrefabInstance:
       value: FieldItem_Base (1)
       objectReference: {fileID: 0}
     - target: {fileID: 850607227720886749, guid: aa8445e1e8b0f8e4ba9280fb1890a2c2, type: 3}
+      propertyPath: count
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 850607227720886749, guid: aa8445e1e8b0f8e4ba9280fb1890a2c2, type: 3}
       propertyPath: itemData
       value: 
-      objectReference: {fileID: 11400000, guid: 841ae86eb2b190b4791e8ac397c447e4, type: 2}
+      objectReference: {fileID: 11400000, guid: a053f93cab709dc408e430b9c29aa4fa, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -15,6 +15,9 @@ public class HUDController : MonoBehaviour
     private int currentAmmo = 0;
     private int maxAmmo = 0;
 
+    [Header("Gold UI")]
+    public TextMeshProUGUI goldText;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -72,5 +75,13 @@ public class HUDController : MonoBehaviour
     {
         if (healthSlider != null) healthSlider.value = currentHealth;
         if (healthText != null) healthText.text = $"{currentHealth} / 100";
+    }
+
+    public void UpdateGoldUI(int currentGold)
+    {
+        if (goldText != null)
+        {
+            goldText.text = $"{currentGold.ToString("N0")}";
+        }
     }
 }

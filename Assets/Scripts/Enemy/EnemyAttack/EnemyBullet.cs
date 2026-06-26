@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Collections;
+using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -36,16 +37,24 @@ public class EnemyBullet : MonoBehaviour
     private BulletPattern bulletPattern;
     private float timer;
     private float angle;
+    private WaitForSeconds LifeTimeWait;
     public void Initialize(Vector3 direction, BulletPattern Pattern, PlayerBase Player)
     {
         dir = direction.normalized;
         bulletPattern = Pattern;
         player = Player;
+        timer = 0f;
+        angle = 0f;
+        LifeTimeWait = new WaitForSeconds(lifeTime);
+
+        StartCoroutine(LifeTimeCo());
 
     }
-    private void Start()
+    
+    private IEnumerator LifeTimeCo()
     {
-        Invoke(nameof(ReturnToPool), lifeTime);
+        yield return LifeTimeWait;
+        ReturnToPool();
     }
     private void ReturnToPool()
     {

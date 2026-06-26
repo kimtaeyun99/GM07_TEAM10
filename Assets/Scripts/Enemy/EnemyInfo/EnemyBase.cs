@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -15,6 +16,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     protected ItemBase[] bulletRewards;
     protected float itemDropRadius;
 
+    public event Action<EnemyBase> OnDead;
+    
     public void Initialize(EnemyData data)
     {
         if (data == null) return;
@@ -47,8 +50,9 @@ public class EnemyBase : MonoBehaviour, IDamageable
     }
     protected void Die()
     {
+        OnDead.Invoke(this);
         Debug.Log($"{gameObject.name} 사망");
-        Destroy(gameObject);
+        Managers.Pool.ReturnPool(this);
         //DropRewards();
     }
     //protected void DropRewards()

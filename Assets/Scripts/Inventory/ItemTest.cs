@@ -12,7 +12,7 @@ public class ItemTest : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha5))
+        if (Input.GetKeyDown(KeyCode.P))
         {
             if (testItem != null)
                 Inventory.instance.Add(testItem);

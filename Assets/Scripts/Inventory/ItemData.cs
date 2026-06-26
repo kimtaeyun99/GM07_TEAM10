@@ -1,7 +1,7 @@
 using UnityEngine;
 
-// 1. 아이템 종류 구분용 이름표
-public enum ItemType { Consumable, Equipment, Etc }
+// 1. 아이템 종류 구분용 이름표 (💡 Gold 추가)
+public enum ItemType { Consumable, Equipment, Etc, Gold }
 
 [CreateAssetMenu(fileName = "New Item", menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
@@ -13,24 +13,20 @@ public class ItemData : ScriptableObject
     public string description;    // 아이템 설명
 
     [Header("아이템 중첩 설정")]
-    // 💡 슬롯 하나에 최대 몇 개까지 겹칠 수 있는지 설정 (기본값 5)
     public int maxStackSize = 5;
 
     [Header("아이템 타입 설정")]
-    public ItemType itemType;     // 소모품인지 장비인지 기획자가 인스펙터에서 선택
+    public ItemType itemType;     // 💡 기획자가 Gold를 선택할 수 있게 됨
 
     [Header("장비일 때만 설정하는 부위")]
-    // 💡 아까 EquipmentSlot.cs에서 만든 EquipType을 그대로 사용합니다.
     public EquipType targetEquipSlot;
 
     [Header("무기(Weapon) 타입일 때만 설정하는 탄창")]
-    public int maxAmmo = 0;     // 최대 장전 탄수
-    public int currentAmmo = 0; // 현재 남은 탄수
+    public int maxAmmo = 0;
+    public int currentAmmo = 0;
 
-    // 아이템 사용 효과 (기존 함수)
     public void Use()
     {
-        // 소모품일 때의 로직 (예: 체력 회복 등)
         Debug.Log(itemName + "을 사용했습니다.");
     }
 }

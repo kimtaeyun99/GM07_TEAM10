@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8548c64fc6220f640a8b528e37fd05fb, type: 3}
-  m_Name: ShotgunMG
+  m_Name: GoldItem
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: "\uC0F7\uAC74\uD0C4\uCC3D"
-  itemIcon: {fileID: 1336616575702101726, guid: 3c2d0ac8eb7e84343a0e573d6653efeb, type: 3}
-  description: "\uC0F7\uAC74\uC744 \uC7A5\uC804\uD560 \uC218 \uC788\uB294 \uD0C4\uCC3D"
-  maxStackSize: 5
-  itemType: 0
+  itemName: "\uACE8\uB4DC"
+  itemIcon: {fileID: -3988769855312385993, guid: 03a61bc91e40d6245a51ca344dd2ad59, type: 3}
+  description: "\uBCF4\uC0C1 \uACE8\uB4DC"
+  maxStackSize: 1
+  itemType: 3
   targetEquipSlot: 0
   maxAmmo: 0
   currentAmmo: 0

@@ -27,6 +27,22 @@ public class Inventory : MonoBehaviour
     public delegate void OnItemChanged();
     public OnItemChanged onItemChangedCallback;
 
+    // 플레이어가 보유한 실시간 총 골드 재화 변수
+    private int _gold = 0;
+    public int gold
+    {
+        get { return _gold; }
+        set
+        {
+            _gold = value;
+            // 💡 골드 값이 바뀔 때마다 HUD UI를 자동으로 갱신합니다.
+            if (HUDController.instance != null)
+            {
+                HUDController.instance.UpdateGoldUI(_gold);
+            }
+        }
+    }
+
     void Awake() => instance = this;
 
     public bool Add(ItemData item)

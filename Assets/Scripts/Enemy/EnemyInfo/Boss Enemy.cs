@@ -37,7 +37,11 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float curveAttackDelay;
     private WaitForSeconds CurveAttackWait;
     [Header("원형공격 설정")]
-    [SerializeField] private int circleAttackCount;
+    [SerializeField] private int circleAttackBulletCount;
+    [SerializeField] private int circleAttackRepeatCount;
+    [SerializeField] private float circleAttackDelay;
+    [SerializeField] private float circleAttackAngleOffset;
+    private WaitForSeconds CircleAttackWait;
     [Header("나선공격 설정")]
     [SerializeField] private int spiralAttackCount;
     [SerializeField] private float spiralAngle;
@@ -62,6 +66,7 @@ public class BossEnemy : EnemyBase
         AttackWait = new WaitForSeconds(attackDelay);
         StraightAttackWait = new WaitForSeconds(straightAttackDelay);
         CurveAttackWait = new WaitForSeconds(curveAttackDelay);
+        CircleAttackWait = new WaitForSeconds(circleAttackDelay);
         CurveAttackRepeatWait = new WaitForSeconds(curveAttackRepeatDelay);
         HomingAttackWait = new WaitForSeconds(homingAttackDelay);
     }
@@ -94,17 +99,26 @@ public class BossEnemy : EnemyBase
         {
             if (player != null)
             {
-                int pattern = Random.Range(0, 3);
-
-                switch (pattern)
+                if(dis < toDistance)
                 {
-                    case 0: yield return StartCoroutine(MoveSlowCo()); break;
-                    case 1: yield return StartCoroutine(MoveDashCo()); break;
-                    case 2: yield return StartCoroutine(TeleportCo()); break;
+                    Away();
+                    yield return null;
                 }
-                yield return StartCoroutine(ReturnPositionCo());
+                else
+                {
+                    int pattern = Random.Range(0, 2);
 
-                yield return new WaitForSeconds(moveWaitTime);
+                    switch (pattern)
+                    {
+                        case 0: yield return StartCoroutine(MoveSlowCo()); break;
+                        case 1: yield return StartCoroutine(MoveDashCo()); break;
+                            //case 2: yield return StartCoroutine(TeleportCo()); break;
+                    }
+                    yield return StartCoroutine(ReturnPositionCo());
+
+                    yield return new WaitForSeconds(moveWaitTime);
+                }
+
             }
             else
             {
@@ -112,6 +126,10 @@ public class BossEnemy : EnemyBase
                 yield return null;
             }
         }
+    }
+    private void Away()
+    {
+        transform.position -= dir * moveSpeed * Time.deltaTime;
     }
     private IEnumerator MoveSlowCo()
     {
@@ -133,28 +151,28 @@ public class BossEnemy : EnemyBase
             yield return null;
         }
     }
-    private IEnumerator TeleportCo()
-    {
-        isUpImpossible = Physics2D.Raycast(player.transform.position, Vector2.up, 15, wallLayer);
-        isDownImpossible = Physics2D.Raycast(player.transform.position, Vector2.down, 15, wallLayer);
-        isRightImpossible = Physics2D.Raycast(player.transform.position, Vector2.right, 15, wallLayer);
-        isLeftImpossible = Physics2D.Raycast(player.transform.position, Vector2.left, 15, wallLayer);
+    //private IEnumerator TeleportCo()
+    //{
+    //    isUpImpossible = Physics2D.Raycast(player.transform.position, Vector2.up, 15, wallLayer);
+    //    isDownImpossible = Physics2D.Raycast(player.transform.position, Vector2.down, 15, wallLayer);
+    //    isRightImpossible = Physics2D.Raycast(player.transform.position, Vector2.right, 15, wallLayer);
+    //    isLeftImpossible = Physics2D.Raycast(player.transform.position, Vector2.left, 15, wallLayer);
 
-        List<Vector2> candir = new List<Vector2>();
+    //    List<Vector2> candir = new List<Vector2>();
 
-        if (!isUpImpossible) candir.Add(Vector2.up);
-        if (!isDownImpossible) candir.Add(Vector2.down);
-        if (!isRightImpossible) candir.Add(Vector2.right);
-        if (!isLeftImpossible) candir.Add(Vector2.left);
+    //    if (!isUpImpossible) candir.Add(Vector2.up);
+    //    if (!isDownImpossible) candir.Add(Vector2.down);
+    //    if (!isRightImpossible) candir.Add(Vector2.right);
+    //    if (!isLeftImpossible) candir.Add(Vector2.left);
 
-        if (candir == null) yield break;
+    //    if (candir == null) yield break;
 
-        int teleportRandom = Random.Range(0, candir.Count);
+    //    int teleportRandom = Random.Range(0, candir.Count);
 
-        transform.position = transform.position + (Vector3)candir[teleportRandom] * 10;
+    //    transform.position = transform.position + (Vector3)candir[teleportRandom] * 10;
         
-        yield return null;
-    }
+    //    yield return null;
+    //}
     private void Patrol()
     {
         transform.position += (Vector3)patrolDir * moveSpeed * Time.deltaTime;
@@ -224,22 +242,29 @@ public class BossEnemy : EnemyBase
     }
     private IEnumerator CircleAttackCo()
     {
-        float angleStep = 360f / circleAttackCount;
+        float angleStep = 360f / circleAttackBulletCount;
         float angle = 0f;
-
-        for (int i = 0; i < circleAttackCount; i++)
+        for (int a = 0; a < circleAttackRepeatCount; a++)
         {
-            float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
-            float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
-            Vector3 dir = new Vector3(dirX, dirY, 0f);
+            if (a % 2 == 0)
+            {
+                angle += circleAttackAngleOffset;
+            }
+            for (int i = 0; i < circleAttackBulletCount; i++)
+            {
+                float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
+                float dirY = Mathf.Sin(angle * Mathf.Deg2Rad);
+                Vector3 dir = new Vector3(dirX, dirY, 0f);
 
-            EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
-            bullet.transform.position = firePoint.position;
-            bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+                EnemyBullet bullet = Managers.Pool.GetPool(enemyBulletPrefab);
+                bullet.transform.position = firePoint.position;
+                bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
 
-            bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, player);
+                bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, player);
 
-            angle += angleStep;
+                angle += angleStep;
+            }
+            yield return CircleAttackWait;
         }
         yield break;
     }

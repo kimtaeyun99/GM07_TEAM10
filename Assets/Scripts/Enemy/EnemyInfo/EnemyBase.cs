@@ -50,7 +50,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     }
     protected void Die()
     {
-        OnDead.Invoke(this);
+        OnDead?.Invoke(this);
         Debug.Log($"{gameObject.name} 사망");
         Managers.Pool.ReturnPool(this);
         //DropRewards();

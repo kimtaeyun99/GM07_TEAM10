@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5572a910b5166e4dafeffb6088a2003, type: 3}
   m_Name: BasicEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
-  enemyName: TEST01
+  enemyName: Basic Enemy
   enemyPrefab: {fileID: 5652750448426934237, guid: 8a390c423728bb5478cfb5a3e3423bc4, type: 3}
   enemySprite: {fileID: 21300000, guid: 3f06a510e9a98ee449a5fa53fa69d3e5, type: 3}
   maxHp: 30

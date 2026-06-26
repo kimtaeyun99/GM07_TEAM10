@@ -92,6 +92,7 @@ public class EnemyBullet : MonoBehaviour
     private void HomingMove()
     {
         if (player == null) Managers.Pool.ReturnPool(this);
+        if (player == null) return;
         dir = (player.transform.position - transform.position).normalized;
         transform.position += dir * homingSpeed * Time.deltaTime;
     }

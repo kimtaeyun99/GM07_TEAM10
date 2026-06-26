@@ -51,7 +51,6 @@ public class BossEnemy : EnemyBase
     private float dis;
     private Vector2 patrolDir = Vector2.right;
     private Vector3 returnPos;
-    private float angle;
 
     private bool isUpImpossible;
     private bool isDownImpossible;

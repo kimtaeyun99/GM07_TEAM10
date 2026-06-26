@@ -6,7 +6,6 @@ public class EliteEnemy : EnemyBase
     [Header("공격 기본 설정")]
     [SerializeField] private Transform firePoint;
     [SerializeField] private EnemyBullet enemyBulletPrefab;
-    [SerializeField] private EnemyRaser enemyRaserPrefab;
 
     [Header("다음 이동메서드까지의 쿨타임")]
     [SerializeField] private float moveWaitTime = 5.0f;
@@ -43,7 +42,6 @@ public class EliteEnemy : EnemyBase
     [SerializeField] private float homingAttackDelay;
     private WaitForSeconds HomingAttackWait;
 
-    //private EnemyBulletManager bulletManager;
     private PlayerBase player;
     private Vector3 dir;
     private float dis;
@@ -52,7 +50,6 @@ public class EliteEnemy : EnemyBase
     private float angle;
     private void Awake()
     {
-        //bulletManager = GetComponent<EnemyBulletManager>();
         AttackWait = new WaitForSeconds(attackDelay);
         StraightAttackWait = new WaitForSeconds(straightAttackDelay);
         CurveAttackWait = new WaitForSeconds(curveAttackDelay);
@@ -228,8 +225,8 @@ public class EliteEnemy : EnemyBase
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, null);
 
-            angle += spiralAngle; // 각도를 조금씩 증가시켜서 나선형 발사
-            yield return new WaitForSeconds(0.1f); // 발사 간격
+            angle += spiralAngle; 
+            yield return new WaitForSeconds(0.1f);
         }
     }
     private IEnumerator HomingAttackCo()

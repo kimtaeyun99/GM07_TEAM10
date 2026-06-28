@@ -12,13 +12,15 @@ public class EnemyBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy")) return;
-
-        if (collision.CompareTag("Wall"))
+        else if (collision.CompareTag("Wall"))
         {
             Managers.Pool.ReturnPool(this);
         }
-
-        if (collision.TryGetComponent(out IDamageable damageable))
+        else if (collision.CompareTag("Destructible"))
+        {
+            Managers.Pool.ReturnPool(this);
+        }
+        else if (collision.TryGetComponent(out IDamageable damageable))
         {
             damageable.TakeDamage(damage);
             Managers.Pool.ReturnPool(this);
@@ -100,8 +102,11 @@ public class EnemyBullet : MonoBehaviour
     }
     private void HomingMove()
     {
-        if (player == null) Managers.Pool.ReturnPool(this);
-        if (player == null) return;
+        if (player == null)
+        {
+            Managers.Pool.ReturnPool(this);
+            return;
+        }
         dir = (player.transform.position - transform.position).normalized;
         transform.position += dir * homingSpeed * Time.deltaTime;
     }

@@ -43,6 +43,12 @@ public class PlayerBulletBase : MonoBehaviour
             damageable.TakeDamage(damage);
             Managers.Pool.ReturnPool(this);
         }
+        else if (collision.CompareTag("Destructible"))
+        {
+            collision.TryGetComponent(out IDamageable damageable);
+            damageable.TakeDamage(damage);
+            Managers.Pool.ReturnPool(this);
+        }
         else if (collision.CompareTag("Wall"))
         {
             Managers.Pool.ReturnPool(this);

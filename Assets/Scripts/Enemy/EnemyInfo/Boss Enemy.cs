@@ -18,8 +18,8 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float toDistance = 5f;
     [SerializeField] private float detectRange = 10f;
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private float wallDetectDistance = 1.0f;
+    [SerializeField] private LayerMask obstacle;
+    [SerializeField] private float detectDistance = 1.0f;
     [SerializeField] private float returnDis = 5.0f;
 
     [Header("공격 설정")]
@@ -56,10 +56,10 @@ public class BossEnemy : EnemyBase
     private Vector2 patrolDir = Vector2.right;
     private Vector3 returnPos;
 
-    private bool isUpImpossible;
-    private bool isDownImpossible;
-    private bool isRightImpossible;
-    private bool isLeftImpossible;
+    //private bool isUpImpossible;
+    //private bool isDownImpossible;
+    //private bool isRightImpossible;
+    //private bool isLeftImpossible;
 
     private void Awake()
     {
@@ -177,7 +177,7 @@ public class BossEnemy : EnemyBase
     {
         transform.position += (Vector3)patrolDir * moveSpeed * Time.deltaTime;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDir, wallDetectDistance, wallLayer);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDir, detectDistance, obstacle);
         if (hit.collider != null)
         {
             patrolDir *= -1;

@@ -12,8 +12,8 @@ public class BasicEnemy : EnemyBase
     [SerializeField] private float toDistance = 5f;
     [SerializeField] private float detectRange = 10f;
     [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private LayerMask wallLayer;
-    [SerializeField] private float wallDetectDistance = 1.0f;
+    [SerializeField] private LayerMask obstacle;
+    [SerializeField] private float detectDistance = 1.0f;
 
     [Header("공격 설정")]
     [SerializeField] private float attackDelay = 3.0f;
@@ -74,9 +74,8 @@ public class BasicEnemy : EnemyBase
     private void Patrol()
     {
         transform.position += (Vector3)patrolDir * moveSpeed * Time.deltaTime;
-
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDir, wallDetectDistance,wallLayer);
-        if(hit.collider != null)
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDir, detectDistance, obstacle);
+        if (hit.collider != null)
         {
             patrolDir *= -1;
         }

@@ -46,13 +46,21 @@ public class PlayerStateManager : MonoBehaviour
     }
     private void Update()
     {
-        if(Managers.Input.movement == Vector2.zero)
+        if(player.currentHp <= 0)
         {
-            SetState(PlayerState.Idle);
+            SetState(PlayerState.Death);
         }
-        else if(Managers.Input.movement != Vector2.zero)
+        else if(Managers.Input.isDodgePressed)
+        {
+            SetState(PlayerState.Dodge);
+        }
+        else if (Managers.Input.movement != Vector2.zero)
         {
             SetState(PlayerState.Run);
+        }
+        else if (Managers.Input.movement == Vector2.zero)
+        {
+            SetState(PlayerState.Idle);
         }
     }
 }

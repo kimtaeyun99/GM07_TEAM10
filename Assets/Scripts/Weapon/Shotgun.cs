@@ -79,7 +79,7 @@ public class Shotgun : WeaponBase, IReloadable
     {
         isReload = true;
         yield return ReloadDelayWait;
-        //¿Œ∫•ø°º≠ ≈∫√¢ æ∆¿Ã≈€ -1
+        //Inventory.instance.UseItemByName("º¶∞«≈∫√¢");
         currentAmmo = maxAmmo;
         isReload = false;
     }

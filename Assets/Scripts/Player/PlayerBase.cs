@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerBase : MonoBehaviour, IDamageable
 {
-    protected PlayerData playerData;
+    [SerializeField] protected PlayerData playerData;
     private SpriteRenderer playerSpriteRenderer;
     protected int maxHp;
     protected int currentHp;
@@ -71,6 +71,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             Weapons[i].gameObject.SetActive(false);
         }
 
+        Initialize(playerData);
         DontDestroyOnLoad(gameObject);
     }
 

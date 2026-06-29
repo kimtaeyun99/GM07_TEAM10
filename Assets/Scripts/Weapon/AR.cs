@@ -66,7 +66,7 @@ public class AR : WeaponBase, IReloadable
     {
         isReload = true;
         yield return ReloadDelayWait;
-        //¿Œ∫•ø°º≠ ≈∫√¢ æ∆¿Ã≈€ -1
+        //Inventory.instance.UseItemByName("ARÌÉÑÏ∞Ω");
         currentAmmo = maxAmmo;
         isReload = false;
     }

@@ -77,6 +77,7 @@
     <Compile Include="Assets\Scripts\Inventory\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack\EnemyBullet.cs" />
     <Compile Include="Assets\Scripts\Weapon\PistolBullet.cs" />
+    <Compile Include="Assets\Scripts\Player\Player State\Player State Base.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemData.cs" />
     <Compile Include="Assets\Scripts\InterFace\IReloadable.cs" />
@@ -116,6 +117,7 @@
     <Compile Include="Assets\Scripts\Hud\HudController.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\System\PoolPreloader.cs" />
+    <Compile Include="Assets\Scripts\Player\Player Animation Controller.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_FrameRateCounter.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyInfo\Boss Enemy.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_PhoneNumberValidator.cs" />
     <Compile Include="Assets\Scripts\Hud\HudLogManager.cs" />
     <Compile Include="Assets\Scripts\Item\ItemBase.cs" />
+    <Compile Include="Assets\Scripts\Player\Player State\Player State Manager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />

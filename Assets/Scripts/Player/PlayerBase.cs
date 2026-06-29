@@ -5,9 +5,9 @@ public class PlayerBase : MonoBehaviour, IDamageable
 {
     [SerializeField] protected PlayerData playerData;
     private SpriteRenderer playerSpriteRenderer;
-    protected int maxHp;
-    protected int currentHp;
-    protected float moveSpeed;
+    public int maxHp;
+    public int currentHp;
+    public float moveSpeed;
 
     protected float dodgeCooldowm;
     private WaitForSeconds dodgeCooldownWait;
@@ -18,8 +18,8 @@ public class PlayerBase : MonoBehaviour, IDamageable
 
     private Rigidbody2D rb;
 
-    [SerializeField] private WeaponBase[] Weapons;
-    private WeaponBase currentWeapon;
+    [SerializeField] public WeaponBase[] Weapons;
+    public WeaponBase currentWeapon;
     public void Initialize(PlayerData data)
     {
         if (data == null) return;

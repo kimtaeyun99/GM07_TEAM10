@@ -73,6 +73,7 @@
     <Compile Include="Assets\Scripts\InterFace\IDamageable.cs" />
     <Compile Include="Assets\Space_Exploration_GUI_Kit\Scripts\Toggle.cs" />
     <Compile Include="Assets\Scripts\Equipment\EquipmentUI.cs" />
+    <Compile Include="Assets\Scripts\Player\Player State\Player State Dodge.cs" />
     <Compile Include="Assets\Scripts\Hud\WeaponQuickSlot.cs" />
     <Compile Include="Assets\Scripts\Inventory\InventoryUI.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack\EnemyBullet.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerBase.cs" />
     <Compile Include="Assets\Scripts\Map\BossRoomController.cs" />
+    <Compile Include="Assets\Scripts\Player\Player State\Player State Idle.cs" />
     <Compile Include="Assets\Scripts\Map\EnemySpawnPoint.cs" />
     <Compile Include="Assets\Scripts\Hud\HudConsumableSlot.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
@@ -149,12 +151,14 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
     <Compile Include="Assets\Scripts\Map\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\Map\RoomController.cs" />
+    <Compile Include="Assets\Scripts\Player\Player State\Player State Death.cs" />
     <Compile Include="Assets\Scripts\InterFace\ITakeAble.cs" />
     <Compile Include="Assets\Scripts\Data\EnemyData.cs" />
     <Compile Include="Assets\Scripts\Data\PlayerData.cs" />
     <Compile Include="Assets\Scripts\Hud\PlayerInteraction.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Weapon\Pistol.cs" />
+    <Compile Include="Assets\Scripts\Player\Player State\Player State Run.cs" />
     <Compile Include="Assets\Scripts\System\InputManager.cs" />
     <Compile Include="Assets\Scripts\Map\GameManager.cs" />
     <Compile Include="Assets\Scripts\Weapon\Shotgun.cs" />

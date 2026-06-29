@@ -9,14 +9,14 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public int currentHp;
     public float moveSpeed;
 
-    protected float dodgeCooldowm;
-    private WaitForSeconds dodgeCooldownWait;
-    protected float dodgeDuration;
-    private WaitForSeconds dodgeDurationWait;
-    public bool isDodgeable { get; private set; } = true;
-    public bool isDamageable { get; private set; } = true;
+    public float dodgeCooldowm;
+    public WaitForSeconds dodgeCooldownWait;
+    public float dodgeDuration;
+    public WaitForSeconds dodgeDurationWait;
+    public bool isDodgeable { get; set; } = true;
+    public bool isDamageable { get; set; } = true;
 
-    private Rigidbody2D rb;
+    //private Rigidbody2D rb;
 
     [SerializeField] public WeaponBase[] Weapons;
     public WeaponBase currentWeapon;
@@ -37,23 +37,23 @@ public class PlayerBase : MonoBehaviour, IDamageable
         dodgeCooldowm = playerData.DodgeCooldown;
         dodgeDuration = playerData.DodgeDuration;
 
-        if(rb == null)
-        {
-            rb = GetComponent<Rigidbody2D>();
-        }
+        //if(rb == null)
+        //{
+        //    rb = GetComponent<Rigidbody2D>();
+        //}
 
         dodgeCooldownWait = new WaitForSeconds(dodgeCooldowm);
         dodgeDurationWait = new WaitForSeconds(dodgeDuration);
     }
     private void FixedUpdate()
     {
-        Move();
+        //Move();
     }
     private void Update()
     {
         Attack();
         Interact();
-        Dodge();
+        //Dodge();
         QuickSlot();
         Inventory();
         Reload();
@@ -61,10 +61,10 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void Awake()
     {
-        if (rb == null)
-        {
-            rb = GetComponent<Rigidbody2D>();
-        }
+        //if (rb == null)
+        //{
+        //    rb = GetComponent<Rigidbody2D>();
+        //}
 
         for(int i=0; i<Weapons.Length; i++)
         {
@@ -75,11 +75,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Move()
-    {
-        Vector2 movedir = new Vector2(Managers.Input.movement.x, Managers.Input.movement.y);
-        rb.linearVelocity = movedir * moveSpeed;
-    }
+    //private void Move()
+    //{
+    //    Vector2 movedir = new Vector2(Managers.Input.movement.x, Managers.Input.movement.y);
+    //    rb.linearVelocity = movedir * moveSpeed;
+    //}
     private void Attack()
     {
         if (currentWeapon == null) return;
@@ -94,26 +94,26 @@ public class PlayerBase : MonoBehaviour, IDamageable
         if (!Managers.Input.isInteractPressed) return;
         //상호작용 메서드
     }
-    private void Dodge()
-    {
-        if (!Managers.Input.isDodgePressed || !isDodgeable) return;
-        StartCoroutine(DodgeCo());
-        StartCoroutine(DodgeCooldownCo());
-    }
-    private IEnumerator DodgeCo()
-    {
-        isDamageable = false;
-        Debug.Log("Dodge On");
-        yield return dodgeDurationWait;
-        isDamageable = true;
-        Debug.Log("Dodge Off");
-    }
-    private IEnumerator DodgeCooldownCo()
-    {
-        isDodgeable = false;
-        yield return dodgeCooldownWait;
-        isDodgeable = true;
-    }
+    //private void Dodge()
+    //{
+    //    if (!Managers.Input.isDodgePressed || !isDodgeable) return;
+    //    StartCoroutine(DodgeCo());
+    //    StartCoroutine(DodgeCooldownCo());
+    //}
+    //private IEnumerator DodgeCo()
+    //{
+    //    isDamageable = false;
+    //    Debug.Log("Dodge On");
+    //    yield return dodgeDurationWait;
+    //    isDamageable = true;
+    //    Debug.Log("Dodge Off");
+    //}
+    //private IEnumerator DodgeCooldownCo()
+    //{
+    //    isDodgeable = false;
+    //    yield return dodgeCooldownWait;
+    //    isDodgeable = true;
+    //}
     private void QuickSlot()
     {
         if(Managers.Input.isQuickSlot1Pressed)
@@ -186,7 +186,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     public void Die()
     {
+        for(int i=0; i<Weapons.Length; i++)
+        {
+            Weapons[i].enabled = false;
+        }
+
         Destroy(gameObject);
     }
-
 }

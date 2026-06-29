@@ -7,11 +7,11 @@ public class PlayerData : ScriptableObject
     [SerializeField] private string playerName;
     [SerializeField] private PlayerBase playerPrefab;
 
-    [Header("Player Sprite")]
-    [SerializeField] private Sprite playerSprite;
-    [SerializeField] private Sprite pistolSprite;
-    [SerializeField] private Sprite shotgunSprite;
-    [SerializeField] private Sprite arSprite;
+    //[Header("Player Sprite")]
+    //[SerializeField] private Sprite playerSprite;
+    //[SerializeField] private Sprite pistolSprite;
+    //[SerializeField] private Sprite shotgunSprite;
+    //[SerializeField] private Sprite arSprite;
 
     [Header("Player ´É·ÂÄ¡")]
     [SerializeField] private int maxHp = 100;
@@ -21,10 +21,10 @@ public class PlayerData : ScriptableObject
 
     public string PlayerName { get { return playerName; } }
     public PlayerBase PlayerPrefab { get { return playerPrefab; } }
-    public Sprite PlayerSprite { get { return playerSprite; } }
-    public Sprite PistolSprite { get { return pistolSprite; } }
-    public Sprite ShotgunSprite { get { return shotgunSprite; } }
-    public Sprite ARSprite { get { return arSprite; } }
+    //public Sprite PlayerSprite { get { return playerSprite; } }
+    //public Sprite PistolSprite { get { return pistolSprite; } }
+    //public Sprite ShotgunSprite { get { return shotgunSprite; } }
+    //public Sprite ARSprite { get { return arSprite; } }
     public int MaxHp { get { return maxHp; } }
     public float MoveSpeed { get { return moveSpeed; } }
     public float DodgeCooldown { get { return dodgeCooldown; } }

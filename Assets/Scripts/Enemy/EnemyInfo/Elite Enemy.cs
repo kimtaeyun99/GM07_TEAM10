@@ -47,7 +47,6 @@ public class EliteEnemy : EnemyBase
     private float dis;
     private Vector2 patrolDir = Vector2.right;
     private Vector3 returnPos;
-    private float angle;
     private void Awake()
     {
         AttackWait = new WaitForSeconds(attackDelay);

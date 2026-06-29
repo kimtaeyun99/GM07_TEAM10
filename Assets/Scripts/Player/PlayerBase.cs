@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerBase : MonoBehaviour, IDamageable
 {
     [SerializeField] protected PlayerData playerData;
-    private SpriteRenderer playerSpriteRenderer;
+    //private SpriteRenderer playerSpriteRenderer;
     public int maxHp;
     public int currentHp;
     public float moveSpeed;
@@ -26,11 +26,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
         playerData = data;
 
         gameObject.name = playerData.name;
-        playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        if(playerSpriteRenderer != null)
-        {
-            playerSpriteRenderer.sprite = playerData.PlayerSprite;
-        }
+        //playerSpriteRenderer = GetComponent<SpriteRenderer>();
+        //if(playerSpriteRenderer != null)
+        //{
+        //    playerSpriteRenderer.sprite = playerData.PlayerSprite;
+        //}
         maxHp = playerData.MaxHp;
         currentHp = maxHp;
         moveSpeed = playerData.MoveSpeed;

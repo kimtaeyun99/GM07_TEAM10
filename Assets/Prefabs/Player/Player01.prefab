@@ -44,6 +44,13 @@ GameObject:
   - component: {fileID: 1637260530671431115}
   - component: {fileID: 7662894096310195221}
   - component: {fileID: 7049341908147252377}
+  - component: {fileID: 2718867768759360676}
+  - component: {fileID: 3059779526991798536}
+  - component: {fileID: 6542904638985402212}
+  - component: {fileID: 3548258195545591120}
+  - component: {fileID: 3986465502493155362}
+  - component: {fileID: 3981929574584556839}
+  - component: {fileID: 4481308867734099075}
   m_Layer: 8
   m_Name: Player01
   m_TagString: Player
@@ -115,7 +122,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -1977406561
-  m_SortingLayer: 1
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 21300000, guid: 9a04697e2057e3042bd732f2aba02bcd, type: 3}
@@ -204,10 +211,134 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab31592af5bd77d44a44ec932024e0f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBase
+  playerData: {fileID: 0}
+  maxHp: 0
+  currentHp: 0
+  moveSpeed: 0
+  dodgeCooldowm: 0
+  dodgeDuration: 0
   Weapons:
   - {fileID: 425200095404264501}
   - {fileID: 7263795269743122366}
   - {fileID: 4311651472978086002}
+  currentWeapon: {fileID: 0}
+--- !u!114 &2718867768759360676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c27e719380ccc45be0cdef233236df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateManager
+  player: {fileID: 7049341908147252377}
+  playerState: -1
+  playerStates:
+  - {fileID: 3059779526991798536}
+  - {fileID: 6542904638985402212}
+  - {fileID: 3548258195545591120}
+  - {fileID: 3986465502493155362}
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4481308867734099075}
+        m_TargetAssemblyTypeName: PlayerAnimationController, Assembly-CSharp
+        m_MethodName: OnStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &3059779526991798536
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99ed63797d52904abc9263034d71ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateIdle
+--- !u!114 &6542904638985402212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a740264575b19cf47a98c9e027e776ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateRun
+--- !u!114 &3548258195545591120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b503c08a410d9e48a095f24791eacd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateDodge
+--- !u!114 &3986465502493155362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca3e7d70e406a74eabd9239df801400, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStateDeath
+--- !u!95 &3981929574584556839
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8fc0f9453fc5184d9e0310ece0e68fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4481308867734099075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68f3a313ba0e1264b8012f69e6e9347e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAnimationController
+  refAnimator: {fileID: 3981929574584556839}
 --- !u!1 &2924086167706340281
 GameObject:
   m_ObjectHideFlags: 0
@@ -340,7 +471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8163898826749252315, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8163898826749252315, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
       propertyPath: m_SortingOrder
@@ -444,7 +575,7 @@ PrefabInstance:
       objectReference: {fileID: 2129633627447744352}
     - target: {fileID: 8331066918746474639, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8331066918746474639, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
       propertyPath: m_SortingOrder
@@ -536,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4545405626407920672, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
       propertyPath: m_SortingLayer
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4545405626407920672, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
       propertyPath: m_SortingOrder

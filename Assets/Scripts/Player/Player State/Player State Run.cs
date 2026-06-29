@@ -8,7 +8,6 @@ public class PlayerStateRun : PlayerStateBase
     }
     private void Move()
     {
-        Vector2 movedir = new Vector2(Managers.Input.movement.x, Managers.Input.movement.y);
-        refRb.linearVelocity = movedir * playerBase.moveSpeed;
+        refRb.linearVelocity = Managers.Input.movement * playerBase.moveSpeed;
     }
 }

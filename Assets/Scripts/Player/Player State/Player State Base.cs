@@ -9,8 +9,9 @@ public class PlayerStateBase : MonoBehaviour
     protected PlayerAnimationController playerAnimationController;
     protected Rigidbody2D refRb;
     protected PlayerBase playerBase;
+    protected SpriteRenderer refSpriteRenderer;
 
-    private void OnEnable()
+    private void Awake()
     {
         if(refTransform == null)
         {
@@ -39,6 +40,10 @@ public class PlayerStateBase : MonoBehaviour
         if(playerBase == null)
         {
             playerBase = GetComponent<PlayerBase>();
+        }
+        if(refSpriteRenderer == null)
+        {
+            refSpriteRenderer = GetComponent<SpriteRenderer>();
         }
     }
 }

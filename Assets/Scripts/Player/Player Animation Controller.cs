@@ -4,11 +4,11 @@ public class PlayerAnimationController : MonoBehaviour
 {
     [SerializeField] private Animator refAnimator;
 
-    private void OnEnable()
+    private void Awake()
     {
         if(refAnimator == null)
         {
-            refAnimator = GetComponentInParent<Animator>();
+            refAnimator = GetComponent<Animator>();
         }
     }
 
@@ -22,7 +22,7 @@ public class PlayerAnimationController : MonoBehaviour
         }
         else if(newState == PlayerStateManager.PlayerState.Dodge)
         {
-            refAnimator.SetBool("isDodged", true);
+            refAnimator.SetTrigger("isDodged");
         }
         else if(newState == PlayerStateManager.PlayerState.Death)
         {

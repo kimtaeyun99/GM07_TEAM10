@@ -12,7 +12,18 @@ public class PlayerStateDodge : PlayerStateBase
     {
         playerBase.isDamageable = false;
         Debug.Log("Dodge On");
-        yield return playerBase.dodgeDurationWait;
+
+        float dodgeTimer = 0f;
+        Color originalColor = refSpriteRenderer.color;
+        while(dodgeTimer < playerBase.dodgeDuration)
+        {
+            float alpha = Mathf.PingPong(Time.time * 5f, 0.7f) + 0.3f;
+            refSpriteRenderer.color = new Color(originalColor.r, originalColor.g, originalColor.b, alpha);
+            dodgeTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        refSpriteRenderer.color = originalColor;
         playerBase.isDamageable = true;
         Debug.Log("Dodge Off");
     }

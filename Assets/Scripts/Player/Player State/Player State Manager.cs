@@ -7,28 +7,30 @@ public class PlayerStateManager : MonoBehaviour
     {
         None = -1, Idle, Run, Dodge, Death
     }
-    [SerializeField] private PlayerBase player;
+    [SerializeField] private PlayerBase playerBase;
     [SerializeField] private PlayerState playerState = PlayerState.None;
     [SerializeField] private PlayerStateBase[] playerStates;
     [SerializeField] private UnityEvent<PlayerState> OnStateChanged;
 
-    private CharacterController characterController;
+    //private CharacterController characterController;
     private PlayerAnimationController playerAnimationController;
 
     private void Awake()
     {
-        if(player == null)
+        if(playerBase == null)
         {
-            player = GetComponent<PlayerBase>();
+            playerBase = GetComponent<PlayerBase>();
         }
-        if(characterController == null)
-        {
-            characterController = GetComponent<CharacterController>();
-        }
+        //if(characterController == null)
+        //{
+        //    characterController = GetComponent<CharacterController>();
+        //}
         if(playerAnimationController == null)
         {
             playerAnimationController = GetComponentInChildren<PlayerAnimationController>();
         }
+
+        OnStateChanged.AddListener(playerAnimationController.OnStateChanged);
     }
     public void SetState(PlayerState newState)
     {
@@ -38,6 +40,7 @@ public class PlayerStateManager : MonoBehaviour
             playerStates[(int)playerState].enabled = false;
         }
         playerState = newState;
+        playerStates[(int)playerState].enabled = true;
         OnStateChanged?.Invoke(playerState);
     }
     private void OnEnable()
@@ -46,11 +49,11 @@ public class PlayerStateManager : MonoBehaviour
     }
     private void Update()
     {
-        if(player.currentHp <= 0)
+        if(playerBase.currentHp <= 0)
         {
             SetState(PlayerState.Death);
         }
-        else if(Managers.Input.isDodgePressed)
+        else if(Managers.Input.isDodgePressed && playerBase.isDodgeable)
         {
             SetState(PlayerState.Dodge);
         }

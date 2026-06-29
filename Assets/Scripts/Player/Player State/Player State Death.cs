@@ -7,12 +7,14 @@ public class PlayerStateDeath : PlayerStateBase
     {
         playerBase.isDamageable = false;
         StartCoroutine(DeathCo());
-
     }
     private IEnumerator DeathCo()
     {
+        refAnimator.SetBool("isDead", false);
         AnimatorStateInfo stateInfo = playerAnimationController.GetCurrentStateInfo();
-        yield return new WaitForSeconds(stateInfo.length);
-        Managers.Pool.ReturnPool(this);
+        float duration = stateInfo.length / stateInfo.speed;
+        yield return new WaitForSeconds(duration);
+        //refAnimator.SetBool("isDead", false);
+        //Managers.Pool.ReturnPool(playerBase);
     }
 }

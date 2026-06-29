@@ -12,7 +12,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public float dodgeCooldowm;
     public WaitForSeconds dodgeCooldownWait;
     public float dodgeDuration;
-    public WaitForSeconds dodgeDurationWait;
+    //public WaitForSeconds dodgeDurationWait;
     public bool isDodgeable { get; set; } = true;
     public bool isDamageable { get; set; } = true;
 
@@ -43,7 +43,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
         //}
 
         dodgeCooldownWait = new WaitForSeconds(dodgeCooldowm);
-        dodgeDurationWait = new WaitForSeconds(dodgeDuration);
+        //dodgeDurationWait = new WaitForSeconds(dodgeDuration);
     }
     private void FixedUpdate()
     {
@@ -179,18 +179,18 @@ public class PlayerBase : MonoBehaviour, IDamageable
         currentHp -= damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");
-        if (currentHp <= 0)
-        {
-            Die();
-        }
+        //if (currentHp <= 0)
+        //{
+        //    Die();
+        //}
     }
-    public void Die()
-    {
-        for(int i=0; i<Weapons.Length; i++)
-        {
-            Weapons[i].enabled = false;
-        }
+    //public void Die()
+    //{
+    //    for(int i=0; i<Weapons.Length; i++)
+    //    {
+    //        Weapons[i].enabled = false;
+    //    }
 
-        Destroy(gameObject);
-    }
+    //    Destroy(gameObject);
+    //}
 }

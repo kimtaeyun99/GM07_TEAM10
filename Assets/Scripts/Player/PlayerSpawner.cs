@@ -7,7 +7,10 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        PlayerBase player = Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        //PlayerBase player = Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        //player.Initialize(playerData);
+
+        PlayerBase player = Managers.Pool.GetPool(playerPrefab);
         player.Initialize(playerData);
     }
 }

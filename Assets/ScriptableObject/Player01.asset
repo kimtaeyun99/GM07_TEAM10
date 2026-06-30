@@ -14,10 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
   playerName: TestPlayer
   playerPrefab: {fileID: 7049341908147252377, guid: 8fb67150760a37942ad23dac8ddf5f52, type: 3}
-  playerSprite: {fileID: 21300000, guid: 9a04697e2057e3042bd732f2aba02bcd, type: 3}
-  pistolSprite: {fileID: 21300000, guid: 91782d5d1a9e9e2499dd8691c848ba80, type: 3}
-  shotgunSprite: {fileID: 21300000, guid: 6aa24b85ecffc9b479cf474ffed65e8c, type: 3}
-  arSprite: {fileID: 21300000, guid: 763d3f584e6d4af45b70e0eb08f6fb17, type: 3}
   maxHp: 100
   moveSpeed: 5
   dodgeCooldown: 3

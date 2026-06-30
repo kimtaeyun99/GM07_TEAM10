@@ -1,0 +1,24 @@
+using UnityEngine;
+
+public class BasicEnemyStatePatrol : BasicEnemyStateBase
+{
+    private void FixedUpdate()
+    {
+        Patrol();
+    }
+    private void Patrol()
+    {
+        basicEnemy.transform.position += (Vector3)basicEnemy.patrolDir * basicEnemy.moveSpeed * Time.deltaTime;
+        RaycastHit2D hit = Physics2D.Raycast(basicEnemy.transform.position, basicEnemy.patrolDir, basicEnemy.obstacleDetectDistance, basicEnemy.obstacleLayer);
+        if (hit.collider != null)
+        {
+            basicEnemy.patrolDir *= -1;
+        }
+
+        Collider2D player = Physics2D.OverlapCircle(basicEnemy.transform.position, basicEnemy.playerDetectRange, basicEnemy.playerLayer);
+        if (player != null)
+        {
+            basicEnemy.player = player.GetComponent<PlayerBase>();
+        }
+    }
+}

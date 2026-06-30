@@ -43,13 +43,13 @@ GameObject:
   - component: {fileID: 1624247941597057411}
   - component: {fileID: 1637260530671431115}
   - component: {fileID: 7662894096310195221}
+  - component: {fileID: 3981929574584556839}
   - component: {fileID: 7049341908147252377}
   - component: {fileID: 2718867768759360676}
   - component: {fileID: 3059779526991798536}
   - component: {fileID: 6542904638985402212}
   - component: {fileID: 3548258195545591120}
   - component: {fileID: 3986465502493155362}
-  - component: {fileID: 3981929574584556839}
   - component: {fileID: 4481308867734099075}
   m_Layer: 8
   m_Name: Player01
@@ -199,6 +199,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!95 &3981929574584556839
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2557306200027223227}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d8fc0f9453fc5184d9e0310ece0e68fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &7049341908147252377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8c27e719380ccc45be0cdef233236df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateManager
-  player: {fileID: 7049341908147252377}
+  playerBase: {fileID: 7049341908147252377}
   playerState: -1
   playerStates:
   - {fileID: 3059779526991798536}
@@ -304,28 +326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cca3e7d70e406a74eabd9239df801400, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStateDeath
---- !u!95 &3981929574584556839
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2557306200027223227}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d8fc0f9453fc5184d9e0310ece0e68fc, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4481308867734099075
 MonoBehaviour:
   m_ObjectHideFlags: 0

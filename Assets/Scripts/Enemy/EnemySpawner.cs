@@ -20,10 +20,8 @@ public class EnemySpawner : MonoBehaviour
             if (enemyData == null) return;
             if (enemyData.EnemyPrefab == null) return;
 
-            Vector2 spawnPos = Random.insideUnitCircle * spawnRadius;
-
             EnemyBase enemy = Managers.Pool.GetPool(Enemyprefab);
-            enemy.transform.position = spawnPos;
+            enemy.transform.position = transform.position;
             enemy.transform.rotation = Quaternion.Euler(Vector2.right);
             enemy.Initialize(enemyData);
         }

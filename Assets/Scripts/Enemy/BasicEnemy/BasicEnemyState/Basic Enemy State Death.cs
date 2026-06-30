@@ -5,29 +5,21 @@ public class BasicEnemyStateDeath : BasicEnemyStateBase
 {
     private void OnEnable()
     {
-        Death();
-        //StartCoroutine(DeathCo());
+        refAnimator.SetBool("isDead", true);
+        StartCoroutine(DeathCo());
     }
-    //private IEnumerator DeathCo()
-    //{
-
-    //    while (true)
-    //    {
-    //        AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);
-    //        if (stateInfo.normalizedTime >= 1f) break;
-    //        yield return null;
-    //    }
-
-    //    basicEnemy.Die();
-    //}
-
-    private void Death()
+    private IEnumerator DeathCo()
     {
-        AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);
+        while (refAnimator.IsInTransition(0) || !refAnimator.GetCurrentAnimatorStateInfo(0).IsName("Basic Enemy Death"))
+            yield return null;
 
-        if(stateInfo.normalizedTime >= 1f)
+        while (true)
         {
-            basicEnemy.Die();
+            AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Basic Enemy Death") && stateInfo.normalizedTime >= 1f) break;
+            yield return null;
         }
+
+        Managers.Pool.ReturnPool(basicEnemy);
     }
 }

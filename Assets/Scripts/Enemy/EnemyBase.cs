@@ -61,7 +61,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         OnDead?.Invoke(this);
         Debug.Log($"{gameObject.name} 사망");
-        Managers.Pool.ReturnPool(this);
+        //Managers.Pool.ReturnPool(this);
         //DropRewards();
     }
     //protected void DropRewards()

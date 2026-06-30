@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BasicEnemyStatePatrol : BasicEnemyStateBase
 {
-    private void FixedUpdate()
+    private void Update()
     {
         Patrol();
     }

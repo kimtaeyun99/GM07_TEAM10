@@ -11,6 +11,7 @@ public class PlayerSpawner : MonoBehaviour
         //player.Initialize(playerData);
 
         PlayerBase player = Managers.Pool.GetPool(playerPrefab);
+        player.transform.position = transform.position;
         player.Initialize(playerData);
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerBase : MonoBehaviour, IDamageable
 {
@@ -20,6 +21,8 @@ public class PlayerBase : MonoBehaviour, IDamageable
 
     [SerializeField] public WeaponBase[] Weapons;
     public WeaponBase currentWeapon;
+
+    public event System.Action<int, int> OnHealthChanged;
     public void Initialize(PlayerData data)
     {
         if (data == null) return;
@@ -71,7 +74,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             Weapons[i].gameObject.SetActive(false);
         }
 
-        Initialize(playerData);
+        //Initialize(playerData);
         DontDestroyOnLoad(gameObject);
     }
 
@@ -116,7 +119,9 @@ public class PlayerBase : MonoBehaviour, IDamageable
     //}
     private void QuickSlot()
     {
-        if(Managers.Input.isQuickSlot1Pressed)
+        if (EquipmentManager.instance == null) return;
+
+        if(Managers.Input.isQuickSlot1Pressed && EquipmentManager.instance.currentEquipment[5] != null)
         {
             foreach(WeaponBase weapon in Weapons)
             {
@@ -127,7 +132,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot1Pressed = false;
         }
-        if(Managers.Input.isQuickSlot2Pressed)
+        if(Managers.Input.isQuickSlot2Pressed && EquipmentManager.instance.currentEquipment[6] != null)
         {
             foreach (WeaponBase weapon in Weapons)
             {
@@ -138,7 +143,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot2Pressed = false;
         }
-        if(Managers.Input.isQuickSlot3Pressed)
+        if(Managers.Input.isQuickSlot3Pressed && EquipmentManager.instance.currentEquipment[7] != null)
         {
             foreach (WeaponBase weapon in Weapons)
             {
@@ -179,6 +184,8 @@ public class PlayerBase : MonoBehaviour, IDamageable
         currentHp -= damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");
+
+        OnHealthChanged?.Invoke(currentHp, maxHp);
         //if (currentHp <= 0)
         //{
         //    Die();

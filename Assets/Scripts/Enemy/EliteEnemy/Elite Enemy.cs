@@ -44,6 +44,8 @@ public class EliteEnemy : EnemyBase
     [SerializeField] private float homingAttackDelay;
     private WaitForSeconds HomingAttackWait;
 
+    public float AttackDelay { get { return attackDelay; } }
+    public float ReturnDis { get { return returnDis; } }
     private void Awake()
     {
         AttackWait = new WaitForSeconds(attackDelay);

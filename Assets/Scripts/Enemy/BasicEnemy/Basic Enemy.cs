@@ -30,8 +30,6 @@ public class BasicEnemy : EnemyBase
     public float StraightAttackCount { get { return straightAttackCount; } }
     public WaitForSeconds StraightAttackWait { get { return straightAttackWait; } }
 
-    public float attackTimer;
-
     private void Awake()
     {
         //attackWait = new WaitForSeconds(attackDelay);
@@ -41,10 +39,6 @@ public class BasicEnemy : EnemyBase
     //{
     //    //StartCoroutine(AttackCo());
     //}
-    private void Update()
-    {
-        attackTimer += Time.deltaTime;
-    }
 
     //    if(player == null)
     //    {

@@ -2,15 +2,38 @@ using UnityEngine;
 
 public class EliteEnemyStateBase : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    protected Transform refTransform;
+    protected Animator refAnimator;
+    protected Rigidbody2D refRb;
+    protected EliteEnemyStateManager eliteEnemyStateManager;
+    protected EliteEnemy eliteEnemy;
+    protected EliteEnemyAnimationController eliteEnemyAnimationController;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if (refTransform == null)
+        {
+            refTransform = transform;
+        }
+        if (refAnimator == null)
+        {
+            refAnimator = GetComponent<Animator>();
+        }
+        if (refRb == null)
+        {
+            refRb = GetComponent<Rigidbody2D>();
+        }
+        if (eliteEnemyStateManager == null)
+        {
+            eliteEnemyStateManager = GetComponent<EliteEnemyStateManager>();
+        }
+        if (eliteEnemy == null)
+        {
+            eliteEnemy = GetComponent<EliteEnemy>();
+        }
+        if (eliteEnemyAnimationController == null)
+        {
+            eliteEnemyAnimationController = GetComponent<EliteEnemyAnimationController>();
+        }
     }
 }

@@ -28,6 +28,12 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public Vector2 patrolDir = Vector2.right;
     public Vector3 returnPos;
 
+    public float attackTimer;
+
+    private void Update()
+    {
+        attackTimer += Time.deltaTime;
+    }
     public void Initialize(EnemyData data)
     {
         if (data == null) return;

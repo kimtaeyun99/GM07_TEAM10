@@ -14,12 +14,14 @@ public class BossEnemy : EnemyBase
     [Header("다음 이동메서드까지의 쿨타임")]
     [SerializeField] private float moveWaitTime = 5.0f;
 
-    [Header("추격 설정")]
-    [SerializeField] private float toDistance = 5f;
-    [SerializeField] private float detectRange = 10f;
-    [SerializeField] private LayerMask playerLayer;
-    [SerializeField] private LayerMask obstacle;
-    [SerializeField] private float detectDistance = 1.0f;
+    //[Header("추격 설정")]
+    //[SerializeField] private float toDistance = 5f;
+    //[SerializeField] private float detectRange = 10f;
+    //[SerializeField] private LayerMask playerLayer;
+    //[SerializeField] private LayerMask obstacle;
+    //[SerializeField] private float detectDistance = 1.0f;
+
+    [Header("Return시 플레이어와의 거리 차이설정")]
     [SerializeField] private float returnDis = 5.0f;
 
     [Header("공격 설정")]
@@ -50,17 +52,6 @@ public class BossEnemy : EnemyBase
     [SerializeField] private float homingAttackDelay;
     private WaitForSeconds HomingAttackWait;
 
-    private PlayerBase player;
-    private Vector3 dir;
-    private float dis;
-    private Vector2 patrolDir = Vector2.right;
-    private Vector3 returnPos;
-
-    //private bool isUpImpossible;
-    //private bool isDownImpossible;
-    //private bool isRightImpossible;
-    //private bool isLeftImpossible;
-
     private void Awake()
     {
         AttackWait = new WaitForSeconds(attackDelay);
@@ -80,7 +71,7 @@ public class BossEnemy : EnemyBase
     {
         if (player == null)
         {
-            Collider2D hit = Physics2D.OverlapCircle(transform.position, detectRange, playerLayer);
+            Collider2D hit = Physics2D.OverlapCircle(transform.position, playerDetectRange, playerLayer);
             if (hit != null)
             {
                 player = hit.GetComponent<PlayerBase>();
@@ -99,7 +90,7 @@ public class BossEnemy : EnemyBase
         {
             if (player != null)
             {
-                if(dis < toDistance)
+                if(dis < distanceToPlayer)
                 {
                     Away();
                     yield return null;
@@ -112,7 +103,6 @@ public class BossEnemy : EnemyBase
                     {
                         case 0: yield return StartCoroutine(MoveSlowCo()); break;
                         case 1: yield return StartCoroutine(MoveDashCo()); break;
-                            //case 2: yield return StartCoroutine(TeleportCo()); break;
                     }
                     yield return StartCoroutine(ReturnPositionCo());
 
@@ -144,40 +134,18 @@ public class BossEnemy : EnemyBase
     private IEnumerator MoveDashCo()
     {
         float timer = 0f;
-        while (dis > toDistance && timer < 3f)
+        while (dis > distanceToPlayer && timer < 3f)
         {
             transform.position += dir * moveSpeed * 7 * Time.deltaTime;
             timer += Time.deltaTime;
             yield return null;
         }
     }
-    //private IEnumerator TeleportCo()
-    //{
-    //    isUpImpossible = Physics2D.Raycast(player.transform.position, Vector2.up, 15, wallLayer);
-    //    isDownImpossible = Physics2D.Raycast(player.transform.position, Vector2.down, 15, wallLayer);
-    //    isRightImpossible = Physics2D.Raycast(player.transform.position, Vector2.right, 15, wallLayer);
-    //    isLeftImpossible = Physics2D.Raycast(player.transform.position, Vector2.left, 15, wallLayer);
-
-    //    List<Vector2> candir = new List<Vector2>();
-
-    //    if (!isUpImpossible) candir.Add(Vector2.up);
-    //    if (!isDownImpossible) candir.Add(Vector2.down);
-    //    if (!isRightImpossible) candir.Add(Vector2.right);
-    //    if (!isLeftImpossible) candir.Add(Vector2.left);
-
-    //    if (candir == null) yield break;
-
-    //    int teleportRandom = Random.Range(0, candir.Count);
-
-    //    transform.position = transform.position + (Vector3)candir[teleportRandom] * 10;
-        
-    //    yield return null;
-    //}
     private void Patrol()
     {
         transform.position += (Vector3)patrolDir * moveSpeed * Time.deltaTime;
 
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDir, detectDistance, obstacle);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, patrolDir, obstacleDetectDistance, obstacleLayer);
         if (hit.collider != null)
         {
             patrolDir *= -1;

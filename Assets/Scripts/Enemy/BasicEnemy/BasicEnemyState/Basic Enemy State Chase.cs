@@ -1,16 +1,24 @@
 using UnityEngine;
 
-public class BasicEnemyStateChase : MonoBehaviour
+public class BasicEnemyStateChase : BasicEnemyStateBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Update()
     {
-        
+        if(basicEnemy.dis > basicEnemy.distanceToPlayer)
+        {
+            Move();
+        }
+        else
+        {
+            Away();
+        }
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Move()
     {
-        
+        basicEnemy.transform.position += basicEnemy.dir * basicEnemy.moveSpeed * Time.deltaTime;
+    }
+    private void Away()
+    {
+        basicEnemy.transform.position -= basicEnemy.dir * basicEnemy.moveSpeed * Time.deltaTime;
     }
 }

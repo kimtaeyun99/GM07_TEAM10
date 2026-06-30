@@ -1,16 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
-public class BasicEnemyStateAttack : MonoBehaviour
+public class BasicEnemyStateAttack : BasicEnemyStateBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        StartCoroutine(AttackCo());
     }
-
-    // Update is called once per frame
-    void Update()
+    private IEnumerator AttackCo()
     {
-        
+       for (int i = 0; i < basicEnemy.StraightAttackCount; i++)
+       {   
+            EnemyBullet bullet = Managers.Pool.GetPool(basicEnemy.EnemyBullet);
+            bullet.transform.position = basicEnemy.FirePoint.position;
+            bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, basicEnemy.dir);
+            bullet.Initialize(basicEnemy.dir, EnemyBullet.BulletPattern.Straight, basicEnemy.player);
+            yield return basicEnemy.StraightAttackWait;
+       }
+       basicEnemy.attackTimer = 0f;
     }
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerStateBase : MonoBehaviour
 {
     protected Transform refTransform;
-    protected CharacterController refCharacterController;
+    //protected CharacterController refCharacterController;
     protected Animator refAnimator;
     protected PlayerStateManager playerStateManager;
     protected PlayerAnimationController playerAnimationController;
@@ -17,10 +17,10 @@ public class PlayerStateBase : MonoBehaviour
         {
             refTransform = transform;
         }
-        if(refCharacterController == null)
-        {
-            refCharacterController = GetComponent<CharacterController>();
-        }
+        //if(refCharacterController == null)
+        //{
+        //    refCharacterController = GetComponent<CharacterController>();
+        //}
         if(refAnimator == null)
         {
             refAnimator = GetComponent<Animator>();

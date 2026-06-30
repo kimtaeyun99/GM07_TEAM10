@@ -7,32 +7,41 @@ using UnityEngine;
 public class EnemyBase : MonoBehaviour, IDamageable
 {
     protected EnemyData enemyData;
-    private SpriteRenderer enemySpriteRenderer;
-    protected int maxHp;
-    protected int currentHp;
-    protected int attack;
-    protected float moveSpeed;
-    protected ItemBase goldReward;
-    protected ItemBase[] bulletRewards;
-    protected float itemDropRadius;
+    public int maxHp { get; private set; }
+    public int currentHp { get; private set; }
+    public int attack { get; private set; }
+    public float moveSpeed { get; private set; }
+    public float playerDetectRange { get; private set; }
+    public LayerMask playerLayer { get; private set; }
+    public float obstacleDetectDistance { get; private set; }
+    public LayerMask obstacleLayer { get; private set; }
+    public float distanceToPlayer { get; private set; }
+    //protected ItemBase goldReward;
+    //protected ItemBase[] bulletRewards;
+    //protected float itemDropRadius;
 
     public event Action<EnemyBase> OnDead;
-    
+
+    public PlayerBase player;
+    public Vector3 dir;
+    public float dis;
+    public Vector2 patrolDir = Vector2.right;
+    public Vector3 returnPos;
+
     public void Initialize(EnemyData data)
     {
         if (data == null) return;
         enemyData = data;
-
         gameObject.name = enemyData.EnemyName;
-        enemySpriteRenderer = GetComponent<SpriteRenderer>();
-        if(enemySpriteRenderer != null)
-        {
-            enemySpriteRenderer.sprite = enemyData.EnemySprite;
-        }
         maxHp = enemyData.MaxHp;
         currentHp = maxHp;
         attack = enemyData.Attack;
         moveSpeed = enemyData.MoveSpeed;
+        playerDetectRange = enemyData.PlayerDetectRange;
+        playerLayer = enemyData.PlayerLayer;
+        obstacleDetectDistance = enemyData.ObstacleDetectDistance;
+        obstacleLayer = enemyData.ObstacleLayer;
+        distanceToPlayer = enemyData.DistanceToPlayer;
         //goldReward = enemyData.GoldReward;
         //bulletRewards = enemyData.BulletRewards;
         //itemDropRadius = enemyData.ItemDropRadius;
@@ -48,7 +57,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
             Die();
         }
     }
-    protected void Die()
+    public void Die()
     {
         OnDead?.Invoke(this);
         Debug.Log($"{gameObject.name} 사망");

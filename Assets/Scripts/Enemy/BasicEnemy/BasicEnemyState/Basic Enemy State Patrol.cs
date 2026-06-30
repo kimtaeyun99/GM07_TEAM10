@@ -1,16 +1,24 @@
 using UnityEngine;
 
-public class BasicEnemyStatePatrol : MonoBehaviour
+public class BasicEnemyStatePatrol : BasicEnemyStateBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void FixedUpdate()
     {
-        
+        Patrol();
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Patrol()
     {
-        
+        basicEnemy.transform.position += (Vector3)basicEnemy.patrolDir * basicEnemy.moveSpeed * Time.deltaTime;
+        RaycastHit2D hit = Physics2D.Raycast(basicEnemy.transform.position, basicEnemy.patrolDir, basicEnemy.obstacleDetectDistance, basicEnemy.obstacleLayer);
+        if (hit.collider != null)
+        {
+            basicEnemy.patrolDir *= -1;
+        }
+
+        Collider2D player = Physics2D.OverlapCircle(basicEnemy.transform.position, basicEnemy.playerDetectRange, basicEnemy.playerLayer);
+        if (player != null)
+        {
+            basicEnemy.player = player.GetComponent<PlayerBase>();
+        }
     }
 }

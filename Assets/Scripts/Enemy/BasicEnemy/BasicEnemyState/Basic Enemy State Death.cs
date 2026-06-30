@@ -1,16 +1,22 @@
+using System.Collections;
 using UnityEngine;
 
-public class BasicEnemyStateDeath : MonoBehaviour
+public class BasicEnemyStateDeath : BasicEnemyStateBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        StartCoroutine(DeathCo());
     }
-
-    // Update is called once per frame
-    void Update()
+    private IEnumerator DeathCo()
     {
-        
+        while (true)
+        {
+            AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.normalizedTime >= 1f) break;
+            yield return null;
+        }
+
+        basicEnemy.Die();
+        Managers.Pool.ReturnPool(basicEnemy);
     }
 }

@@ -7,6 +7,7 @@ public class PlayerStateManager : MonoBehaviour
     {
         None = -1, Idle, Run, Dodge, Death
     }
+
     [SerializeField] private PlayerBase playerBase;
     [SerializeField] private PlayerState playerState = PlayerState.None;
     [SerializeField] private PlayerStateBase[] playerStates;
@@ -27,7 +28,7 @@ public class PlayerStateManager : MonoBehaviour
         //}
         if(playerAnimationController == null)
         {
-            playerAnimationController = GetComponentInChildren<PlayerAnimationController>();
+            playerAnimationController = GetComponent<PlayerAnimationController>();
         }
 
         OnStateChanged.AddListener(playerAnimationController.OnStateChanged);

@@ -71,12 +71,17 @@ public class HUDController : MonoBehaviour
         }
     }
 
-    public void UpdateHealthUI(float currentHealth)
+    public void UpdateHealthUI(float currentHealth, float maxHealth = 100f)
     {
-        if (healthSlider != null) healthSlider.value = currentHealth;
-        if (healthText != null) healthText.text = $"{currentHealth} / 100";
+        // 슬라이더의 최대치(MaxValue)도 플레이어 데이터의 최대 체력으로 동적 세팅
+        if (healthSlider != null)
+        {
+            healthSlider.maxValue = maxHealth;
+            healthSlider.value = currentHealth;
+        }
+        // 100 고정이 아니라 maxHealth 값으로 표기되도록 변경
+        if (healthText != null) healthText.text = $"{currentHealth} / {maxHealth}";
     }
-
     public void UpdateGoldUI(int currentGold)
     {
         if (goldText != null)

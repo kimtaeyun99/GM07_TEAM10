@@ -54,13 +54,13 @@ public class BasicEnemyStateManager : MonoBehaviour
         {
             SetState(BasicEnemyState.Patrol);
         }
+        else if (basicEnemy.player != null && basicEnemy.attackTimer > basicEnemy.AttackDelay)
+        {
+            SetState(BasicEnemyState.Attack);
+        }
         else if(basicEnemy.player != null)
         {
             SetState(BasicEnemyState.Chase);
-        }
-        else if(basicEnemy.player != null && basicEnemy.attackTimer > basicEnemy.AttackDelay)
-        {
-            SetState(BasicEnemyState.Attack);
         }
     }
 

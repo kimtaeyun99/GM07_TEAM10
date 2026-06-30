@@ -10,9 +10,16 @@ GameObject:
   m_Component:
   - component: {fileID: 367193484050295726}
   - component: {fileID: 4836495012315110890}
-  - component: {fileID: 5652750448426934237}
   - component: {fileID: 8364381971800361981}
   - component: {fileID: 3686973995225292442}
+  - component: {fileID: 2000952576441565605}
+  - component: {fileID: 5652750448426934237}
+  - component: {fileID: 5116086224288197075}
+  - component: {fileID: 1881849893450131282}
+  - component: {fileID: 7727785665886628838}
+  - component: {fileID: 6922883528316468853}
+  - component: {fileID: 837096923419504227}
+  - component: {fileID: 1260724955664255845}
   m_Layer: 10
   m_Name: BasicEnemy
   m_TagString: Enemy
@@ -95,32 +102,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &5652750448426934237
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7305758512673711530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b5d29bbeb2fdc4b4f82b51bb4b496737, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
-  firePoint: {fileID: 181323770550844694}
-  enemyBullet: {fileID: 720359188151084633, guid: b15da03873d560a48a23351ddebd997c, type: 3}
-  toDistance: 3
-  detectRange: 10
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  obstacle:
-    serializedVersion: 2
-    m_Bits: 2688
-  detectDistance: 1
-  attackDelay: 3
-  straightAttackCount: 5
-  StraightAttackDelay: 0.5
 --- !u!50 &8364381971800361981
 Rigidbody2D:
   serializedVersion: 5
@@ -204,6 +185,146 @@ PolygonCollider2D:
       - {x: 0.13499999, y: -0.085}
       - {x: 0.13499999, y: 0.055}
   m_UseDelaunayMesh: 1
+--- !u!95 &2000952576441565605
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 88d2b208d9a7c8e43928e6579bd389f4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5652750448426934237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d29bbeb2fdc4b4f82b51bb4b496737, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemy
+  player: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
+  dis: 0
+  patrolDir: {x: 1, y: 0}
+  returnPos: {x: 0, y: 0, z: 0}
+  firePoint: {fileID: 181323770550844694}
+  enemyBullet: {fileID: 720359188151084633, guid: b15da03873d560a48a23351ddebd997c, type: 3}
+  attackDelay: 3
+  straightAttackCount: 5
+  straightAttackDelay: 1
+  attackTimer: 0
+--- !u!114 &5116086224288197075
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b95d59fed09b364fb6b67b6db87aa85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyAnimationController
+  refAnimator: {fileID: 2000952576441565605}
+--- !u!114 &1881849893450131282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16079b87e75b10d4aac2e7c48b29ca06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyStateManager
+  basicEnemy: {fileID: 5652750448426934237}
+  basicEnemyState: -1
+  basicEnemyStates:
+  - {fileID: 7727785665886628838}
+  - {fileID: 6922883528316468853}
+  - {fileID: 837096923419504227}
+  - {fileID: 1260724955664255845}
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5116086224288197075}
+        m_TargetAssemblyTypeName: BasicEnemyAnimationController, Assembly-CSharp
+        m_MethodName: OnStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7727785665886628838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c36ff8d472634a499bbca85779545e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyStatePatrol
+--- !u!114 &6922883528316468853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66530e3c24a1df847a7a15af8150f0cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyStateChase
+--- !u!114 &837096923419504227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa0b423b10b19064ba912685f56c9168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyStateAttack
+--- !u!114 &1260724955664255845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7305758512673711530}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f85a9c8c72de0744b2d34922e42d86e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BasicEnemyStateDeath
 --- !u!1 &8845080907484750021
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,7 +4,9 @@ public class BasicEnemyStateChase : BasicEnemyStateBase
 {
     private void Update()
     {
-        if(basicEnemy.dis > basicEnemy.distanceToPlayer)
+        basicEnemy.dis = Vector3.Distance(basicEnemy.player.transform.position, basicEnemy.transform.position);
+        basicEnemy.dir = (basicEnemy.player.transform.position - basicEnemy.transform.position).normalized;
+        if (basicEnemy.dis > basicEnemy.distanceToPlayer)
         {
             Move();
         }

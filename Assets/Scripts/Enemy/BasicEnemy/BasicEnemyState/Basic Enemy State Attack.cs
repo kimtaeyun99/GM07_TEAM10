@@ -7,6 +7,11 @@ public class BasicEnemyStateAttack : BasicEnemyStateBase
     {
         StartCoroutine(AttackCo());
     }
+    private void Update()
+    {
+        basicEnemy.dis = Vector3.Distance(basicEnemy.player.transform.position, basicEnemy.transform.position);
+        basicEnemy.dir = (basicEnemy.player.transform.position - basicEnemy.transform.position).normalized;
+    }
     private IEnumerator AttackCo()
     {
        for (int i = 0; i < basicEnemy.StraightAttackCount; i++)

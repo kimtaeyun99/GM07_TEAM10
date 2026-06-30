@@ -31,7 +31,7 @@ public class BasicEnemyAnimationController : MonoBehaviour
         }
         else if (newState == BasicEnemyStateManager.BasicEnemyState.Death)
         {
-            refAnimator.SetTrigger("isDead");
+            refAnimator.SetBool("isDead",true);
         }
     }
 }

@@ -6,7 +6,7 @@ public class EnemySpawner : MonoBehaviour
 
     [SerializeField] private EnemyBase Enemyprefab;
 
-    [SerializeField] private float spawnRadius = 5;
+    //[SerializeField] private float spawnRadius = 5;
     [SerializeField] private int EnemySpawnCount = 3;
     private void Start()
     {

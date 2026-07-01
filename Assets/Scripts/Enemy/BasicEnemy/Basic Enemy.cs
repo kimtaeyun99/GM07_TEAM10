@@ -23,17 +23,16 @@ public class BasicEnemy : EnemyBase
     //private WaitForSeconds attackWait;
     [SerializeField] private float straightAttackCount = 3.0f;
     [SerializeField] private float straightAttackDelay = 1.0f;
-    private WaitForSeconds straightAttackWait;
 
     //public WaitForSeconds AttackWait { get { return attackWait; } }
     public float AttackDelay { get { return attackDelay; } }
     public float StraightAttackCount { get { return straightAttackCount; } }
-    public WaitForSeconds StraightAttackWait { get { return straightAttackWait; } }
+    public WaitForSeconds StraightAttackWait { get; private set; }
 
     private void Awake()
     {
         //attackWait = new WaitForSeconds(attackDelay);
-        straightAttackWait = new WaitForSeconds(straightAttackDelay);
+        StraightAttackWait = new WaitForSeconds(straightAttackDelay);
     }
     //private void Start()
     //{

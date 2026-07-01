@@ -49,16 +49,20 @@ public class BossEnemyStateManager : MonoBehaviour
     }
     public void SetAttackState(BossEnemyAttackState newState)
     {
-        if (newState == BossEnemyAttackState.None) return;
         if (bossEnemyAttackState == newState) return;
 
-        for(int i=0;i <bossEnemyAttackStates.Length; i++)
+        for (int i = 0; i < bossEnemyAttackStates.Length; i++)
         {
             bossEnemyAttackStates[i].enabled = false;
         }
+
         bossEnemyAttackState = newState;
-        bossEnemyAttackStates[(int)newState].enabled = true;
-        OnAttackStateChanged.Invoke(bossEnemyAttackState);
+
+        if (newState != BossEnemyAttackState.None)
+        {
+            bossEnemyAttackStates[(int)newState].enabled = true;
+            OnAttackStateChanged.Invoke(newState);
+        }
     }
     private void OnEnable()
     {

@@ -4,9 +4,12 @@ public class BossRoomController : MonoBehaviour
 {
     [SerializeField] private Door[] doors; // 보스방에서 제어할 문 목록
     [SerializeField] private Transform bossSpawnPoint; // 보스가 생성될 고정 위치
-    [SerializeField] private GameObject bossPrefab; // 생성할 보스 프리팹
 
-    private TestEnemy spawnedBoss; // 테스트용 보스 오브젝트
+    [Header("보스")]
+    [SerializeField] private EnemyBase bossPrefab; // 보스 프리팹
+    [SerializeField] private EnemyData bossData; // 생성할 보스 ScriptableObject 데이터
+
+    private EnemyBase spawnedBoss; // 생성된 보스
     private bool roomStarted; // 보스전 시작 여부
     private bool roomCleared; // 보스방 클리어 여부
 
@@ -47,28 +50,22 @@ public class BossRoomController : MonoBehaviour
 
     private void SpawnBoss()
     {
-        if (bossSpawnPoint == null || bossPrefab == null)
+        if (bossSpawnPoint == null || bossPrefab == null || bossData == null)
         {
             Debug.LogWarning($"{gameObject.name} : BossSpawnPoint 또는 BossPrefab이 연결되지 않았습니다.");
             ClearBossRoom();
             return;
         }
 
-        GameObject bossObject = Instantiate(
-            bossPrefab,
-            bossSpawnPoint.position,
-            Quaternion.identity
-            );
+        spawnedBoss = Managers.Pool.GetPool(bossPrefab); // 풀에서 보스 꺼내기
+        spawnedBoss.transform.position = bossSpawnPoint.position;
+        spawnedBoss.transform.rotation = Quaternion.identity;
 
-        spawnedBoss = bossObject.GetComponent<TestEnemy>();
-
-        if (spawnedBoss != null)
-        {
-            spawnedBoss.OnDead += HandleBossDead; // 보스 사망 이벤트 등록
-        }
+        spawnedBoss.Initialize(bossData); // ScriptableObject 데이터로 초기화
+        spawnedBoss.OnDead += HandleBossDead; // 보스 사망 이벤트 등록
     }
 
-    private void HandleBossDead(TestEnemy boss)
+    private void HandleBossDead(EnemyBase boss)
     {
         boss.OnDead -= HandleBossDead; // 이벤트 중복 방지
         ClearBossRoom(); // 보스 처치 시 방 클리어

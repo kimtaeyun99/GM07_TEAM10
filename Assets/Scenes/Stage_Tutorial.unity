@@ -663,7 +663,8 @@ MonoBehaviour:
   - {fileID: 1344438200}
   - {fileID: 487680518}
   bossSpawnPoint: {fileID: 363864824}
-  bossPrefab: {fileID: 1837846040460307377, guid: e30bcf19fd833104e89681aca68e526b, type: 3}
+  bossPrefab: {fileID: 2512780050879095452, guid: e30bcf19fd833104e89681aca68e526b, type: 3}
+  bossData: {fileID: 11400000, guid: 8cc651eb910e13046a774c06253fa909, type: 2}
 --- !u!4 &363864824 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7435583526962150059, guid: e9b175f854f40ab439475cb64656311b, type: 3}
@@ -2185,6 +2186,7 @@ MonoBehaviour:
   - {fileID: 529874648}
   bossSpawnPoint: {fileID: 1017842747}
   bossPrefab: {fileID: 7017249005054604414, guid: 070e2c5ff938d084480dd9fff80fe406, type: 3}
+  bossData: {fileID: 0}
 --- !u!1 &1487614155
 GameObject:
   m_ObjectHideFlags: 0
@@ -68709,6 +68711,10 @@ PrefabInstance:
     - target: {fileID: 5713116974088509904, guid: e9b175f854f40ab439475cb64656311b, type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7790496302722405455, guid: e9b175f854f40ab439475cb64656311b, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8273172454429201921, guid: e9b175f854f40ab439475cb64656311b, type: 3}
       propertyPath: m_LocalPosition.x

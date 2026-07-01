@@ -13,6 +13,11 @@ MonoBehaviour:
   m_Name: Potion
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uCCB4\uB825 \uD3EC\uC158"
-  description: "\uCCB4\uB825 20 \uD68C\uBCF5 \uC544\uC774\uD15C"
-  itemIcon: {fileID: 6926530781106370153, guid: 48e4d2301fe9e4a4fac9643e0b77297e, type: 3}
-  isStackable: 0
+  itemIcon: {fileID: -4993407962738190464, guid: 69f4a7ddb1914484f9ca0db18af5285f, type: 3}
+  itemPrice: 20
+  description: "\uCCB4\uB825 30 \uD68C\uBCF5 \uC544\uC774\uD15C"
+  maxStackSize: 5
+  itemType: 0
+  targetEquipSlot: 0
+  maxAmmo: 0
+  currentAmmo: 0

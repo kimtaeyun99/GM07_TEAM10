@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
 {
+    private int nonHomingRandom;
     private void OnEnable()
     {
+        nonHomingRandom = Random.Range(0, 4);
         StartCoroutine(NonHomingCo());
     }
     private void OnDisable()
@@ -18,7 +20,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
     }
     private IEnumerator NonHomingCo()
     {
-        switch(bossEnemy.attackPattern)
+        switch(nonHomingRandom)
         {
             case 0: yield return StartCoroutine(StraightAttackCo()); break;
             case 1: yield return StartCoroutine(CurveAttackCo()); break;

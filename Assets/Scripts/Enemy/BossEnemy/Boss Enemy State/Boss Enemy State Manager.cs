@@ -74,13 +74,13 @@ public class BossEnemyStateManager : MonoBehaviour
         {
             SetState(BossEnemyState.Patrol);
         }
-        else if (bossEnemy.player != null && bossEnemy.attackTimer > bossEnemy.AttackDelay)
+        else if (bossEnemy.player != null && bossEnemy.attackTimer > bossEnemy.AttackDelay && bossEnemyState != BossEnemyState.Attack)
         {
             SetState(BossEnemyState.Attack);
 
-            bossEnemy.attackPattern = Random.Range(0, 5);
+            int pattern = Random.Range(0, 5);
 
-            if(bossEnemy.attackPattern != 4)
+            if(pattern != 4)
             {
                 SetAttackState(BossEnemyAttackState.NonHoming);
             }

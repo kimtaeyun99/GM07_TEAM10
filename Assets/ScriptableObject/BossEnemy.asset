@@ -18,3 +18,12 @@ MonoBehaviour:
   maxHp: 30
   attack: 5
   moveSpeed: 1
+  playerDetectRange: 10
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  obstacleDetectDistance: 3
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 2688
+  distanceToPlayer: 5

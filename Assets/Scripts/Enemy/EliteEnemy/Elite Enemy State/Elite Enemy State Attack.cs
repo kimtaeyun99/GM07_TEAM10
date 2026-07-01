@@ -3,15 +3,13 @@ using UnityEngine;
 
 public class EliteEnemyStateAttack : EliteEnemyStateBase
 {
-    private Coroutine attackCo;
     private void OnEnable()
     {
-        attackCo = StartCoroutine(AttackCo());
+        StartCoroutine(AttackCo());
     }
     private void OnDisable()
     {
         StopAllCoroutines();
-        attackCo = null;
     }
     private void Update()
     {

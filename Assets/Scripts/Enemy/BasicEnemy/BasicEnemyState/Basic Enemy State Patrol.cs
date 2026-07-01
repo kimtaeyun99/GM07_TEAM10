@@ -21,4 +21,12 @@ public class BasicEnemyStatePatrol : BasicEnemyStateBase
             basicEnemy.player = player.GetComponent<PlayerBase>();
         }
     }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(basicEnemy.transform.position, basicEnemy.playerDetectRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(basicEnemy.transform.position, (Vector2)basicEnemy.transform.position + basicEnemy.patrolDir * basicEnemy.obstacleDetectDistance);
+    }
 }

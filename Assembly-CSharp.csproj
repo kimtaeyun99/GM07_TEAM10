@@ -87,6 +87,7 @@
     <Compile Include="Assets\Scripts\InterFace\IReloadable.cs" />
     <Compile Include="Assets\Scripts\System\Managers.cs" />
     <Compile Include="Assets\Scripts\Enemy\BossEnemy\Boss Enemy State\Boss Enemy State Chase.cs" />
+    <Compile Include="Assets\Scripts\Enemy\BossEnemy\Boss Enemy State\Boss Enemy Attack State NonHoming.cs" />
     <Compile Include="Assets\Scripts\Enemy\BasicEnemy\BasicEnemyState\Basic Enemy State Death.cs" />
     <Compile Include="Assets\Scripts\Inventory\ITakable.cs" />
     <Compile Include="Assets\Scripts\Enemy\EliteEnemy\Elite Enemy State\Elite Enemy State Base.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Scripts\Enemy\BasicEnemy\BasicEnemyState\Basic Enemy State Patrol.cs" />
     <Compile Include="Assets\Scripts\Enemy\BasicEnemy\Basic Enemy.cs" />
     <Compile Include="Assets\Scripts\Map\WarpGateTrigger_Open.cs" />
+    <Compile Include="Assets\Scripts\Enemy\BossEnemy\Boss Enemy State\Boss Enemy Attack State Homing.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />

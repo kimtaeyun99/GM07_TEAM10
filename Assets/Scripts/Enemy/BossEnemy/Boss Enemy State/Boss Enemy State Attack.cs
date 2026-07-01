@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class BossEnemyStateAttack : MonoBehaviour
+public class BossEnemyStateAttack : BossEnemyStateBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        bossEnemy.dis = Vector3.Distance(bossEnemy.player.transform.position, bossEnemy.transform.position);
+        bossEnemy.dir = (bossEnemy.player.transform.position - bossEnemy.transform.position).normalized;
     }
 }

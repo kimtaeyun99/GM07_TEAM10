@@ -13,7 +13,7 @@ public class BasicEnemyStateBase : MonoBehaviour
     {
         if(refTransform == null)
         {
-            refTransform = transform;
+            refTransform = GetComponent<Transform>();
         }
         if(refAnimator == null)
         {

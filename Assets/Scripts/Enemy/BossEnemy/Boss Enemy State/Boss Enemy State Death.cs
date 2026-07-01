@@ -1,16 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
-public class BossEnemyStateDeath : MonoBehaviour
+public class BossEnemyStateDeath : BossEnemyStateBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        refAnimator.SetBool("isDead", true);
+        StartCoroutine(DeathCo());
     }
-
-    // Update is called once per frame
-    void Update()
+    private IEnumerator DeathCo()
     {
-        
+        while (refAnimator.IsInTransition(0) || !refAnimator.GetCurrentAnimatorStateInfo(0).IsName("Boss Enemy Death")) yield return null;
+
+        while (true)
+        {
+            AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Boss Enemy Death") && stateInfo.normalizedTime >= 1f) break;
+            yield return null;
+        }
+
+        Managers.Pool.ReturnPool(bossEnemy);
     }
 }

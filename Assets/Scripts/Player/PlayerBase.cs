@@ -5,7 +5,6 @@ using UnityEngine.Events;
 public class PlayerBase : MonoBehaviour, IDamageable
 {
     [SerializeField] protected PlayerData playerData;
-    //private SpriteRenderer playerSpriteRenderer;
     public int maxHp;
     public int currentHp;
     public float moveSpeed;
@@ -23,6 +22,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public WeaponBase currentWeapon;
 
     public event System.Action<int, int> OnHealthChanged;
+
     public void Initialize(PlayerData data)
     {
         if (data == null) return;
@@ -61,6 +61,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
         Inventory();
         Reload();
         SecondaryWeapon();
+        LookDirection();
     }
     private void Awake()
     {
@@ -132,7 +133,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot1Pressed = false;
         }
-        if(Managers.Input.isQuickSlot2Pressed /*&& EquipmentManager.instance.currentEquipment[6] != null*/)
+        else if(Managers.Input.isQuickSlot2Pressed /*&& EquipmentManager.instance.currentEquipment[6] != null*/)
         {
             foreach (WeaponBase weapon in Weapons)
             {
@@ -143,7 +144,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot2Pressed = false;
         }
-        if(Managers.Input.isQuickSlot3Pressed /*&& EquipmentManager.instance.currentEquipment[7] != null*/)
+        else if(Managers.Input.isQuickSlot3Pressed /*&& EquipmentManager.instance.currentEquipment[7] != null*/)
         {
             foreach (WeaponBase weapon in Weapons)
             {
@@ -154,7 +155,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot3Pressed = false;
         }
-        if(Managers.Input.isQuickSlot4Pressed)
+        else if(Managers.Input.isQuickSlot4Pressed)
         {
             //Äü½½·Ô4 (Potion) »ç¿ë ¸Þ¼­µå
             Managers.Input.isQuickSlot4Pressed = false;
@@ -190,6 +191,17 @@ public class PlayerBase : MonoBehaviour, IDamageable
         //{
         //    Die();
         //}
+    }
+    public void LookDirection()
+    {
+        if(Managers.Input.movement.x < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -180, 0);
+        }
+        else
+        {
+            transform.rotation = Quaternion.identity;
+        }
     }
     //public void Die()
     //{

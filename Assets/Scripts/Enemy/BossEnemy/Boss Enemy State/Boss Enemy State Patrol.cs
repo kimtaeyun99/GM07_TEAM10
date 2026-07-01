@@ -13,6 +13,7 @@ public class BossEnemyStatePatrol : BossEnemyStateBase
         if (hit.collider != null)
         {
             bossEnemy.patrolDir *= -1;
+            bossEnemy.transform.Rotate(0, 180, 0);
         }
 
         Collider2D player = Physics2D.OverlapCircle(bossEnemy.transform.position, bossEnemy.playerDetectRange, bossEnemy.playerLayer);

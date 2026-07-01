@@ -255,6 +255,7 @@ MonoBehaviour:
   patrolDir: {x: 1, y: 0}
   returnPos: {x: 0, y: 0, z: 0}
   attackTimer: 0
+  spriteRenderer: {fileID: 1809314977981300376}
   firePoint: {fileID: 174545995129549062}
   enemyBulletPrefab: {fileID: 4873855090376519224, guid: 4ab8a87458942bc4fad4244e1a060153, type: 3}
   moveWaitTime: 5

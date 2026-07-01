@@ -30,9 +30,17 @@ public class EnemyBase : MonoBehaviour, IDamageable
 
     public float attackTimer;
 
+    //[SerializeField] private SpriteRenderer spriteRenderer;
+
+    //private void Awake()
+    //{
+    //    spriteRenderer = GetComponent<SpriteRenderer>();
+    //}
     private void Update()
     {
         attackTimer += Time.deltaTime;
+
+        LookPlayer();
     }
     public void Initialize(EnemyData data)
     {
@@ -69,6 +77,20 @@ public class EnemyBase : MonoBehaviour, IDamageable
         Debug.Log($"{gameObject.name} 사망");
         //Managers.Pool.ReturnPool(this);
         //DropRewards();
+    }
+    public void LookPlayer()
+    {
+        if (player == null) return;
+
+        if(player.transform.position.x < transform.position.x)
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            
+        }
+        else
+        {
+            transform.rotation = Quaternion.identity;
+        }
     }
     //protected void DropRewards()
     //{

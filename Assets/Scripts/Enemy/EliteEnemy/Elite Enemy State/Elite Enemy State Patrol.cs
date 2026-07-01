@@ -13,6 +13,7 @@ public class EliteEnemyStatePatrol : EliteEnemyStateBase
         if (hit.collider != null)
         {
             eliteEnemy.patrolDir *= -1;
+            eliteEnemy.transform.Rotate(0, 180, 0);
         }
 
         Collider2D player = Physics2D.OverlapCircle(eliteEnemy.transform.position, eliteEnemy.playerDetectRange, eliteEnemy.playerLayer);

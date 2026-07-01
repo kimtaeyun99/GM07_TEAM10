@@ -8,6 +8,7 @@ public class BossEnemyStateChase : BossEnemyStateBase
     private void OnEnable()
     {
         bossEnemy.attackPattern = Random.Range(0, 5);
+        Debug.Log($"Attack Pattern = {bossEnemy.attackPattern}");
         moveCo = StartCoroutine(MoveCo());
     }
     private void OnDisable()

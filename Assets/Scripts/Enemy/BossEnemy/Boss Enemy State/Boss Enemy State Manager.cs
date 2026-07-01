@@ -10,7 +10,7 @@ public class BossEnemyStateManager : MonoBehaviour
     }
     public enum BossEnemyAttackState
     {
-        None = -1, Wait, NonHoming, Homing,
+        None = -1, NonHoming, Homing,
     }
 
     [SerializeField] private BossEnemy bossEnemy;
@@ -49,6 +49,7 @@ public class BossEnemyStateManager : MonoBehaviour
     }
     public void SetAttackState(BossEnemyAttackState newState)
     {
+        if (newState == BossEnemyAttackState.None) return;
         if (bossEnemyAttackState == newState) return;
 
         for(int i=0;i <bossEnemyAttackStates.Length; i++)
@@ -62,7 +63,7 @@ public class BossEnemyStateManager : MonoBehaviour
     private void OnEnable()
     {
         SetState(BossEnemyState.Patrol);
-        SetAttackState(BossEnemyAttackState.Wait);
+        SetAttackState(BossEnemyAttackState.None);
     }
     private void Update()
     {

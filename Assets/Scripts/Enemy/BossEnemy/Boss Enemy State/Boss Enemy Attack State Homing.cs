@@ -27,7 +27,7 @@ public class BossEnemyAttackStateHoming : BossEnemyStateAttack
             yield return bossEnemy.HomingAttackWait;
         }
         bossEnemy.attackTimer = 0f;
-        bossEnemyStateManager.SetAttackState(BossEnemyStateManager.BossEnemyAttackState.Wait);
+        bossEnemyStateManager.SetAttackState(BossEnemyStateManager.BossEnemyAttackState.None);
         bossEnemyStateManager.SetState(BossEnemyStateManager.BossEnemyState.Chase);
 
         yield break;

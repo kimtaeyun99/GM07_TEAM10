@@ -7,7 +7,8 @@ public enum ItemType { Consumable, Equipment, Etc, Gold }
 public class ItemData : ScriptableObject
 {
     public string itemName;       // 아이템 이름
-    public Sprite itemIcon;       // 인벤토리에 표시될 아이콘
+    public Sprite itemIcon;
+    public int itemPrice;
 
     [TextArea]
     public string description;    // 아이템 설명

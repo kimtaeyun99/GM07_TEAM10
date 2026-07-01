@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "\uC0F7\uAC74"
   itemIcon: {fileID: 21300000, guid: 6aa24b85ecffc9b479cf474ffed65e8c, type: 3}
-  description: "\uB3D9\uC2DC\uC5D0 \uC5EC\uB7EC\uBC1C\uC744 \uC3E0 \uC218 \uC788\uB294
-    \uCD1D"
+  itemPrice: 100
+  description: "\uC0B0\uD0C4 \uCD1D"
   maxStackSize: 1
   itemType: 1
   targetEquipSlot: 5

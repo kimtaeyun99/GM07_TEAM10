@@ -10,6 +10,15 @@ public class ItemTest : MonoBehaviour
     public ItemData testHelmet;
     public ItemData testBoots;
 
+    private void Start()
+    {
+        if (testWeapon != null)
+        {
+            Inventory.instance.Add(testWeapon);
+            Debug.Log("인벤토리에 권총를 추가했습니다!");
+        }
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -18,14 +27,14 @@ public class ItemTest : MonoBehaviour
                 Inventory.instance.Add(testItem);
         }
 
-        if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit6Key.wasPressedThisFrame)
-        {
-            if (testWeapon != null)
-            {
-                Inventory.instance.Add(testWeapon);
-                Debug.Log("인벤토리에 테스트 무기를 추가했습니다!");
-            }
-        }
+        //if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit6Key.wasPressedThisFrame)
+        //{
+        //    if (testWeapon != null)
+        //    {
+        //        Inventory.instance.Add(testWeapon);
+        //        Debug.Log("인벤토리에 테스트 무기를 추가했습니다!");
+        //    }
+        //}
 
         // 💡 숫자 키를 누르면 투구 아이템이 가방에 들어옵니다.
         if (UnityEngine.InputSystem.Keyboard.current != null && UnityEngine.InputSystem.Keyboard.current.digit7Key.wasPressedThisFrame)

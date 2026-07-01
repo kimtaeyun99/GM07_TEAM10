@@ -254,7 +254,7 @@ MonoBehaviour:
   enemyBulletPrefab: {fileID: 8741280455482233341, guid: 3ca9e8735707b9f4b8fd8efbb7e68c6c, type: 3}
   moveWaitTime: 5
   returnDis: 5
-  attackDelay: 10
+  attackDelay: 3
   straightAttackCount: 10
   straightAttackDelay: 0.3
   curveAttackRepeatCount: 5

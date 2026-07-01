@@ -327,5 +327,5 @@ public class BossEnemy : EnemyBase
         HomingAttackWait = new WaitForSeconds(homingAttackDelay);
     }
 
-    //public int attackPattern;
+    public int attackPattern;
 }

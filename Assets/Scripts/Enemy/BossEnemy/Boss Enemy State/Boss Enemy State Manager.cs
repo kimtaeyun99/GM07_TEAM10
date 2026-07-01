@@ -78,9 +78,7 @@ public class BossEnemyStateManager : MonoBehaviour
         {
             SetState(BossEnemyState.Attack);
 
-            int pattern = Random.Range(0, 5);
-
-            if(pattern != 4)
+            if(bossEnemy.attackPattern != 4)
             {
                 SetAttackState(BossEnemyAttackState.NonHoming);
             }

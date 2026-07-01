@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 4078806470621210542}
   - component: {fileID: 2728197186247945883}
   - component: {fileID: 7942855027778792694}
+  - component: {fileID: 2804689727940641905}
   - component: {fileID: 6054951160612311519}
   - component: {fileID: 3968994294485180935}
   - component: {fileID: 63502074824645836}
@@ -290,6 +291,7 @@ MonoBehaviour:
   - {fileID: 7942855027778792694}
   - {fileID: 63502074824645836}
   bossEnemyAttackStates:
+  - {fileID: 2804689727940641905}
   - {fileID: 6054951160612311519}
   - {fileID: 3968994294485180935}
   OnStateChanged:
@@ -358,6 +360,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29d3608388135c04db7d2d65e28412c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemyStateAttack
+--- !u!114 &2804689727940641905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837846040460307377}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d57373447be314cb42d8e6cb6ce535, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossEnemyAttackStateWait
 --- !u!114 &6054951160612311519
 MonoBehaviour:
   m_ObjectHideFlags: 0

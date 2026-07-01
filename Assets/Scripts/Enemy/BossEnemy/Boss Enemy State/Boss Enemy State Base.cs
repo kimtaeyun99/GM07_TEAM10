@@ -4,7 +4,6 @@ public class BossEnemyStateBase : MonoBehaviour
 {
     protected Transform refTransform;
     protected Animator refAnimator;
-    //protected Rigidbody2D refRb;
     protected BossEnemyStateManager bossEnemyStateManager;
     protected BossEnemy bossEnemy;
     protected BossEnemyAnimationController bossEnemyAnimationController;
@@ -19,10 +18,6 @@ public class BossEnemyStateBase : MonoBehaviour
         {
             refAnimator = GetComponent<Animator>();
         }
-        //if (refRb == null)
-        //{
-        //    refRb = GetComponent<Rigidbody2D>();
-        //}
         if (bossEnemyStateManager == null)
         {
             bossEnemyStateManager = GetComponent<BossEnemyStateManager>();

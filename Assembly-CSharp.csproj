@@ -181,6 +181,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\Scripts\Weapon\Pistol.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyBase.cs" />
+    <Compile Include="Assets\Scripts\Enemy\BossEnemy\Boss Enemy State\Boss Enemy Attack State Wait.cs" />
     <Compile Include="Assets\Scripts\Player\Player State\Player State Run.cs" />
     <Compile Include="Assets\Scripts\System\InputManager.cs" />
     <Compile Include="Assets\Scripts\Map\GameManager.cs" />

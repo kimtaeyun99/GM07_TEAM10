@@ -22,12 +22,12 @@ public class BossEnemyStatePatrol : BossEnemyStateBase
             bossEnemy.player = player.GetComponent<PlayerBase>();
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    Gizmos.color = Color.red;
-    //    Gizmos.DrawWireSphere(bossEnemy.transform.position, bossEnemy.playerDetectRange);
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(bossEnemy.transform.position, bossEnemy.playerDetectRange);
 
-    //    Gizmos.color = Color.blue;
-    //    Gizmos.DrawLine(bossEnemy.transform.position, (Vector2)bossEnemy.transform.position + bossEnemy.patrolDir * bossEnemy.obstacleDetectDistance);
-    //}
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(bossEnemy.transform.position, (Vector2)bossEnemy.transform.position + bossEnemy.patrolDir * bossEnemy.obstacleDetectDistance);
+    }
 }

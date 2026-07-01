@@ -12,11 +12,8 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public float dodgeCooldowm;
     public WaitForSeconds dodgeCooldownWait;
     public float dodgeDuration;
-    //public WaitForSeconds dodgeDurationWait;
     public bool isDodgeable { get; set; } = true;
     public bool isDamageable { get; set; } = true;
-
-    //private Rigidbody2D rb;
 
     [SerializeField] public WeaponBase[] Weapons;
     public WeaponBase currentWeapon;
@@ -29,61 +26,32 @@ public class PlayerBase : MonoBehaviour, IDamageable
         playerData = data;
 
         gameObject.name = playerData.name;
-        //playerSpriteRenderer = GetComponent<SpriteRenderer>();
-        //if(playerSpriteRenderer != null)
-        //{
-        //    playerSpriteRenderer.sprite = playerData.PlayerSprite;
-        //}
         maxHp = playerData.MaxHp;
         currentHp = maxHp;
         moveSpeed = playerData.MoveSpeed;
         dodgeCooldowm = playerData.DodgeCooldown;
         dodgeDuration = playerData.DodgeDuration;
-
-        //if(rb == null)
-        //{
-        //    rb = GetComponent<Rigidbody2D>();
-        //}
-
         dodgeCooldownWait = new WaitForSeconds(dodgeCooldowm);
-        //dodgeDurationWait = new WaitForSeconds(dodgeDuration);
-    }
-    private void FixedUpdate()
-    {
-        //Move();
     }
     private void Update()
     {
         Attack();
-        Interact();
-        //Dodge();
+        //Interact();
         QuickSlot();
-        Inventory();
+        //Inventory();
         Reload();
-        SecondaryWeapon();
+        //SecondaryWeapon();
         LookDirection();
     }
     private void Awake()
     {
-        //if (rb == null)
-        //{
-        //    rb = GetComponent<Rigidbody2D>();
-        //}
 
         for(int i=0; i<Weapons.Length; i++)
         {
             Weapons[i].gameObject.SetActive(false);
         }
-
-        //Initialize(playerData);
         DontDestroyOnLoad(gameObject);
     }
-
-    //private void Move()
-    //{
-    //    Vector2 movedir = new Vector2(Managers.Input.movement.x, Managers.Input.movement.y);
-    //    rb.linearVelocity = movedir * moveSpeed;
-    //}
     private void Attack()
     {
         if (currentWeapon == null) return;
@@ -93,30 +61,10 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.Shoot();
         }
     }
-    private void Interact()
-    {
-        if (!Managers.Input.isInteractPressed) return;
-        //상호작용 메서드
-    }
-    //private void Dodge()
+    //private void Interact()
     //{
-    //    if (!Managers.Input.isDodgePressed || !isDodgeable) return;
-    //    StartCoroutine(DodgeCo());
-    //    StartCoroutine(DodgeCooldownCo());
-    //}
-    //private IEnumerator DodgeCo()
-    //{
-    //    isDamageable = false;
-    //    Debug.Log("Dodge On");
-    //    yield return dodgeDurationWait;
-    //    isDamageable = true;
-    //    Debug.Log("Dodge Off");
-    //}
-    //private IEnumerator DodgeCooldownCo()
-    //{
-    //    isDodgeable = false;
-    //    yield return dodgeCooldownWait;
-    //    isDodgeable = true;
+    //    if (!Managers.Input.isInteractPressed) return;
+    //    //상호작용 메서드
     //}
     private void QuickSlot()
     {
@@ -155,17 +103,17 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot3Pressed = false;
         }
-        else if(Managers.Input.isQuickSlot4Pressed)
-        {
-            //퀵슬롯4 (Potion) 사용 메서드
-            Managers.Input.isQuickSlot4Pressed = false;
-        }
+        //else if(Managers.Input.isQuickSlot4Pressed)
+        //{
+        //    //퀵슬롯4 (Potion) 사용 메서드
+        //    Managers.Input.isQuickSlot4Pressed = false;
+        //}
     }
-    private void Inventory()
-    {
-        if (!Managers.Input.isInventoryPressed) return;
-        //인벤토리 메서드
-    }
+    //private void Inventory()
+    //{
+    //    if (!Managers.Input.isInventoryPressed) return;
+    //    //인벤토리 메서드
+    //}
     private void Reload()
     {
         if (currentWeapon is IReloadable reloadable && Managers.Input.isReloadPressed)
@@ -174,11 +122,11 @@ public class PlayerBase : MonoBehaviour, IDamageable
         }
         else return;
     }
-    private void SecondaryWeapon()
-    {
-        if (!Managers.Input.isSecondaryWeaponPressed) return;
-        //수류탄 메서드
-    }
+    //private void SecondaryWeapon()
+    //{
+    //    if (!Managers.Input.isSecondaryWeaponPressed) return;
+    //    //수류탄 메서드
+    //}
     public void TakeDamage(int damage)
     {
         if (!isDamageable) return;
@@ -187,10 +135,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");
 
         OnHealthChanged?.Invoke(currentHp,maxHp);
-        //if (currentHp <= 0)
-        //{
-        //    Die();
-        //}
     }
     public void LookDirection()
     {
@@ -203,13 +147,4 @@ public class PlayerBase : MonoBehaviour, IDamageable
             transform.rotation = Quaternion.identity;
         }
     }
-    //public void Die()
-    //{
-    //    for(int i=0; i<Weapons.Length; i++)
-    //    {
-    //        Weapons[i].enabled = false;
-    //    }
-
-    //    Destroy(gameObject);
-    //}
 }

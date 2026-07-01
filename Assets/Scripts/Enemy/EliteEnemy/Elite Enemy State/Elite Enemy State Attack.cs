@@ -20,19 +20,15 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
     }
     private IEnumerator AttackCo()
     {
-        while (true)
-        {
-            int pattern = Random.Range(0, 5);
-            switch (pattern)
-            {
-                case 0: yield return StartCoroutine(StraightAttackCo()); break;
-                case 1: yield return StartCoroutine(CurveAttackCo()); break;
-                case 2: yield return StartCoroutine(CircleAttackCo()); break;
-                case 3: yield return StartCoroutine(SpiralAttackCo()); break;
-                case 4: yield return StartCoroutine(HomingAttackCo()); break;
-            }
-
-        }
+         int pattern = Random.Range(0, 5);
+         switch (pattern)
+         {
+             case 0: yield return StartCoroutine(StraightAttackCo()); break;
+             case 1: yield return StartCoroutine(CurveAttackCo()); break;
+             case 2: yield return StartCoroutine(CircleAttackCo()); break;
+             case 3: yield return StartCoroutine(SpiralAttackCo()); break;
+             case 4: yield return StartCoroutine(HomingAttackCo()); break;
+         }
     }
     private IEnumerator StraightAttackCo()
     {

@@ -4,7 +4,6 @@ public class EliteEnemyStateBase : MonoBehaviour
 {
     protected Transform refTransform;
     protected Animator refAnimator;
-    protected Rigidbody2D refRb;
     protected EliteEnemyStateManager eliteEnemyStateManager;
     protected EliteEnemy eliteEnemy;
     protected EliteEnemyAnimationController eliteEnemyAnimationController;
@@ -18,10 +17,6 @@ public class EliteEnemyStateBase : MonoBehaviour
         if (refAnimator == null)
         {
             refAnimator = GetComponent<Animator>();
-        }
-        if (refRb == null)
-        {
-            refRb = GetComponent<Rigidbody2D>();
         }
         if (eliteEnemyStateManager == null)
         {

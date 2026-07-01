@@ -87,7 +87,7 @@ public class BossEnemyStateManager : MonoBehaviour
                 SetAttackState(BossEnemyAttackState.Homing);
             }
         }
-        else if (bossEnemy.player != null)
+        else if (bossEnemy.player != null && bossEnemyState != BossEnemyState.Attack)
         {
             SetState(BossEnemyState.Chase);
         }

@@ -46,19 +46,15 @@ public class EliteEnemy : EnemyBase
     public float AttackDelay { get { return attackDelay; } }
     public WaitForSeconds AttackWait { get; private set; }
     public int StraightAttackCount { get { return straightAttackCount; } }
-    public float StraightAttackDelay { get { return straightAttackDelay; } }
     public WaitForSeconds StraightAttackWait { get; private set; }
     public int CurveAttackRepeatCount { get { return curveAttackRepeatCount; } }
-    public float CurveAttackRepeatDelay { get { return curveAttackRepeatDelay; } }
     public WaitForSeconds CurveAttackRepeatWait { get; private set; }
     public int CurveAttackCount { get { return curveAttackCount; } }
-    public float CurveAttackDelay { get { return curveAttackDelay; } }
     public WaitForSeconds CurveAttackWait { get; private set; }
     public int CircleAttackCount { get { return circleAttackCount; } }
     public int SpiralAttackCount { get { return spiralAttackCount; } }
     public float SpiralAngle { get { return spiralAngle; } }
     public int HomingAttackCount { get { return homingAttackCount; } }
-    public float HomingAttackDelay { get { return homingAttackDelay; } }
     public WaitForSeconds HomingAttackWait { get; private set; }
     private void Awake()
     {

@@ -37,6 +37,9 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             yield return bossEnemy.StraightAttackWait;
         }
         bossEnemy.attackTimer = 0f;
+        bossEnemyStateManager.SetAttackState(BossEnemyStateManager.BossEnemyAttackState.Wait);
+        bossEnemyStateManager.SetState(BossEnemyStateManager.BossEnemyState.Chase);
+
         yield break;
     }
     private IEnumerator CurveAttackCo()
@@ -54,6 +57,9 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             yield return bossEnemy.CurveAttackRepeatWait;
         }
         bossEnemy.attackTimer = 0f;
+        bossEnemyStateManager.SetAttackState(BossEnemyStateManager.BossEnemyAttackState.Wait);
+        bossEnemyStateManager.SetState(BossEnemyStateManager.BossEnemyState.Chase);
+
         yield break;
     }
     private IEnumerator CircleAttackCo()
@@ -83,6 +89,9 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             yield return bossEnemy.CircleAttackRepeatWait;
         }
         bossEnemy.attackTimer = 0f;
+        bossEnemyStateManager.SetAttackState(BossEnemyStateManager.BossEnemyAttackState.Wait);
+        bossEnemyStateManager.SetState(BossEnemyStateManager.BossEnemyState.Chase);
+
         yield break;
     }
     private IEnumerator SpiralAttackCo()
@@ -103,6 +112,9 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             yield return new WaitForSeconds(0.1f);
         }
         bossEnemy.attackTimer = 0f;
+        bossEnemyStateManager.SetAttackState(BossEnemyStateManager.BossEnemyAttackState.Wait);
+        bossEnemyStateManager.SetState(BossEnemyStateManager.BossEnemyState.Chase);
+
         yield break;
     }
 }

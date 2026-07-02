@@ -6,6 +6,7 @@ public class BGMAudioManager : MonoBehaviour
     {
         Managers._bgmAudioManager = this;
         DontDestroyOnLoad(gameObject);
+        PlayBGM();
     }
 
     [SerializeField] private AudioSource bgmSource;

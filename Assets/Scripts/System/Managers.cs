@@ -53,12 +53,12 @@ public static class Managers
     {
         get
         {
-            if (_playerAudioManager == null)
-            {
-                GameObject obj = new GameObject("Player Audio Manager");
-                _playerAudioManager = obj.AddComponent<PlayerAudioManager>();
-                Object.DontDestroyOnLoad(obj);
-            }
+            //if (_playerAudioManager == null)
+            //{
+            //    GameObject obj = new GameObject("Player Audio Manager");
+            //    _playerAudioManager = obj.AddComponent<PlayerAudioManager>();
+            //    Object.DontDestroyOnLoad(obj);
+            //}
             return _playerAudioManager;
         }
     }
@@ -67,12 +67,12 @@ public static class Managers
     {
         get
         {
-            if (_enemyAudioManager == null)
-            {
-                GameObject obj = new GameObject("Enemy Audio Manager");
-                _enemyAudioManager = obj.AddComponent<EnemyAudioManager>();
-                Object.DontDestroyOnLoad(obj);
-            }
+            //if (_enemyAudioManager == null)
+            //{
+            //    GameObject obj = new GameObject("Enemy Audio Manager");
+            //    _enemyAudioManager = obj.AddComponent<EnemyAudioManager>();
+            //    Object.DontDestroyOnLoad(obj);
+            //}
             return _enemyAudioManager;
         }
     }
@@ -81,12 +81,12 @@ public static class Managers
     {
         get
         {
-            if (_bgmAudioManager == null)
-            {
-                GameObject obj = new GameObject("BGM Audio Manager");
-                _bgmAudioManager = obj.AddComponent<BGMAudioManager>();
-                Object.DontDestroyOnLoad(obj);
-            }
+            //if (_bgmAudioManager == null)
+            //{
+            //    GameObject obj = new GameObject("BGM Audio Manager");
+            //    _bgmAudioManager = obj.AddComponent<BGMAudioManager>();
+            //    Object.DontDestroyOnLoad(obj);
+            //}
             return _bgmAudioManager;
         }
     }

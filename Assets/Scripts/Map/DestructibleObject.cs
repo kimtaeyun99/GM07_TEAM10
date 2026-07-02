@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DestructibleObject : MonoBehaviour
+public class DestructibleObject : MonoBehaviour , IDamageable
 {
     [SerializeField] private int maxHp = 3; // 파괴 가능한 오브젝트 최대 체력
     [SerializeField] private GameObject dropPrefab; // 파괴 시 드랍할 오브젝트

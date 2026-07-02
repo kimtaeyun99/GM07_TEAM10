@@ -8,7 +8,9 @@ public class Shotgun : WeaponBase, IReloadable
 
     [SerializeField] private ShotgunBullet shotgunBullet;
 
-    private Coroutine coroutine;
+    private Coroutine shootCo;
+    private Coroutine reloadCo;
+
     private bool isReload = false;
     public override void Shoot()
     {
@@ -20,17 +22,17 @@ public class Shotgun : WeaponBase, IReloadable
             return;
         }
 
-        if (coroutine == null)
+        if (shootCo == null)
         {
-            coroutine = StartCoroutine(ShootCo());
+            shootCo = StartCoroutine(ShootCo());
         }        
     }
     public override void StopShoot()
     {
-        if (coroutine != null)
+        if (shootCo != null)
         {
-            StopCoroutine(coroutine);
-            coroutine = null;
+            StopCoroutine(shootCo);
+            shootCo = null;
         }
     }
     private IEnumerator ShootCo()
@@ -69,18 +71,35 @@ public class Shotgun : WeaponBase, IReloadable
 
             bullet.Fire(bulletDir);
         }
+        Managers.PlayerAudio.ShotgunShoot();
     }
     public void Reload()
     {
         if (currentAmmo >= maxAmmo) return;
-        StartCoroutine(ReloadCo());
+        if (isReload || reloadCo != null) return;
+        reloadCo = StartCoroutine(ReloadCo());
     }
     public IEnumerator ReloadCo()
     {
         isReload = true;
+        Managers.PlayerAudio.ShotgunReload();
         yield return ReloadDelayWait;
-        //Inventory.instance.UseItemByName("¼¦°ÇÅºÃ¢");
+        Inventory.instance.UseItemByName("¼¦°ÇÅºÃ¢");
         currentAmmo = maxAmmo;
         isReload = false;
+        reloadCo = null;
+        ReloadCompleteEffect();
+    }
+    public void ReloadCompleteEffect()
+    {
+        StartCoroutine(FlashSprite());
+    }
+
+    private IEnumerator FlashSprite()
+    {
+        Color original = spriteRenderer.color;
+        spriteRenderer.color = new Color(original.r, original.g, original.b, 0.3f);
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = original;
     }
 }

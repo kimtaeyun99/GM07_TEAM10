@@ -253,21 +253,21 @@ MonoBehaviour:
   enemyBulletPrefab: {fileID: 8741280455482233341, guid: 3ca9e8735707b9f4b8fd8efbb7e68c6c, type: 3}
   moveWaitTime: 5
   returnDis: 5
-  attackDelay: 3
-  straightAttackCount: 10
-  straightAttackDelay: 0.3
-  curveAttackRepeatCount: 5
+  attackDelay: 2
+  straightAttackCount: 15
+  straightAttackDelay: 0.1
+  curveAttackRepeatCount: 3
   curveAttackRepeatDelay: 0.3
-  curveAttackCount: 5
+  curveAttackCount: 15
   curveAttackDelay: 0.1
-  circleAttackRepeatCount: 3
-  circleAttackRepeatDelay: 1
-  circleAttackCount: 10
+  circleAttackRepeatCount: 5
+  circleAttackRepeatDelay: 0.3
+  circleAttackCount: 20
   circleAttackAngleOffset: 20
   spiralAttackCount: 36
   spiralAngle: 10
   homingAttackCount: 7
-  homingAttackDelay: 0.5
+  homingAttackDelay: 0.1
   attackPattern: 0
 --- !u!114 &2959677003248454820
 MonoBehaviour:

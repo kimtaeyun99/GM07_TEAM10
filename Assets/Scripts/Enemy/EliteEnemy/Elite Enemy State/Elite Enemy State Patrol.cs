@@ -5,6 +5,7 @@ public class EliteEnemyStatePatrol : EliteEnemyStateBase
     private void Update()
     {
         Patrol();
+        Managers.EnemyAudio.EliteEnemyWalk();
     }
     private void Patrol()
     {

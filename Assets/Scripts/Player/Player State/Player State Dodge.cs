@@ -10,6 +10,7 @@ public class PlayerStateDodge : PlayerStateBase
     }
     private IEnumerator DodgeCo()
     {
+        Managers.PlayerAudio.PlayerDodge();
         playerBase.isDamageable = false;
         Debug.Log("Dodge On");
 

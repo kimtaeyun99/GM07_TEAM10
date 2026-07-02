@@ -16,9 +16,11 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public float obstacleDetectDistance { get; private set; }
     public LayerMask obstacleLayer { get; private set; }
     public float distanceToPlayer { get; private set; }
-    //protected ItemBase goldReward;
-    //protected ItemBase[] bulletRewards;
-    //protected float itemDropRadius;
+    protected FieldItem goldReward;
+    protected int goldDropRate;
+    protected FieldItem[] bulletRewards;
+    protected int itemDropRate;
+    protected float itemDropRadius;
 
     public event Action<EnemyBase> OnDead;
 
@@ -29,6 +31,8 @@ public class EnemyBase : MonoBehaviour, IDamageable
     public Vector3 returnPos;
 
     public float attackTimer;
+
+    private bool isDrop = false;
 
     private void Update()
     {
@@ -50,13 +54,16 @@ public class EnemyBase : MonoBehaviour, IDamageable
         obstacleDetectDistance = enemyData.ObstacleDetectDistance;
         obstacleLayer = enemyData.ObstacleLayer;
         distanceToPlayer = enemyData.DistanceToPlayer;
-        //goldReward = enemyData.GoldReward;
-        //bulletRewards = enemyData.BulletRewards;
-        //itemDropRadius = enemyData.ItemDropRadius;
+        goldReward = enemyData.GoldReward;
+        goldDropRate = enemyData.GoldDropRate;
+        bulletRewards = enemyData.BulletRewards;
+        itemDropRate = enemyData.ItemDropRate;
+        itemDropRadius = enemyData.ItemDropRadius;
 
     }
     public void TakeDamage(int damage)
     {
+        Managers.EnemyAudio.EnemyHit();
         currentHp -= damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");
@@ -69,7 +76,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     {
         OnDead?.Invoke(this);
         Debug.Log($"{gameObject.name} 사망");
-        //DropRewards();
+        DropRewards();
     }
     public void LookPlayer()
     {
@@ -85,32 +92,38 @@ public class EnemyBase : MonoBehaviour, IDamageable
             transform.rotation = Quaternion.identity;
         }
     }
-    //protected void DropRewards()
-    //{
-    //    BulletDrop();
-    //    GoldDrop();
-    //}
-    //protected void BulletDrop()
-    //{
-    //    for (int i = 0; i < bulletRewards.Length; i++)
-    //    {
-    //        int rate = Random.Range(0, 100);
-    //        if (rate > 30)
-    //        {
-    //            Vector2 itemDropOffset = Random.insideUnitCircle * itemDropRadius;
-    //            Vector2 itemSpawnPos = (Vector2)transform.position + itemDropOffset;
+    protected void DropRewards()
+    {
+        if (isDrop) return;
+        BulletDrop();
+        GoldDrop();
+        isDrop = true;
+    }
+    protected void BulletDrop()
+    {
+        for (int i = 0; i < bulletRewards.Length; i++)
+        {
+            int rate = UnityEngine.Random.Range(0, 100);
+            if (rate < itemDropRate)
+            {
+                Vector2 itemDropOffset = UnityEngine.Random.insideUnitCircle * itemDropRadius;
+                Vector2 itemSpawnPos = (Vector2)transform.position + itemDropOffset;
 
-    //            Instantiate(bulletRewards[i], itemSpawnPos, Quaternion.identity);
-    //            Debug.Log($"{bulletRewards[i].name} 드랍");
-    //        }
-    //    }
-    //}
-    //protected void GoldDrop()
-    //{
-    //    Vector2 goldDropOffset = Random.insideUnitCircle * itemDropRadius;
-    //    Vector2 goldSpawnPos = (Vector2)transform.position + goldDropOffset;
+                Instantiate(bulletRewards[i], itemSpawnPos, Quaternion.identity);
+                Debug.Log($"{bulletRewards[i].name} 드랍");
+            }
+        }
+    }
+    protected void GoldDrop()
+    {
+        int rate = UnityEngine.Random.Range(0, 100);
+        if (rate < goldDropRate)
+        {
+            Vector2 goldDropOffset = UnityEngine.Random.insideUnitCircle * itemDropRadius;
+            Vector2 goldSpawnPos = (Vector2)transform.position + goldDropOffset;
 
-    //    Instantiate(goldReward, goldSpawnPos, Quaternion.identity);
-    //    Debug.Log($"{goldReward.name} 드랍");
-    //}
+            Instantiate(goldReward, goldSpawnPos, Quaternion.identity);
+            Debug.Log($"{goldReward.name} 드랍");
+        }
+    }
 }

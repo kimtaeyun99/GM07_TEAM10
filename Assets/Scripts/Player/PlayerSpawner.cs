@@ -7,8 +7,20 @@ public class PlayerSpawner : MonoBehaviour
 
     private void Start()
     {
-        PlayerBase player = Managers.Pool.GetPool(playerPrefab);
-        player.transform.position = transform.position;
-        player.Initialize(playerData);
+        if (IsTutorialScene())
+        {
+            PlayerBase player = Instantiate(playerPrefab, transform.position, Quaternion.identity);
+            player.Initialize(playerData);
+        }
+        else
+        {
+            PlayerBase player = Managers.Pool.GetPool(playerPrefab);
+            player.transform.position = transform.position;
+            player.Initialize(playerData);
+        }
+    }
+    private bool IsTutorialScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Stage_Tutorial";
     }
 }

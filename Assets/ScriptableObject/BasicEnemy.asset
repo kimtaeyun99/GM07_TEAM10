@@ -13,9 +13,7 @@ MonoBehaviour:
   m_Name: BasicEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Basic Enemy
-  enemyPrefab: {fileID: 5652750448426934237, guid: 8a390c423728bb5478cfb5a3e3423bc4, type: 3}
-  enemySprite: {fileID: 21300000, guid: 3f06a510e9a98ee449a5fa53fa69d3e5, type: 3}
-  maxHp: 30
+  maxHp: 50
   attack: 5
   moveSpeed: 3
   playerDetectRange: 10
@@ -27,3 +25,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2688
   distanceToPlayer: 5
+  goldReward: {fileID: 850607227720886749, guid: aa8445e1e8b0f8e4ba9280fb1890a2c2, type: 3}
+  goldDropRate: 15
+  bulletRewards:
+  - {fileID: 850607227720886749, guid: bbde87faa939f9e49881a1ae6da2fd0d, type: 3}
+  - {fileID: 850607227720886749, guid: b117d2a2710efdf4e9d603d724ad28c8, type: 3}
+  itemDropRate: 15
+  itemDropRadius: 3

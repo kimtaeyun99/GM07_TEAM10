@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class EliteEnemyStateAttack : EliteEnemyStateBase
 {
+    private Vector3 attackPosition;
     private void OnEnable()
     {
+        attackPosition = eliteEnemy.transform.position;
         StartCoroutine(AttackCo());
     }
     private void OnDisable()
@@ -13,6 +15,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
     }
     private void Update()
     {
+        eliteEnemy.transform.position = attackPosition;
         eliteEnemy.dis = Vector3.Distance(eliteEnemy.player.transform.position, eliteEnemy.transform.position);
         eliteEnemy.dir = (eliteEnemy.player.transform.position - eliteEnemy.transform.position).normalized;
     }
@@ -35,7 +38,9 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Straight, eliteEnemy.player);
+            Managers.EnemyAudio.EliteEnemyAttack();
             yield return eliteEnemy.StraightAttackWait;
         }
         eliteEnemy.attackTimer = 0f;
@@ -50,7 +55,9 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
                 EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
                 bullet.transform.position = eliteEnemy.FirePoint.position;
                 bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
+                bullet.damage = eliteEnemy.attack;
                 bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Curve, eliteEnemy.player);
+                Managers.EnemyAudio.EliteEnemyAttack();
                 yield return eliteEnemy.CurveAttackWait;
             }
             yield return eliteEnemy.CurveAttackRepeatWait;
@@ -63,6 +70,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
         float angleStep = 360f / eliteEnemy.CircleAttackCount;
         float angle = 0f;
 
+        Managers.EnemyAudio.EliteEnemyAttack();
         for (int i = 0; i < eliteEnemy.CircleAttackCount; i++)
         {
             float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
@@ -72,9 +80,8 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
-
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, eliteEnemy.player);
-
             angle += angleStep;
         }
         eliteEnemy.attackTimer = 0f;
@@ -92,8 +99,9 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, null);
-
+            Managers.EnemyAudio.EliteEnemyAttack();
             angle += eliteEnemy.SpiralAngle;
             yield return new WaitForSeconds(0.1f);
         }
@@ -106,7 +114,9 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Homing, eliteEnemy.player);
+            Managers.EnemyAudio.EliteEnemyAttack();
             yield return eliteEnemy.HomingAttackWait;
         }
         eliteEnemy.attackTimer = 0f;

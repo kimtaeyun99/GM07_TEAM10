@@ -5,13 +5,17 @@ public class PlayerStateDeath : PlayerStateBase
 {
     private void OnEnable()
     {
+        if (playerBase.currentWeapon != null)
+        {
+            playerBase.currentWeapon.gameObject.SetActive(false);
+        }
         playerBase.isDamageable = false;
         refAnimator.SetBool("isDead", true);
         StartCoroutine(DeathCo());
     }
     private IEnumerator DeathCo()
     {
-        //playerBase.currentWeapon.enabled = false;
+        Managers.PlayerAudio.PlayerDead();
 
         yield return null;
 
@@ -22,6 +26,18 @@ public class PlayerStateDeath : PlayerStateBase
             yield return null;
         }
 
-        Managers.Pool.ReturnPool(playerBase);
+        if(IsTutorialScene())
+        {
+            Destroy(playerBase.gameObject);
+        }
+        else
+        {
+            Managers.Pool.ReturnPool(playerBase);
+        }
+        Time.timeScale = 0f;
+    }
+    private bool IsTutorialScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Stage_Tutorial";
     }
 }

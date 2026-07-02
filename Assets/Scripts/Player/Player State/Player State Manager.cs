@@ -12,8 +12,6 @@ public class PlayerStateManager : MonoBehaviour
     [SerializeField] private PlayerState playerState = PlayerState.None;
     [SerializeField] private PlayerStateBase[] playerStates;
     [SerializeField] private UnityEvent<PlayerState> OnStateChanged;
-
-    //private CharacterController characterController;
     private PlayerAnimationController playerAnimationController;
 
     private void Awake()
@@ -22,10 +20,6 @@ public class PlayerStateManager : MonoBehaviour
         {
             playerBase = GetComponent<PlayerBase>();
         }
-        //if(characterController == null)
-        //{
-        //    characterController = GetComponent<CharacterController>();
-        //}
         if(playerAnimationController == null)
         {
             playerAnimationController = GetComponent<PlayerAnimationController>();

@@ -48,4 +48,28 @@ public static class Managers
             return _cameraManager;
         }
     }
+    public static PlayerAudioManager _playerAudioManager;
+    public static PlayerAudioManager PlayerAudio
+    {
+        get
+        {
+            return _playerAudioManager;
+        }
+    }
+    public static EnemyAudioManager _enemyAudioManager;
+    public static EnemyAudioManager EnemyAudio
+    {
+        get
+        {
+            return _enemyAudioManager;
+        }
+    }
+    public static BGMAudioManager _bgmAudioManager;
+    public static BGMAudioManager BGMAudio
+    {
+        get
+        {
+            return _bgmAudioManager;
+        }
+    }
 }

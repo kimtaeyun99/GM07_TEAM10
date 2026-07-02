@@ -36,11 +36,8 @@ public class PlayerBase : MonoBehaviour, IDamageable
     private void Update()
     {
         Attack();
-        //Interact();
         QuickSlot();
-        //Inventory();
         Reload();
-        //SecondaryWeapon();
         LookDirection();
     }
     private void Awake()
@@ -60,11 +57,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.Shoot();
         }
     }
-    //private void Interact()
-    //{
-    //    if (!Managers.Input.isInteractPressed) return;
-    //    //상호작용 메서드
-    //}
     private void QuickSlot()
     {
         //if (EquipmentManager.instance == null) return;
@@ -102,17 +94,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot3Pressed = false;
         }
-        //else if(Managers.Input.isQuickSlot4Pressed)
-        //{
-        //    //퀵슬롯4 (Potion) 사용 메서드
-        //    Managers.Input.isQuickSlot4Pressed = false;
-        //}
     }
-    //private void Inventory()
-    //{
-    //    if (!Managers.Input.isInventoryPressed) return;
-    //    //인벤토리 메서드
-    //}
     private void Reload()
     {
         if (currentWeapon is IReloadable reloadable && Managers.Input.isReloadPressed)
@@ -121,11 +103,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
         }
         else return;
     }
-    //private void SecondaryWeapon()
-    //{
-    //    if (!Managers.Input.isSecondaryWeaponPressed) return;
-    //    //수류탄 메서드
-    //}
     public void TakeDamage(int damage)
     {
         if (!isDamageable) return;

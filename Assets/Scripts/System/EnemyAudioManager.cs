@@ -102,7 +102,7 @@ public class EnemyAudioManager : MonoBehaviour
         for (int i = 0; i < bossEnemyDie.Length; i++)
         {
             enemySfxSource.PlayOneShot(bossEnemyDie[i], bossEnemyDieVolume);
-            yield return new WaitForSeconds(bossEnemyDie[i].length); // 클립 길이만큼 기다림
+            yield return new WaitForSeconds(bossEnemyDie[i].length);
         }
     }
     public void EnemyHit()

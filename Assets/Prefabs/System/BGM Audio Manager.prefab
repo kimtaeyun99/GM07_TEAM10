@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BGMAudioManager
   bgmSource: {fileID: 8446517317632435562}
-  bgmClip: {fileID: 8300000, guid: e91fe38e2604a564892f54fb24d28375, type: 3}
+  bgmClip: {fileID: 8300000, guid: 6e262daf1c004b44ebebca6b79dee465, type: 3}
   bgmVolume: 0.1
 --- !u!82 &8446517317632435562
 AudioSource:

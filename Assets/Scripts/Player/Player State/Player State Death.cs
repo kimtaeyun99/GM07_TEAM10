@@ -34,6 +34,7 @@ public class PlayerStateDeath : PlayerStateBase
         {
             Managers.Pool.ReturnPool(playerBase);
         }
+        Time.timeScale = 0f;
     }
     private bool IsTutorialScene()
     {

@@ -46,5 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
   EnemyData: {fileID: 11400000, guid: 16faa1877fd99ea43b8e571e35520b8a, type: 2}
   Enemyprefab: {fileID: 5652750448426934237, guid: 8a390c423728bb5478cfb5a3e3423bc4, type: 3}
-  spawnRadius: 0
-  EnemySpawnCount: 0
+  EnemySpawnCount: 1

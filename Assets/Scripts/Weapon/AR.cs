@@ -71,7 +71,7 @@ public class AR : WeaponBase, IReloadable
         isReload = true;
         Managers.PlayerAudio.ARReload();
         yield return ReloadDelayWait;
-        //Inventory.instance.UseItemByName("AR탄창");
+        Inventory.instance.UseItemByName("AR탄창");
         currentAmmo = maxAmmo;
         isReload = false;
         reloadCo = null;

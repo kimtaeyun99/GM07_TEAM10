@@ -84,7 +84,7 @@ public class Shotgun : WeaponBase, IReloadable
         isReload = true;
         Managers.PlayerAudio.ShotgunReload();
         yield return ReloadDelayWait;
-        //Inventory.instance.UseItemByName("¼¦°ÇÅºÃ¢");
+        Inventory.instance.UseItemByName("¼¦°ÇÅºÃ¢");
         currentAmmo = maxAmmo;
         isReload = false;
         reloadCo = null;

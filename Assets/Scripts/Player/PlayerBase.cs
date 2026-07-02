@@ -59,9 +59,9 @@ public class PlayerBase : MonoBehaviour, IDamageable
     }
     private void QuickSlot()
     {
-        //if (EquipmentManager.instance == null) return;
+        if (EquipmentManager.instance == null) return;
 
-        if(Managers.Input.isQuickSlot1Pressed /*&& EquipmentManager.instance.currentEquipment[5] != null*/)
+        if (Managers.Input.isQuickSlot1Pressed && EquipmentManager.instance.currentEquipment[5] != null)
         {
             foreach(WeaponBase weapon in Weapons)
             {
@@ -72,7 +72,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot1Pressed = false;
         }
-        else if(Managers.Input.isQuickSlot2Pressed /*&& EquipmentManager.instance.currentEquipment[6] != null*/)
+        else if(Managers.Input.isQuickSlot2Pressed && EquipmentManager.instance.currentEquipment[6] != null)
         {
             foreach (WeaponBase weapon in Weapons)
             {
@@ -83,7 +83,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
             currentWeapon.gameObject.SetActive(true);
             Managers.Input.isQuickSlot2Pressed = false;
         }
-        else if(Managers.Input.isQuickSlot3Pressed /*&& EquipmentManager.instance.currentEquipment[7] != null*/)
+        else if(Managers.Input.isQuickSlot3Pressed && EquipmentManager.instance.currentEquipment[7] != null)
         {
             foreach (WeaponBase weapon in Weapons)
             {

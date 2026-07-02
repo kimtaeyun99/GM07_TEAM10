@@ -5,6 +5,7 @@ public class BossEnemyStatePatrol : BossEnemyStateBase
     private void Update()
     {
         Patrol();
+        Managers.EnemyAudio.BossEnemyWalk();
     }
     private void Patrol()
     {

@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BossEnemyAttackStateHoming : BossEnemyStateAttack
 {
+    private Vector3 attackPosition;
     private void OnEnable()
     {
+        attackPosition = bossEnemy.transform.position;
         StartCoroutine(HomingCo());
     }
     private void OnDisable()
@@ -13,6 +15,7 @@ public class BossEnemyAttackStateHoming : BossEnemyStateAttack
     }
     private void Update()
     {
+        bossEnemy.transform.position = attackPosition;
         bossEnemy.dis = Vector3.Distance(bossEnemy.player.transform.position, bossEnemy.transform.position);
         bossEnemy.dir = (bossEnemy.player.transform.position - bossEnemy.transform.position).normalized;
     }
@@ -24,6 +27,7 @@ public class BossEnemyAttackStateHoming : BossEnemyStateAttack
             bullet.transform.position = bossEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, bossEnemy.dir);
             bullet.Initialize(bossEnemy.dir, EnemyBullet.BulletPattern.Homing, bossEnemy.player);
+            Managers.EnemyAudio.BossEnemyHomingAttack();
             yield return bossEnemy.HomingAttackWait;
         }
         bossEnemy.attackTimer = 0f;

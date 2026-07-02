@@ -27,6 +27,7 @@ public class BossEnemyStateChase : BossEnemyStateBase
         {
             Away();
         }
+        Managers.EnemyAudio.BossEnemyWalk();
     }
 
     private IEnumerator MoveCo()

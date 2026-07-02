@@ -21,6 +21,8 @@ public class EliteEnemyStateChase : EliteEnemyStateBase
         eliteEnemy.dir = (eliteEnemy.player.transform.position - eliteEnemy.transform.position).normalized;
         eliteEnemy.returnPos = eliteEnemy.player.transform.position - (eliteEnemy.ReturnDis * eliteEnemy.dir);
 
+        Managers.EnemyAudio.EliteEnemyWalk();
+
         if(eliteEnemy.dis < eliteEnemy.distanceToPlayer)
         {
             Away();

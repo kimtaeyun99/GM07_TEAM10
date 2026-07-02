@@ -10,6 +10,8 @@ public abstract class WeaponBase : MonoBehaviour
     [SerializeField] public float reloadDelay;
     [SerializeField] public float shootDelay;
     [SerializeField] public Transform firePoint;
+    [SerializeField] public SpriteRenderer spriteRenderer;
+    [SerializeField] public float flashDuration = 0.5f;
 
     public WaitForSeconds ShootDelayWait;
     public WaitForSeconds ReloadDelayWait;
@@ -17,6 +19,7 @@ public abstract class WeaponBase : MonoBehaviour
     {
         ReloadDelayWait = new WaitForSeconds(reloadDelay);
         ShootDelayWait = new WaitForSeconds(shootDelay);
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     public abstract void Shoot();
     public abstract void StopShoot();

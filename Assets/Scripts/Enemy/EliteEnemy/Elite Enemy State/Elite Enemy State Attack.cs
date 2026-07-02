@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class EliteEnemyStateAttack : EliteEnemyStateBase
 {
+    private Vector3 attackPosition;
     private void OnEnable()
     {
+        attackPosition = eliteEnemy.transform.position;
         StartCoroutine(AttackCo());
     }
     private void OnDisable()
@@ -13,6 +15,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
     }
     private void Update()
     {
+        eliteEnemy.transform.position = attackPosition;
         eliteEnemy.dis = Vector3.Distance(eliteEnemy.player.transform.position, eliteEnemy.transform.position);
         eliteEnemy.dir = (eliteEnemy.player.transform.position - eliteEnemy.transform.position).normalized;
     }
@@ -65,6 +68,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
         float angleStep = 360f / eliteEnemy.CircleAttackCount;
         float angle = 0f;
 
+        Managers.EnemyAudio.EliteEnemyAttack();
         for (int i = 0; i < eliteEnemy.CircleAttackCount; i++)
         {
             float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
@@ -76,7 +80,6 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
 
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, eliteEnemy.player);
-            Managers.EnemyAudio.EliteEnemyAttack();
             angle += angleStep;
         }
         eliteEnemy.attackTimer = 0f;

@@ -88,5 +88,18 @@ public class Shotgun : WeaponBase, IReloadable
         currentAmmo = maxAmmo;
         isReload = false;
         reloadCo = null;
+        ReloadCompleteEffect();
+    }
+    public void ReloadCompleteEffect()
+    {
+        StartCoroutine(FlashSprite());
+    }
+
+    private IEnumerator FlashSprite()
+    {
+        Color original = spriteRenderer.color;
+        spriteRenderer.color = new Color(original.r, original.g, original.b, 0.3f);
+        yield return new WaitForSeconds(flashDuration);
+        spriteRenderer.color = original;
     }
 }

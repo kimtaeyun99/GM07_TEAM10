@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
 {
+    private Vector3 attackPosition;
     private void OnEnable()
     {
+        attackPosition = bossEnemy.transform.position;
         StartCoroutine(NonHomingCo());
     }
     private void OnDisable()
@@ -13,6 +15,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
     }
     private void Update()
     {
+        bossEnemy.transform.position = attackPosition;
         bossEnemy.dis = Vector3.Distance(bossEnemy.player.transform.position, bossEnemy.transform.position);
         bossEnemy.dir = (bossEnemy.player.transform.position - bossEnemy.transform.position).normalized;
     }
@@ -34,6 +37,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             bullet.transform.position = bossEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, bossEnemy.dir);
             bullet.Initialize(bossEnemy.dir, EnemyBullet.BulletPattern.Straight, bossEnemy.player);
+            Managers.EnemyAudio.BossEnemyNonHomingAttack();
             yield return bossEnemy.StraightAttackWait;
         }
         bossEnemy.attackTimer = 0f;
@@ -52,6 +56,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
                 bullet.transform.position = bossEnemy.FirePoint.position;
                 bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, bossEnemy.dir);
                 bullet.Initialize(bossEnemy.dir, EnemyBullet.BulletPattern.Curve, bossEnemy.player);
+                Managers.EnemyAudio.BossEnemyNonHomingAttack();
                 yield return bossEnemy.CurveAttackWait;
             }
             yield return bossEnemy.CurveAttackRepeatWait;
@@ -72,6 +77,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             {
                 angle += bossEnemy.CircleAttackAngleOffset;
             }
+            Managers.EnemyAudio.BossEnemyNonHomingAttack();
             for (int i = 0; i < bossEnemy.CircleAttackCount; i++)
             {
                 float dirX = Mathf.Cos(angle * Mathf.Deg2Rad);
@@ -107,6 +113,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             bullet.transform.position = bossEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, null);
+            Managers.EnemyAudio.BossEnemyNonHomingAttack();
 
             angle += bossEnemy.SpiralAngle;
             yield return new WaitForSeconds(0.1f);

@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
@@ -94,9 +95,14 @@ public class EnemyAudioManager : MonoBehaviour
     }
     public void BossEnemyDie()
     {
-        for(int i = 0; i<bossEnemyDie.Length; i++)
+        StartCoroutine(BossEnemyDieCo());
+    }
+    private IEnumerator BossEnemyDieCo()
+    {
+        for (int i = 0; i < bossEnemyDie.Length; i++)
         {
             enemySfxSource.PlayOneShot(bossEnemyDie[i], bossEnemyDieVolume);
+            yield return new WaitForSeconds(bossEnemyDie[i].length); // 클립 길이만큼 기다림
         }
     }
     public void EnemyHit()

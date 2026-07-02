@@ -413,6 +413,26 @@ PrefabInstance:
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 4951800910818211675}
+    - target: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
+      propertyPath: flashColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
+      propertyPath: flashColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
+      propertyPath: flashColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
+      propertyPath: flashDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 3520842998147802846}
     - target: {fileID: 3038008992550541328, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
       propertyPath: m_Name
       value: Shotgun
@@ -494,6 +514,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6430676673727379575, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
   m_PrefabInstance: {fileID: 4726372468415755269}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &3520842998147802846 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8163898826749252315, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
+  m_PrefabInstance: {fileID: 4726372468415755269}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7263795269743122366 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
@@ -573,6 +598,26 @@ PrefabInstance:
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 2129633627447744352}
+    - target: {fileID: 6187648821414471881, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+      propertyPath: flashColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187648821414471881, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+      propertyPath: flashColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187648821414471881, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+      propertyPath: flashColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187648821414471881, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+      propertyPath: flashDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187648821414471881, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 2568610702582017139}
     - target: {fileID: 8331066918746474639, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
       propertyPath: m_FlipX
       value: 0
@@ -611,6 +656,11 @@ MonoBehaviour:
 --- !u!4 &2106278478472266122 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5549400077588325750, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+  m_PrefabInstance: {fileID: 5780489874785084668}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2568610702582017139 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8331066918746474639, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
   m_PrefabInstance: {fileID: 5780489874785084668}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7770689372317624338
@@ -689,6 +739,26 @@ PrefabInstance:
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 5900420883758545100}
+    - target: {fileID: 5764916466923282528, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+      propertyPath: flashColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764916466923282528, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+      propertyPath: flashColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764916466923282528, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+      propertyPath: flashColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764916466923282528, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+      propertyPath: flashDuration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764916466923282528, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+      propertyPath: spriteRenderer
+      value: 
+      objectReference: {fileID: 6107882224126659634}
     - target: {fileID: 6097053190264946600, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
       propertyPath: m_Name
       value: AR
@@ -716,6 +786,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff599d9cf5ec45749ba024e1f617a24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AR
+--- !u!212 &6107882224126659634 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4545405626407920672, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+  m_PrefabInstance: {fileID: 7770689372317624338}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7474226065741449763 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 895866481493484081, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}

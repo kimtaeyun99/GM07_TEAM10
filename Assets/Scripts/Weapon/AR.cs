@@ -5,7 +5,9 @@ public class AR : WeaponBase, IReloadable
 {
     [SerializeField] private ARBullet arBullet;
 
-    private Coroutine coroutine;
+    private Coroutine shootCo;
+    private Coroutine reloadCo;
+
     private bool isReload = false;
     public override void Shoot()
     {
@@ -17,17 +19,17 @@ public class AR : WeaponBase, IReloadable
             return;
         }
 
-        if (coroutine == null)
+        if (shootCo == null)
         {
-            coroutine = StartCoroutine(ShootCo());
+            shootCo = StartCoroutine(ShootCo());
         }
     }
     public override void StopShoot()
     {
-        if (coroutine != null)
+        if (shootCo != null)
         {
-            StopCoroutine(coroutine);
-            coroutine = null;
+            StopCoroutine(shootCo);
+            shootCo = null;
         }
     }
     public IEnumerator ShootCo()
@@ -56,18 +58,22 @@ public class AR : WeaponBase, IReloadable
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
 
         bullet.Fire(dir);
+        Managers.PlayerAudio.ARShoot();
     }
     public void Reload()
     {
         if (currentAmmo >= maxAmmo) return;
-        StartCoroutine(ReloadCo());
+        if (isReload || reloadCo != null) return;
+        reloadCo = StartCoroutine(ReloadCo());
     }
     public IEnumerator ReloadCo()
     {
         isReload = true;
+        Managers.PlayerAudio.ARReload();
         yield return ReloadDelayWait;
         //Inventory.instance.UseItemByName("AR탄창");
         currentAmmo = maxAmmo;
         isReload = false;
+        reloadCo = null;
     }
 }

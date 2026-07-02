@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerStateIdle : PlayerStateBase
 {
-    private void Update()
+    private void OnEnable()
     {
         refRb.linearVelocity = Vector2.zero;
     }

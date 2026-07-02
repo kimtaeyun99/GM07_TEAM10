@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5928332405442277168, guid: a2385fec6921d8941b191df8d0ffe02c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7900094845171933068, guid: a2385fec6921d8941b191df8d0ffe02c, type: 3}
       propertyPath: EnemySpawnCount
@@ -198,7 +198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1935265848683131148, guid: acbbf0ac5e9828548a05be8183ce1f1d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3365966987077893872, guid: acbbf0ac5e9828548a05be8183ce1f1d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -614,7 +614,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000350984106865024, guid: 1785c0c5ef44b2249a40c93f416fa9bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6239854239951341220, guid: 1785c0c5ef44b2249a40c93f416fa9bb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1067,21 +1067,21 @@ MonoBehaviour:
   playerDead: {fileID: 8300000, guid: fff112cb431cd144cb4ccdc8e1ea2596, type: 3}
   playerDeadVolume: 1
   pistolShoot: {fileID: 8300000, guid: e1e575b5365aba94fa943db4388223bd, type: 3}
-  pistolShootVolume: 1
+  pistolShootVolume: 0.5
   pistolReload:
   - {fileID: 8300000, guid: 60c00cf537da0044daef307f9ee3e9ba, type: 3}
   - {fileID: 8300000, guid: e546f5f919d087b4dbc274d52397d494, type: 3}
   - {fileID: 8300000, guid: 5c68ec356219e484999e504e78d5cdfb, type: 3}
   pistolReloadVolume: 1
   shotgunShoot: {fileID: 8300000, guid: 588cfdbccda7f66419de73fa605b0c67, type: 3}
-  shotgunShootVolume: 1
+  shotgunShootVolume: 0.5
   shotgunReload:
   - {fileID: 8300000, guid: 3582e19a0fa44044888b40a983d150ab, type: 3}
   - {fileID: 8300000, guid: 1caa243d43747a34bbddeddde9f9a331, type: 3}
   - {fileID: 8300000, guid: e3507e9baa82fe642bee184c62fbdbbc, type: 3}
   shotgunReloadVolume: 1
   arShoot: {fileID: 8300000, guid: e8688c48ff5f835419919229ab9c13ce, type: 3}
-  arShootVolume: 1
+  arShootVolume: 0.5
   arReload:
   - {fileID: 8300000, guid: dc983589be86a6646bbde20fe5a7b03d, type: 3}
   - {fileID: 8300000, guid: 6bacba6d8f6cdc54087725b346a583c2, type: 3}

@@ -137,6 +137,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
     public void TakeDamage(int damage)
     {
         if (!isDamageable) return;
+        Managers.PlayerAudio.PlayerHit();
         currentHp -= damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");

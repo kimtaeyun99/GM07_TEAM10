@@ -23,6 +23,9 @@ public class EnemyAudioManager : MonoBehaviour
     [SerializeField] private AudioClip bossEnemyNonHomingAttack;
     [SerializeField] private AudioClip bossEnemyHomingAttack;
 
+    [Header("Enemy Hit")]
+    [SerializeField] private AudioClip enemyHit;
+
     public void BasicEnemyWalk()
     {
         for(int i=0; i<basicEnemyWalk.Length; i++)
@@ -60,5 +63,10 @@ public class EnemyAudioManager : MonoBehaviour
     public void BossEnemyHomingAttack()
     {
         enemySfxSource.PlayOneShot(bossEnemyHomingAttack);
+    }
+
+    public void EnemyHit()
+    {
+        enemySfxSource.PlayOneShot(enemyHit);
     }
 }

@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerStateRun : PlayerStateBase
 {
-    [SerializeField] private float walkTimer = 0f;
-    [SerializeField] private float walkInterval = 2.7f;
     private void Update()
     {
         Move();

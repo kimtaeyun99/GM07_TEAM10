@@ -11,7 +11,12 @@ public class PlayerStateDeath : PlayerStateBase
     }
     private IEnumerator DeathCo()
     {
-        //playerBase.currentWeapon.enabled = false;
+        Managers.PlayerAudio.PlayerDead();
+
+        if(playerBase.currentWeapon != null)
+        {
+            playerBase.currentWeapon.enabled = false;
+        }
 
         yield return null;
 

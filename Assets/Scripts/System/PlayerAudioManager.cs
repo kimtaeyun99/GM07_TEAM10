@@ -45,6 +45,7 @@ public class PlayerAudioManager : MonoBehaviour
             {
                 playerSfxSource.clip = playerWalk;
                 playerSfxSource.loop = true;
+                playerSfxSource.volume = playerWalkVolume;
                 playerSfxSource.Play();
             }
         }
@@ -55,47 +56,47 @@ public class PlayerAudioManager : MonoBehaviour
     }
     public void PlayerDodge()
     {
-        playerSfxSource.PlayOneShot(playerDodge);
+        playerSfxSource.PlayOneShot(playerDodge, playerDodgeVolume);
     }
     public void PlayerHit()
     {
-        playerSfxSource.PlayOneShot(playerHit);
+        playerSfxSource.PlayOneShot(playerHit, playerHitVolume);
     }
     public void PlayerDead()
     {
-        playerSfxSource.PlayOneShot(playerDead);
+        playerSfxSource.PlayOneShot(playerDead, playerDeadVolume);
     }
     public void PistolShoot()
     {
-        playerSfxSource.PlayOneShot(pistolShoot);
+        playerSfxSource.PlayOneShot(pistolShoot, pistolShootVolume);
     }
     public void PistolReload()
     {
         for(int i=0; i<pistolReload.Length; i++)
         {
-            playerSfxSource.PlayOneShot(pistolReload[i]);
+            playerSfxSource.PlayOneShot(pistolReload[i],pistolReloadVolume);
         }
     }
     public void ShotgunShoot()
     {
-        playerSfxSource.PlayOneShot(shotgunShoot);
+        playerSfxSource.PlayOneShot(shotgunShoot,shotgunShootVolume);
     }
     public void ShotgunReload()
     {
         for(int i=0; i<shotgunReload.Length; i++)
         {
-            playerSfxSource.PlayOneShot(shotgunReload[i]);
+            playerSfxSource.PlayOneShot(shotgunReload[i],shotgunReloadVolume);
         }
     }   
     public void ARShoot()
     {
-        playerSfxSource.PlayOneShot(arShoot);
+        playerSfxSource.PlayOneShot(arShoot,arShootVolume);
     }
     public void ARReload()
     {
         for(int i=0; i<arReload.Length; i++)
         {
-            playerSfxSource.PlayOneShot(arReload[i]);
+            playerSfxSource.PlayOneShot(arReload[i],arReloadVolume);
         }
     }
 }

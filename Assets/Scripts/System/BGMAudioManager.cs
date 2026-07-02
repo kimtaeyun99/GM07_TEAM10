@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class BGMAudioManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        Managers._bgmAudioManager = this;
+        DontDestroyOnLoad(gameObject);
+    }
+
     [SerializeField] private AudioSource bgmSource;
 
     [Header("BGM")]
@@ -12,6 +18,7 @@ public class BGMAudioManager : MonoBehaviour
     {
         bgmSource.clip = bgmClip;
         bgmSource.loop = true;
+        bgmSource.volume = bgmVolume;
         bgmSource.Play();
     }
 }

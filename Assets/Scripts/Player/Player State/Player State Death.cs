@@ -5,6 +5,10 @@ public class PlayerStateDeath : PlayerStateBase
 {
     private void OnEnable()
     {
+        if (playerBase.currentWeapon != null)
+        {
+            playerBase.currentWeapon.gameObject.SetActive(false);
+        }
         playerBase.isDamageable = false;
         refAnimator.SetBool("isDead", true);
         StartCoroutine(DeathCo());
@@ -12,11 +16,6 @@ public class PlayerStateDeath : PlayerStateBase
     private IEnumerator DeathCo()
     {
         Managers.PlayerAudio.PlayerDead();
-
-        if(playerBase.currentWeapon != null)
-        {
-            playerBase.currentWeapon.enabled = false;
-        }
 
         yield return null;
 

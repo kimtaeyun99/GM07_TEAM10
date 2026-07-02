@@ -57,6 +57,7 @@ public class EnemyBase : MonoBehaviour, IDamageable
     }
     public void TakeDamage(int damage)
     {
+        Managers.EnemyAudio.EnemyHit();
         currentHp -= damage;
         Debug.Log($"{gameObject.name} 데미지 받음 ({damage}");
         Debug.Log($"{gameObject.name} 현재 체력 : {currentHp}");

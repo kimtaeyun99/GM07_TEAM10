@@ -12,6 +12,7 @@ public class EliteEnemyStateDeath : EliteEnemyStateBase
     {
         while (refAnimator.IsInTransition(0) || !refAnimator.GetCurrentAnimatorStateInfo(0).IsName("Elite Enemy Death")) yield return null;
 
+        Managers.EnemyAudio.EliteEnemyDie();
         while (true)
         {
             AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);

@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class EnemyAudioManager : MonoBehaviour
@@ -11,62 +12,95 @@ public class EnemyAudioManager : MonoBehaviour
     [SerializeField] private AudioSource enemySfxSource;
 
     [Header("Basic Enemy")]
-    [SerializeField] private AudioClip[] basicEnemyWalk;
     [SerializeField] private AudioClip basicEnemyAttack;
+    [Range(0f, 1f)] public float basicEnemyAttackVolume = 1f;
+    [SerializeField] private AudioClip basicEnemyDie;
+    [Range(0f, 1f)] public float basicEnemyDieVolume = 1f;
 
     [Header("Elite Enemy")]
     [SerializeField] private AudioClip[] eliteEnemyWalk;
+    [Range(0f, 1f)] public float eliteEnemyWalkVolume = 1f;
     [SerializeField] private AudioClip eliteEnemyAttack;
+    [Range(0f, 1f)] public float eliteEnemyAttackVolume = 1f;
+    [SerializeField] private AudioClip eliteEnemyDie;
+    [Range(0f, 1f)] public float eliteEnemyDieVolume = 1f;
+    private int eWalk = 0;
 
     [Header("Boss Enemy")]
     [SerializeField] private AudioClip[] bossEnemyWalk;
+    [Range(0f, 1f)] public float bossEnemyWalkVolume = 1f;
     [SerializeField] private AudioClip bossEnemyNonHomingAttack;
+    [Range(0f, 1f)] public float bossEnemyNonHomingAttackVolume = 1f;
     [SerializeField] private AudioClip bossEnemyHomingAttack;
+    [Range(0f, 1f)] public float bossEnemyHomingAttackVolume = 1f;
+    [SerializeField] private AudioClip[] bossEnemyDie;
+    [Range(0f, 1f)] public float bossEnemyDieVolume = 1f;
+    private int bWalk = 0;
 
     [Header("Enemy Hit")]
     [SerializeField] private AudioClip enemyHit;
+    [Range(0f, 1f)] public float enemyHitVolume = 1f;
 
-    public void BasicEnemyWalk()
-    {
-        for(int i=0; i<basicEnemyWalk.Length; i++)
-        {
-            enemySfxSource.PlayOneShot(basicEnemyWalk[i]);
-        }
-    }
+    [SerializeField] private float walkInterval = 0.4f;
+
+    private float eliteEnemyWalkTimer = 0f;
+    private float bossEnemyWalkTimer = 0f;
+
     public void BasicEnemyAttack()
     {
-        enemySfxSource.PlayOneShot(basicEnemyAttack);
+        enemySfxSource.PlayOneShot(basicEnemyAttack,basicEnemyAttackVolume);
     }
-
+    public void BasicEnemyDie()
+    {
+        enemySfxSource.PlayOneShot(basicEnemyDie, basicEnemyDieVolume);
+    }
     public void EliteEnemyWalk()
     {
-        for(int i=0; i<eliteEnemyWalk.Length; i++)
+        eliteEnemyWalkTimer += Time.deltaTime;
+        if (eliteEnemyWalkTimer >= walkInterval)
         {
-            enemySfxSource.PlayOneShot(eliteEnemyWalk[i]);
+            enemySfxSource.PlayOneShot(eliteEnemyWalk[eWalk], eliteEnemyWalkVolume);
+            eWalk++;
+            if (eWalk >= eliteEnemyWalk.Length) eWalk = 0;
+            eliteEnemyWalkTimer = 0f;
         }
     }
     public void EliteEnemyAttack()
     {
-        enemySfxSource.PlayOneShot(eliteEnemyAttack);
+        enemySfxSource.PlayOneShot(eliteEnemyAttack,eliteEnemyAttackVolume);
+    }
+    public void EliteEnemyDie()
+    {
+        enemySfxSource.PlayOneShot(eliteEnemyDie, eliteEnemyDieVolume);
     }
     public void BossEnemyWalk()
     {
-        for(int i=0; i<bossEnemyWalk.Length; i++)
+        bossEnemyWalkTimer += Time.deltaTime;
+        if (bossEnemyWalkTimer >= walkInterval)
         {
-            enemySfxSource.PlayOneShot(bossEnemyWalk[i]);
+            enemySfxSource.PlayOneShot(bossEnemyWalk[bWalk], bossEnemyWalkVolume);
+            bWalk++;
+            if (bWalk >= bossEnemyWalk.Length) bWalk = 0;
+            bossEnemyWalkTimer = 0f;
         }
     }
     public void BossEnemyNonHomingAttack()
     {
-        enemySfxSource.PlayOneShot(bossEnemyNonHomingAttack);
+        enemySfxSource.PlayOneShot(bossEnemyNonHomingAttack,bossEnemyNonHomingAttackVolume);
     }
     public void BossEnemyHomingAttack()
     {
-        enemySfxSource.PlayOneShot(bossEnemyHomingAttack);
+        enemySfxSource.PlayOneShot(bossEnemyHomingAttack,bossEnemyHomingAttackVolume);
     }
-
+    public void BossEnemyDie()
+    {
+        for(int i = 0; i<bossEnemyDie.Length; i++)
+        {
+            enemySfxSource.PlayOneShot(bossEnemyDie[i], bossEnemyDieVolume);
+        }
+    }
     public void EnemyHit()
     {
-        enemySfxSource.PlayOneShot(enemyHit);
+        enemySfxSource.PlayOneShot(enemyHit,enemyHitVolume);
     }
 }

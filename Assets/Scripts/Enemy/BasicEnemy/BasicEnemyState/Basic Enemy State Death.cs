@@ -12,6 +12,8 @@ public class BasicEnemyStateDeath : BasicEnemyStateBase
     {
         while (refAnimator.IsInTransition(0) || !refAnimator.GetCurrentAnimatorStateInfo(0).IsName("Basic Enemy Death")) yield return null;
 
+        Managers.EnemyAudio.BasicEnemyDie();
+
         while (true)
         {
             AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);

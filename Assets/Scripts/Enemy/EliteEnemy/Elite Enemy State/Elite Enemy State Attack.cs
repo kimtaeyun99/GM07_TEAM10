@@ -36,6 +36,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
             bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Straight, eliteEnemy.player);
+            Managers.EnemyAudio.EliteEnemyAttack();
             yield return eliteEnemy.StraightAttackWait;
         }
         eliteEnemy.attackTimer = 0f;
@@ -51,6 +52,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
                 bullet.transform.position = eliteEnemy.FirePoint.position;
                 bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
                 bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Curve, eliteEnemy.player);
+                Managers.EnemyAudio.EliteEnemyAttack();
                 yield return eliteEnemy.CurveAttackWait;
             }
             yield return eliteEnemy.CurveAttackRepeatWait;
@@ -74,7 +76,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
 
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, eliteEnemy.player);
-
+            Managers.EnemyAudio.EliteEnemyAttack();
             angle += angleStep;
         }
         eliteEnemy.attackTimer = 0f;
@@ -93,7 +95,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, null);
-
+            Managers.EnemyAudio.EliteEnemyAttack();
             angle += eliteEnemy.SpiralAngle;
             yield return new WaitForSeconds(0.1f);
         }
@@ -107,6 +109,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
             bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Homing, eliteEnemy.player);
+            Managers.EnemyAudio.EliteEnemyAttack();
             yield return eliteEnemy.HomingAttackWait;
         }
         eliteEnemy.attackTimer = 0f;

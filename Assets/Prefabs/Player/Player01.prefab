@@ -414,6 +414,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4951800910818211675}
     - target: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
+      propertyPath: reloadDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691285503313503163, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
       propertyPath: flashColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -664,6 +668,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2129633627447744352}
     - target: {fileID: 6187648821414471881, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+      propertyPath: reloadDelay
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6187648821414471881, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
       propertyPath: flashColor.b
       value: 1
       objectReference: {fileID: 0}
@@ -866,6 +874,10 @@ PrefabInstance:
       propertyPath: firePoint
       value: 
       objectReference: {fileID: 5900420883758545100}
+    - target: {fileID: 5764916466923282528, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+      propertyPath: reloadDelay
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5764916466923282528, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
       propertyPath: flashColor.b
       value: 1

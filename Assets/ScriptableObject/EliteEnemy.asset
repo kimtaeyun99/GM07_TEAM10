@@ -15,9 +15,9 @@ MonoBehaviour:
   enemyName: Elite Enemy
   enemyPrefab: {fileID: 8234493305906830792, guid: 19191f40e0e62d4408cb75f9aced29cb, type: 3}
   enemySprite: {fileID: 21300000, guid: d2fcfe79c9177424ea823dbcd346f038, type: 3}
-  maxHp: 30
+  maxHp: 200
   attack: 5
-  moveSpeed: 1
+  moveSpeed: 3
   playerDetectRange: 10
   playerLayer:
     serializedVersion: 2

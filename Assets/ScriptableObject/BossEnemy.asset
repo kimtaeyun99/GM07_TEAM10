@@ -15,9 +15,9 @@ MonoBehaviour:
   enemyName: Boss Enemy
   enemyPrefab: {fileID: 2512780050879095452, guid: e30bcf19fd833104e89681aca68e526b, type: 3}
   enemySprite: {fileID: 21300000, guid: d2c8c765d3d0b5a45a1cac52309e98eb, type: 3}
-  maxHp: 30
+  maxHp: 500
   attack: 5
-  moveSpeed: 1
+  moveSpeed: 3
   playerDetectRange: 10
   playerLayer:
     serializedVersion: 2

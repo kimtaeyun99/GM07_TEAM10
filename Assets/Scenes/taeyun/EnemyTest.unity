@@ -173,7 +173,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5928332405442277168, guid: a2385fec6921d8941b191df8d0ffe02c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7900094845171933068, guid: a2385fec6921d8941b191df8d0ffe02c, type: 3}
       propertyPath: EnemySpawnCount
@@ -699,7 +699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2000350984106865024, guid: 1785c0c5ef44b2249a40c93f416fa9bb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6239854239951341220, guid: 1785c0c5ef44b2249a40c93f416fa9bb, type: 3}
       propertyPath: m_LocalPosition.x

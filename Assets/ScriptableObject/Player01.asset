@@ -16,5 +16,5 @@ MonoBehaviour:
   playerPrefab: {fileID: 7049341908147252377, guid: 8fb67150760a37942ad23dac8ddf5f52, type: 3}
   maxHp: 100
   moveSpeed: 5
-  dodgeCooldown: 3
+  dodgeCooldown: 2
   dodgeDuration: 1

@@ -19,5 +19,8 @@ MonoBehaviour:
   maxStackSize: 1
   itemType: 1
   targetEquipSlot: 2
+  healAmount: 0
   maxAmmo: 0
   currentAmmo: 0
+  bonusMaxHp: 10
+  bonusSpeed: 0

@@ -26,6 +26,17 @@ public class PlayerStateDeath : PlayerStateBase
             yield return null;
         }
 
-        Managers.Pool.ReturnPool(playerBase);
+        if(IsTutorialScene())
+        {
+            Destroy(playerBase.gameObject);
+        }
+        else
+        {
+            Managers.Pool.ReturnPool(playerBase);
+        }
+    }
+    private bool IsTutorialScene()
+    {
+        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Stage_Tutorial";
     }
 }

@@ -50,14 +50,6 @@ public class PlayerBase : MonoBehaviour, IDamageable
         {
             Weapons[i].gameObject.SetActive(false);
         }
-        if (!IsTutorialScene())
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-    }
-    private bool IsTutorialScene()
-    {
-        return UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Stage_Tutorial";
     }
     private void Attack()
     {

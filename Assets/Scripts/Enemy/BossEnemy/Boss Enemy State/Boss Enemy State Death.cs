@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class BossEnemyStateDeath : BossEnemyStateBase
 {
+    private Vector3 deathPosition;
     private void OnEnable()
     {
+        deathPosition = bossEnemy.transform.position;
         refAnimator.SetBool("isDead", true);
         StartCoroutine(DeathCo());
     }
@@ -20,5 +22,9 @@ public class BossEnemyStateDeath : BossEnemyStateBase
         }
 
         Managers.Pool.ReturnPool(bossEnemy);
+    }
+    private void Update()
+    {
+        bossEnemy.transform.position = deathPosition;
     }
 }

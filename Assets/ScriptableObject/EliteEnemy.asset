@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: EliteEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Elite Enemy
-  enemyPrefab: {fileID: 8234493305906830792, guid: 19191f40e0e62d4408cb75f9aced29cb, type: 3}
-  enemySprite: {fileID: 21300000, guid: d2fcfe79c9177424ea823dbcd346f038, type: 3}
   maxHp: 200
-  attack: 5
+  attack: 7
   moveSpeed: 3
   playerDetectRange: 10
   playerLayer:
@@ -27,3 +25,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2688
   distanceToPlayer: 5
+  goldReward: {fileID: 850607227720886749, guid: aa8445e1e8b0f8e4ba9280fb1890a2c2, type: 3}
+  goldDropRate: 50
+  bulletRewards:
+  - {fileID: 850607227720886749, guid: bbde87faa939f9e49881a1ae6da2fd0d, type: 3}
+  - {fileID: 850607227720886749, guid: b117d2a2710efdf4e9d603d724ad28c8, type: 3}
+  itemDropRate: 50
+  itemDropRadius: 3

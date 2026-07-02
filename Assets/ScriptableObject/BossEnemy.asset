@@ -13,10 +13,8 @@ MonoBehaviour:
   m_Name: BossEnemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemyData
   enemyName: Boss Enemy
-  enemyPrefab: {fileID: 2512780050879095452, guid: e30bcf19fd833104e89681aca68e526b, type: 3}
-  enemySprite: {fileID: 21300000, guid: d2c8c765d3d0b5a45a1cac52309e98eb, type: 3}
   maxHp: 500
-  attack: 5
+  attack: 10
   moveSpeed: 3
   playerDetectRange: 10
   playerLayer:
@@ -27,3 +25,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2688
   distanceToPlayer: 5
+  goldReward: {fileID: 850607227720886749, guid: aa8445e1e8b0f8e4ba9280fb1890a2c2, type: 3}
+  goldDropRate: 100
+  bulletRewards:
+  - {fileID: 850607227720886749, guid: bbde87faa939f9e49881a1ae6da2fd0d, type: 3}
+  - {fileID: 850607227720886749, guid: b117d2a2710efdf4e9d603d724ad28c8, type: 3}
+  itemDropRate: 100
+  itemDropRadius: 3

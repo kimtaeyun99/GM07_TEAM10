@@ -17,7 +17,6 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < EnemySpawnCount; i++)
         {
             if (enemyData == null) return;
-            if (enemyData.EnemyPrefab == null) return;
 
             EnemyBase enemy = Managers.Pool.GetPool(Enemyprefab);
             enemy.transform.position = transform.position;

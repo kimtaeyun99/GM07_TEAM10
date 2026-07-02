@@ -23,8 +23,6 @@ public class PlayerAudioManager : MonoBehaviour
     [Header("Pistol")]
     [SerializeField] private AudioClip pistolShoot;
     [Range(0f, 1f)] public float pistolShootVolume = 1f;
-    [SerializeField] private AudioClip[] pistolReload;
-    [Range(0f, 1f)] public float pistolReloadVolume = 1f;
 
     [Header("Shotgun")]
     [SerializeField] private AudioClip shotgunShoot;
@@ -69,13 +67,6 @@ public class PlayerAudioManager : MonoBehaviour
     public void PistolShoot()
     {
         playerSfxSource.PlayOneShot(pistolShoot, pistolShootVolume);
-    }
-    public void PistolReload()
-    {
-        for(int i=0; i<pistolReload.Length; i++)
-        {
-            playerSfxSource.PlayOneShot(pistolReload[i],pistolReloadVolume);
-        }
     }
     public void ShotgunShoot()
     {

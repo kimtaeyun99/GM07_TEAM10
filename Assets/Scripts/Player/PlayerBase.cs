@@ -25,7 +25,7 @@ public class PlayerBase : MonoBehaviour, IDamageable
         if (data == null) return;
         playerData = data;
 
-        gameObject.name = playerData.name;
+        gameObject.name = playerData.PlayerName;
         maxHp = playerData.MaxHp;
         currentHp = maxHp;
         moveSpeed = playerData.MoveSpeed;

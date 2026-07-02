@@ -23,6 +23,7 @@ public class BasicEnemyStateAttack : BasicEnemyStateBase
             bullet.transform.position = basicEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, basicEnemy.dir);
             bullet.Initialize(basicEnemy.dir, EnemyBullet.BulletPattern.Straight, basicEnemy.player);
+            bullet.damage = basicEnemy.attack;
             Managers.EnemyAudio.BasicEnemyAttack();
             yield return basicEnemy.StraightAttackWait;
        }

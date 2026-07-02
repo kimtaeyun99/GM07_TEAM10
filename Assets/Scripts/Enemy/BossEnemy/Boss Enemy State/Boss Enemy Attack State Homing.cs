@@ -26,6 +26,7 @@ public class BossEnemyAttackStateHoming : BossEnemyStateAttack
             EnemyBullet bullet = Managers.Pool.GetPool(bossEnemy.EnemyBulletPrefab);
             bullet.transform.position = bossEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, bossEnemy.dir);
+            bullet.damage = bossEnemy.attack;
             bullet.Initialize(bossEnemy.dir, EnemyBullet.BulletPattern.Homing, bossEnemy.player);
             Managers.EnemyAudio.BossEnemyHomingAttack();
             yield return bossEnemy.HomingAttackWait;

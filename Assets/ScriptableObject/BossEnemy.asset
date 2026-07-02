@@ -15,7 +15,7 @@ MonoBehaviour:
   enemyName: Boss Enemy
   maxHp: 500
   attack: 10
-  moveSpeed: 3
+  moveSpeed: 1
   playerDetectRange: 10
   playerLayer:
     serializedVersion: 2

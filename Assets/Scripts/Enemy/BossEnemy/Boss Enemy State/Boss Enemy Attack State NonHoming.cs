@@ -36,6 +36,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             EnemyBullet bullet = Managers.Pool.GetPool(bossEnemy.EnemyBulletPrefab);
             bullet.transform.position = bossEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, bossEnemy.dir);
+            bullet.damage = bossEnemy.attack;
             bullet.Initialize(bossEnemy.dir, EnemyBullet.BulletPattern.Straight, bossEnemy.player);
             Managers.EnemyAudio.BossEnemyNonHomingAttack();
             yield return bossEnemy.StraightAttackWait;
@@ -55,6 +56,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
                 EnemyBullet bullet = Managers.Pool.GetPool(bossEnemy.EnemyBulletPrefab);
                 bullet.transform.position = bossEnemy.FirePoint.position;
                 bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, bossEnemy.dir);
+                bullet.damage = bossEnemy.attack;
                 bullet.Initialize(bossEnemy.dir, EnemyBullet.BulletPattern.Curve, bossEnemy.player);
                 Managers.EnemyAudio.BossEnemyNonHomingAttack();
                 yield return bossEnemy.CurveAttackWait;
@@ -87,7 +89,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
                 EnemyBullet bullet = Managers.Pool.GetPool(bossEnemy.EnemyBulletPrefab);
                 bullet.transform.position = bossEnemy.FirePoint.position;
                 bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
-
+                bullet.damage = bossEnemy.attack;
                 bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, bossEnemy.player);
 
                 angle += angleStep;
@@ -112,6 +114,7 @@ public class BossEnemyAttackStateNonHoming : BossEnemyStateAttack
             EnemyBullet bullet = Managers.Pool.GetPool(bossEnemy.EnemyBulletPrefab);
             bullet.transform.position = bossEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+            bullet.damage = bossEnemy.attack;
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, null);
             Managers.EnemyAudio.BossEnemyNonHomingAttack();
 

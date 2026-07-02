@@ -38,6 +38,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Straight, eliteEnemy.player);
             Managers.EnemyAudio.EliteEnemyAttack();
             yield return eliteEnemy.StraightAttackWait;
@@ -54,6 +55,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
                 EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
                 bullet.transform.position = eliteEnemy.FirePoint.position;
                 bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
+                bullet.damage = eliteEnemy.attack;
                 bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Curve, eliteEnemy.player);
                 Managers.EnemyAudio.EliteEnemyAttack();
                 yield return eliteEnemy.CurveAttackWait;
@@ -78,7 +80,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
-
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, eliteEnemy.player);
             angle += angleStep;
         }
@@ -97,6 +99,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(dir, EnemyBullet.BulletPattern.Straight, null);
             Managers.EnemyAudio.EliteEnemyAttack();
             angle += eliteEnemy.SpiralAngle;
@@ -111,6 +114,7 @@ public class EliteEnemyStateAttack : EliteEnemyStateBase
             EnemyBullet bullet = Managers.Pool.GetPool(eliteEnemy.EnemyBulletPrefab);
             bullet.transform.position = eliteEnemy.FirePoint.position;
             bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, eliteEnemy.dir);
+            bullet.damage = eliteEnemy.attack;
             bullet.Initialize(eliteEnemy.dir, EnemyBullet.BulletPattern.Homing, eliteEnemy.player);
             Managers.EnemyAudio.EliteEnemyAttack();
             yield return eliteEnemy.HomingAttackWait;

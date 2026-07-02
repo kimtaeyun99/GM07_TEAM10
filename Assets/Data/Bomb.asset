@@ -19,5 +19,6 @@ MonoBehaviour:
   maxStackSize: 5
   itemType: 0
   targetEquipSlot: 0
+  healAmount: 0
   maxAmmo: 0
   currentAmmo: 0

@@ -95,6 +95,7 @@ public class EquipmentManager : MonoBehaviour
         {
             onEquipmentChangedCallback.Invoke();
         }
+        UpdatePlayerStats();
     }
 
     // 💡 기존의 해제 함수 (이름은 프로젝트에 따라 Unequip, RemoveEquipment 등 다를 수 있습니다)
@@ -120,5 +121,36 @@ public class EquipmentManager : MonoBehaviour
         {
             onEquipmentChangedCallback.Invoke();
         }
+        UpdatePlayerStats();
+    }
+
+    public void UpdatePlayerStats()
+    {
+        PlayerBase player = FindAnyObjectByType<PlayerBase>();
+        if (player == null) return;
+
+        // 1. 플레이어의 스탯을 장비가 없는 '순수 기본 상태'로 초기화 (또는 PlayerData에서 재호출)
+        int totalMaxHp = 100; // 예시 기본값 (기존 playerData.MaxHp 등으로 연동 가능)
+        float totalSpeed = 5f; // 예시 기본값
+
+        // 2. 현재 장착된 모든 장비 배열을 돌면서 보너스 스탯 누적 합산
+        foreach (ItemData item in currentEquipment)
+        {
+            if (item != null)
+            {
+                totalMaxHp += item.bonusMaxHp;
+                totalSpeed += item.bonusSpeed;
+            }
+        }
+
+        // 3. 실제 플레이어의 실시간 능력치에 최종 반영
+        player.maxHp = totalMaxHp;
+        player.moveSpeed = totalSpeed;
+
+        // 체력 오버플로우 방지 및 UI 동기화
+        if (player.currentHp > player.maxHp) player.currentHp = player.maxHp;
+        player.TakeDamage(0); // TakeDamage(0)을 주면 OnHealthChanged 이벤트가 수행되면서 체력바가 즉시 갱신됩니다!
+
+        Debug.Log($"[스탯 갱신 완료] 최대 체력: {player.maxHp}, 이동속도: {player.moveSpeed}");
     }
 }

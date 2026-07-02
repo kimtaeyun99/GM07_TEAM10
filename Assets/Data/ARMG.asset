@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: "AR\uD0C4\uCC3D"
   itemIcon: {fileID: 7641563668092929079, guid: ee525405c7e6297459e16ae4f0d49dc7, type: 3}
+  itemPrice: 0
   description: "\uC790\uB3D9\uC18C\uCD1D\uC744 \uC7A5\uC804\uD560 \uC218 \uC788\uB294
     \uD0C4\uCC3D"
   maxStackSize: 5
   itemType: 0
   targetEquipSlot: 0
+  healAmount: 0
+  maxAmmo: 0
+  currentAmmo: 0

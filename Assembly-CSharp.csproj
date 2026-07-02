@@ -85,6 +85,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\Scripts\Inventory\ItemData.cs" />
     <Compile Include="Assets\Scripts\InterFace\IReloadable.cs" />
+    <Compile Include="Assets\Scripts\System\PlayerAudioManager.cs" />
     <Compile Include="Assets\Scripts\System\Managers.cs" />
     <Compile Include="Assets\Scripts\Enemy\BossEnemy\Boss Enemy State\Boss Enemy State Chase.cs" />
     <Compile Include="Assets\Scripts\Enemy\BossEnemy\Boss Enemy State\Boss Enemy Attack State NonHoming.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Assets\Scripts\Hud\PlayerMovement2D.cs" />
     <Compile Include="Assets\Scripts\Hud\SceneSpecificGuide.cs" />
     <Compile Include="Assets\Scripts\Map\TestPlayerMove.cs" />
+    <Compile Include="Assets\Scripts\System\BGMAudioManager.cs" />
     <Compile Include="Assets\Scripts\Map\Door.cs" />
     <Compile Include="Assets\Scripts\Weapon\PlayerBulletBase.cs" />
     <Compile Include="Assets\Scripts\System\PoolManager.cs" />
@@ -159,6 +161,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Item\InteractableBox.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyAttack\EnemyRaser.cs" />
+    <Compile Include="Assets\Scripts\System\EnemyAudioManager.cs" />
     <Compile Include="Assets\Space_Exploration_GUI_Kit\Scripts\Scene_Controller.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />

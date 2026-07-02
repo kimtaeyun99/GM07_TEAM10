@@ -48,4 +48,46 @@ public static class Managers
             return _cameraManager;
         }
     }
+    public static PlayerAudioManager _playerAudioManager;
+    public static PlayerAudioManager PlayerAudio
+    {
+        get
+        {
+            if (_playerAudioManager == null)
+            {
+                GameObject obj = new GameObject("Player Audio Manager");
+                _playerAudioManager = obj.AddComponent<PlayerAudioManager>();
+                Object.DontDestroyOnLoad(obj);
+            }
+            return _playerAudioManager;
+        }
+    }
+    public static EnemyAudioManager _enemyAudioManager;
+    public static EnemyAudioManager EnemyAudio
+    {
+        get
+        {
+            if (_enemyAudioManager == null)
+            {
+                GameObject obj = new GameObject("Enemy Audio Manager");
+                _enemyAudioManager = obj.AddComponent<EnemyAudioManager>();
+                Object.DontDestroyOnLoad(obj);
+            }
+            return _enemyAudioManager;
+        }
+    }
+    public static BGMAudioManager _bgmAudioManager;
+    public static BGMAudioManager BGMAudio
+    {
+        get
+        {
+            if (_bgmAudioManager == null)
+            {
+                GameObject obj = new GameObject("BGM Audio Manager");
+                _bgmAudioManager = obj.AddComponent<BGMAudioManager>();
+                Object.DontDestroyOnLoad(obj);
+            }
+            return _bgmAudioManager;
+        }
+    }
 }

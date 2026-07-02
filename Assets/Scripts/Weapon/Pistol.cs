@@ -48,5 +48,6 @@ public class Pistol : WeaponBase
         bullet.transform.rotation = Quaternion.FromToRotation(Vector3.right, dir);
 
         bullet.Fire(dir);
+        Managers.PlayerAudio.PistolShoot();
     }
 }

@@ -143,9 +143,19 @@ public class PlayerBase : MonoBehaviour, IDamageable
 
         OnHealthChanged?.Invoke(currentHp,maxHp);
     }
+    private bool isFacingLeft = false;
     public void LookDirection()
     {
-        if(Managers.Input.movement.x < 0)
+        if (Managers.Input.movement.x < 0)
+        {
+            isFacingLeft = true;
+        }
+        else if (Managers.Input.movement.x > 0)
+        {
+            isFacingLeft = false;
+        }
+
+        if (isFacingLeft)
         {
             transform.rotation = Quaternion.Euler(0, -180, 0);
         }

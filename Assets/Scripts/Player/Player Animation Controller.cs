@@ -29,8 +29,4 @@ public class PlayerAnimationController : MonoBehaviour
             refAnimator.SetBool("isDead", true);
         }
     }
-    //public AnimatorStateInfo GetCurrentStateInfo()
-    //{
-    //    return refAnimator.GetCurrentAnimatorStateInfo(0);
-    //}
 }

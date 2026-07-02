@@ -419,7 +419,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3038008992550541328, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6430676673727379575, guid: 428937ccf6685314daa416cf292b5ae3, type: 3}
       propertyPath: m_LocalScale.x
@@ -574,6 +574,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2129633627447744352}
     - target: {fileID: 8331066918746474639, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331066918746474639, guid: c98af3f0ff4312f43a0670f3e8887317, type: 3}
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
@@ -666,6 +670,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4545405626407920672, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545405626407920672, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
       propertyPath: m_SortingLayer
       value: 2
       objectReference: {fileID: 0}
@@ -687,7 +695,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6097053190264946600, guid: 98b71c176f2b10242b9dc7adce6f1c04, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

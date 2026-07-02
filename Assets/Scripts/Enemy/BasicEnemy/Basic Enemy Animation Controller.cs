@@ -20,7 +20,7 @@ public class BasicEnemyAnimationController : MonoBehaviour
             refAnimator.SetBool("isPlayerDetected", false);
             refAnimator.SetInteger("State", (int) newState);
         }
-        if (newState == BasicEnemyStateManager.BasicEnemyState.Chase)
+        else if (newState == BasicEnemyStateManager.BasicEnemyState.Chase)
         {
             refAnimator.SetBool("isPlayerDetected", true);
             refAnimator.SetInteger("State", (int) newState);

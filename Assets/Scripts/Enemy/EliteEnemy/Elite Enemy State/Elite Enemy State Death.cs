@@ -1,16 +1,24 @@
+using System.Collections;
 using UnityEngine;
 
-public class EliteEnemyStateDeath : MonoBehaviour
+public class EliteEnemyStateDeath : EliteEnemyStateBase
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnEnable()
     {
-        
+        refAnimator.SetBool("isDead", true);
+        StartCoroutine(DeathCo());
     }
-
-    // Update is called once per frame
-    void Update()
+    private IEnumerator DeathCo()
     {
-        
+        while (refAnimator.IsInTransition(0) || !refAnimator.GetCurrentAnimatorStateInfo(0).IsName("Elite Enemy Death")) yield return null;
+
+        while (true)
+        {
+            AnimatorStateInfo stateInfo = refAnimator.GetCurrentAnimatorStateInfo(0);
+            if (stateInfo.IsName("Elite Enemy Death") && stateInfo.normalizedTime >= 1f) break;
+            yield return null;
+        }
+
+        Managers.Pool.ReturnPool(eliteEnemy);
     }
 }

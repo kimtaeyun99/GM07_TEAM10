@@ -10,8 +10,7 @@ public class BasicEnemyStateDeath : BasicEnemyStateBase
     }
     private IEnumerator DeathCo()
     {
-        while (refAnimator.IsInTransition(0) || !refAnimator.GetCurrentAnimatorStateInfo(0).IsName("Basic Enemy Death"))
-            yield return null;
+        while (refAnimator.IsInTransition(0) || !refAnimator.GetCurrentAnimatorStateInfo(0).IsName("Basic Enemy Death")) yield return null;
 
         while (true)
         {

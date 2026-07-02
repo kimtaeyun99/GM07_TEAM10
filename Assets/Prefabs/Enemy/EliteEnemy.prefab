@@ -42,8 +42,15 @@ GameObject:
   - component: {fileID: 6515879040196357026}
   - component: {fileID: 1809314977981300376}
   - component: {fileID: 6299086691093836940}
-  - component: {fileID: 8234493305906830792}
   - component: {fileID: 1324938418093939952}
+  - component: {fileID: 5115262578804260542}
+  - component: {fileID: 8234493305906830792}
+  - component: {fileID: 610959789019371643}
+  - component: {fileID: 2229583474845529201}
+  - component: {fileID: 5388238885448343352}
+  - component: {fileID: 4111445622940609988}
+  - component: {fileID: 3021546643050480226}
+  - component: {fileID: 324846797915466325}
   m_Layer: 10
   m_Name: EliteEnemy
   m_TagString: Enemy
@@ -138,7 +145,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -153,43 +160,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8234493305906830792
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7814423692779853431}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c0ec9866c0ecef439f1c44882e65ce8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemy
-  firePoint: {fileID: 174545995129549062}
-  enemyBulletPrefab: {fileID: 4873855090376519224, guid: 4ab8a87458942bc4fad4244e1a060153, type: 3}
-  moveWaitTime: 5
-  toDistance: 5
-  detectRange: 10
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  obstacle:
-    serializedVersion: 2
-    m_Bits: 2688
-  detectDistance: 1
-  returnDis: 5
-  attackDelay: 3
-  straightAttackCount: 10
-  straightAttackDelay: 0.3
-  curveAttackRepeatCount: 3
-  curveAttackRepeatDelay: 0.5
-  curveAttackCount: 10
-  curveAttackDelay: 0.1
-  circleAttackCount: 30
-  spiralAttackCount: 30
-  spiralAngle: 20
-  homingAttackCount: 5
-  homingAttackDelay: 0.5
 --- !u!60 &1324938418093939952
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -245,3 +215,155 @@ PolygonCollider2D:
       - {x: 0.14999999, y: 0.049999997}
       - {x: 0.089999996, y: 0.099999994}
   m_UseDelaunayMesh: 1
+--- !u!95 &5115262578804260542
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 13fd54c5a04c2a041a5daa31c3be414f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8234493305906830792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c0ec9866c0ecef439f1c44882e65ce8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemy
+  player: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
+  dis: 0
+  patrolDir: {x: 1, y: 0}
+  returnPos: {x: 0, y: 0, z: 0}
+  attackTimer: 0
+  spriteRenderer: {fileID: 1809314977981300376}
+  firePoint: {fileID: 174545995129549062}
+  enemyBulletPrefab: {fileID: 4873855090376519224, guid: 4ab8a87458942bc4fad4244e1a060153, type: 3}
+  moveWaitTime: 5
+  returnDis: 5
+  attackDelay: 6
+  straightAttackCount: 10
+  straightAttackDelay: 0.3
+  curveAttackRepeatCount: 3
+  curveAttackRepeatDelay: 0.5
+  curveAttackCount: 10
+  curveAttackDelay: 0.1
+  circleAttackCount: 30
+  spiralAttackCount: 30
+  spiralAngle: 20
+  homingAttackCount: 5
+  homingAttackDelay: 0.5
+--- !u!114 &610959789019371643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8592d23eb19409f4a9ad7fd6ed1f0262, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyAnimationController
+  refAnimator: {fileID: 5115262578804260542}
+--- !u!114 &2229583474845529201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d979338e0411349a772e436cda8d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStateManager
+  eliteEnemy: {fileID: 8234493305906830792}
+  eliteEnemyState: -1
+  eliteEnemyStates:
+  - {fileID: 5388238885448343352}
+  - {fileID: 4111445622940609988}
+  - {fileID: 3021546643050480226}
+  - {fileID: 324846797915466325}
+  OnStateChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 610959789019371643}
+        m_TargetAssemblyTypeName: EliteEnemyAnimationController, Assembly-CSharp
+        m_MethodName: OnStateChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &5388238885448343352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78fa8bfe83c3d82478a77e08bb6d90b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStatePatrol
+--- !u!114 &4111445622940609988
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67f077325d5d94846ae503ff52c63861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStateChase
+--- !u!114 &3021546643050480226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de63221fb302a9f47891ff7036cff9bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStateAttack
+--- !u!114 &324846797915466325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814423692779853431}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7c181751503fe4382d42e26cf8dcc4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EliteEnemyStateDeath

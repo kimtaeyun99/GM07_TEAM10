@@ -4,7 +4,6 @@ public class BasicEnemyStateBase : MonoBehaviour
 {
     protected Transform refTransform;
     protected Animator refAnimator;
-    protected Rigidbody2D refRb;
     protected BasicEnemyStateManager basicEnemyStateManager;
     protected BasicEnemy basicEnemy;
     protected BasicEnemyAnimationController basicEnemyAnimationController;
@@ -13,15 +12,11 @@ public class BasicEnemyStateBase : MonoBehaviour
     {
         if(refTransform == null)
         {
-            refTransform = transform;
+            refTransform = GetComponent<Transform>();
         }
         if(refAnimator == null)
         {
             refAnimator = GetComponent<Animator>();
-        }
-        if (refRb == null)
-        {
-            refRb = GetComponent<Rigidbody2D>();
         }
         if (basicEnemyStateManager == null)
         {

@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 100
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -224,12 +224,13 @@ MonoBehaviour:
   dis: 0
   patrolDir: {x: 1, y: 0}
   returnPos: {x: 0, y: 0, z: 0}
+  attackTimer: 0
+  spriteRenderer: {fileID: 4836495012315110890}
   firePoint: {fileID: 181323770550844694}
   enemyBullet: {fileID: 720359188151084633, guid: b15da03873d560a48a23351ddebd997c, type: 3}
   attackDelay: 3
   straightAttackCount: 5
   straightAttackDelay: 1
-  attackTimer: 0
 --- !u!114 &5116086224288197075
 MonoBehaviour:
   m_ObjectHideFlags: 0

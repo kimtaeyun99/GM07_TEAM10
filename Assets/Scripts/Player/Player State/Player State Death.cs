@@ -11,6 +11,8 @@ public class PlayerStateDeath : PlayerStateBase
     }
     private IEnumerator DeathCo()
     {
+        //playerBase.currentWeapon.enabled = false;
+
         yield return null;
 
         while (true)

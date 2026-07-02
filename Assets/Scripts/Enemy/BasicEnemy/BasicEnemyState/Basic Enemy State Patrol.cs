@@ -13,6 +13,7 @@ public class BasicEnemyStatePatrol : BasicEnemyStateBase
         if (hit.collider != null)
         {
             basicEnemy.patrolDir *= -1;
+            basicEnemy.transform.Rotate(0, 180, 0);
         }
 
         Collider2D player = Physics2D.OverlapCircle(basicEnemy.transform.position, basicEnemy.playerDetectRange, basicEnemy.playerLayer);
@@ -20,5 +21,13 @@ public class BasicEnemyStatePatrol : BasicEnemyStateBase
         {
             basicEnemy.player = player.GetComponent<PlayerBase>();
         }
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(basicEnemy.transform.position, basicEnemy.playerDetectRange);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawLine(basicEnemy.transform.position, (Vector2)basicEnemy.transform.position + basicEnemy.patrolDir * basicEnemy.obstacleDetectDistance);
     }
 }
